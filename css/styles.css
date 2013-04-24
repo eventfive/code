@@ -11,9 +11,27 @@
 /* ! Custom                               */
 /* ====================================== */
 
+/* Transition timings */
+.in, .out { -webkit-animation-timing-function: ease-in-out; -webkit-animation-duration: 100ms !important; }
+
 /* Background */
 .ui-body-c, .ui-overlay-c { background: #EBEBEB; }
 
 /* Header */
 .ui-header.ui-bar-a { font-family: 'nove', Helvetica, Arial, sans-serif; text-shadow: none; background: #1c9280; border: none; box-shadow: 0 0 3px 0px #747474; }
 .ui-header .ui-title { font-size: 25px; margin-top: 0.8em; margin-right: 0; margin-left: 0; }
+
+/* Footer */
+.ui-btn-up-a {
+	background-color: #000;
+	box-shadow: 0 2px 4px rgba(0,0,0,.25);
+	background-image: -webkit-linear-gradient(bottom, #22211f, #575351);
+	background-image: -moz-linear-gradient(bottom, #22211f, #575351);
+	background-image: -o-linear-gradient(bottom, #22211f, #575351);
+	background-image: -ms-linear-gradient(bottom, #22211f, #575351);
+	background-image: linear-gradient(to top, #22211f, #575351);
+}
+.ui-grid-d .ui-btn-text { display: block; text-indent: -99999px; }
+.ui-grid-d .ui-btn-inner { padding-top: 2em !important; padding-bottom: 2em !important; }
+.ui-grid-d .ui-block-a .ui-btn-inner { background: url("../img/btn-first.png") no-repeat scroll center center / auto 75% transparent; }
+.ui-grid-d .ui-block-b .ui-btn-inner { background: url("../img/btn-second.png") no-repeat scroll center center / auto 75% transparent; }
