@@ -35,10 +35,10 @@
 /* Buttons */
 .ui-grid-d li { padding-top: 1.5em !important; padding-bottom: 0em !important; border: none; padding-left: 0; padding-right: 0; background: none; }
 .ui-grid-d .ui-btn-text { display: block; text-indent: -99999px; padding-bottom: 2.5em; }
-.ui-grid-d .ui-block-a .ui-btn-text { background: url("../img/btn-1.png") no-repeat scroll center center transparent; background-size: auto 100%; }
-.ui-grid-d .ui-block-b .ui-btn-text { background: url("../img/btn-2.png") no-repeat scroll center center transparent; background-size: auto 100%; }
-.ui-grid-d .ui-block-d .ui-btn-text { background: url("../img/btn-4.png") no-repeat scroll center bottom transparent; background-size: auto 100%; }
-.ui-grid-d .ui-block-e .ui-btn-text { background: url("../img/btn-5.png") no-repeat scroll center center transparent; background-size: auto 100%; }
+.ui-grid-d .ui-block-a .ui-btn-text { background: url("../img/btn-1.png") no-repeat scroll center center transparent; background-size: auto 55%; }
+.ui-grid-d .ui-block-b .ui-btn-text { background: url("../img/btn-2.png") no-repeat scroll center center transparent; background-size: auto 55%; }
+.ui-grid-d .ui-block-d .ui-btn-text { background: url("../img/btn-4.png") no-repeat scroll center center transparent; background-size: auto 55%; }
+.ui-grid-d .ui-block-e .ui-btn-text { background: url("../img/btn-5.png") no-repeat scroll center center transparent; background-size: auto 55%; }
 /* Mitte */
 .ui-grid-d .ui-block-c .ui-btn { border-top-left-radius: 10px; border-top-right-radius: 10px; }
 .ui-grid-d .ui-block-c { padding-top: .8em !important; }
