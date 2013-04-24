@@ -5,31 +5,13 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <!-- JavaScript -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile.js"></script>
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
 </head>
 <body>
-<!-- JavaScript -->
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript">
-    var dd = $.Deferred();
-    var jqd = $.Deferred();
-    $.when(dd, jqd).done(doInit);
-    $(document).bind('mobileinit', function () { jqd.resolve(); });
-</script>
-<script type="text/javascript" src="js/jquery.mobile.js"></script>
-<script type="text/javascript" src="phonegap.js"></script>
-<script type="text/javascript">
-    document.addEventListener('deviceready', deviceReady, false);
-    function deviceReady() { dd.resolve(); }
-    // Wenn jQuery & Phonegap fertig sind, dann können alle Funktionen ab hier ausgeführt werden
-    function doInit() {
-        navigator.notification.alert(
-			'You are the winner!',  // message
-			alertDismissed,         // callback
-			'Game Over',            // title
-			'Done'                  // buttonName
-		);
-    }
-</script>
 
 <!-- HTML -->
 <div data-role="header" data-position="fixed">
