@@ -11,6 +11,9 @@
 /* ! Custom                               */
 /* ====================================== */
 
+/* Background */
+.ui-page { background: #EBEBEB; }
+
 /* Header */
 .ui-header.ui-bar-a { font-family: 'nove', Helvetica, Arial, sans-serif; text-shadow: none; background: #1c9280; border: none; box-shadow: 0 0 3px 0px #747474; }
 .ui-header .ui-title { font-size: 25px; margin-top: 0.8em; }
