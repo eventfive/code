@@ -1,5 +1,16 @@
 /* ====================================== */
-/* ! CSS-Import                           */
+/* ! Imports                              */
 /* ====================================== */
 
 @import url(jquery.mobile.css);
+/* Novocento */
+@font-face { font-family: 'nove'; src: url('../font/Novecentowide-DemiBold-webfont.eot'); src: url('../font/Novecentowide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'), url('../font/Novecentowide-DemiBold-webfont.woff') format('woff'), url('../font/Novecentowide-DemiBold-webfont.ttf') format('truetype'), url('../font/Novecentowide-DemiBold-webfont.svg#NovecentowideLightBold') format('svg'); font-weight: normal; font-style: normal;
+}
+
+/* ====================================== */
+/* ! Custom                               */
+/* ====================================== */
+
+/* Header */
+.ui-header.ui-bar-a { font-family: 'nove', Helvetica, Arial, sans-serif; text-shadow: none; background: #1c9280; border: none; box-shadow: 0 0 3px 0px #747474; }
+.ui-header .ui-title { font-size: 20px; }
