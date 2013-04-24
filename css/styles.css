@@ -30,9 +30,15 @@
 	background-image: -o-linear-gradient(bottom, #22211f, #575351);
 	background-image: -ms-linear-gradient(bottom, #22211f, #575351);
 	background-image: linear-gradient(to top, #22211f, #575351);
+	border: none;
 }
-.ui-grid-d { box-shadow: 0 0 3px 2px #747474; }
+.ui-grid-d { box-shadow: 0 0 3px 1px #747474; }
 .ui-grid-d .ui-btn-text { display: block; text-indent: -99999px; }
 .ui-grid-d .ui-btn-inner { padding-top: 1.8em !important; padding-bottom: 1.8em !important; border: none; }
+.ui-grid-d > *:nth-child(n) { width: 19%; }
+.ui-grid-d .ui-block-c { width: 24%; }
 .ui-grid-d .ui-block-a .ui-btn-inner { background: url("../img/btn-first.png") no-repeat scroll center center transparent; background-size: auto 60%; }
 .ui-grid-d .ui-block-b .ui-btn-inner { background: url("../img/btn-second.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-c .ui-btn-inner { background: url("../img/btn-third.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-d .ui-btn-inner { background: url("../img/btn-fourth.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-e .ui-btn-inner { background: url("../img/btn-fifth.png") no-repeat scroll center center transparent; background-size: auto 60%; }
