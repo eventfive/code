@@ -22,7 +22,12 @@
     function deviceReady() { dd.resolve(); }
     // Wenn jQuery & Phonegap fertig sind, dann können alle Funktionen ab hier ausgeführt werden
     function doInit() {
-        alert('Ready');
+        navigator.notification.alert(
+			'You are the winner!',  // message
+			alertDismissed,         // callback
+			'Game Over',            // title
+			'Done'                  // buttonName
+		);
     }
 </script>
 
