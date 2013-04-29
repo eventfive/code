@@ -18,7 +18,7 @@
 .ui-body-c, .ui-overlay-c { background: #EBEBEB; }
 
 /* Header */
-.ui-header.ui-bar-a { font-family: 'nove', Helvetica, Arial, sans-serif; text-shadow: none; background: #1c9280; border: none; box-shadow: 0 0 3px 0px #747474; }
+.ui-header.ui-bar-a { font-family: 'nove', Helvetica, Arial, sans-serif; text-shadow: none; background: #1cb79d; border: none; box-shadow: 0 0 3px 0px #747474; }
 .ui-header .ui-title { font-size: 25px; margin-top: 0.6em; margin-bottom: 0.6em; margin-right: 0; margin-left: 0; }
 
 /* Footer */
@@ -41,5 +41,5 @@
 .ui-grid-d .ui-block-e .ui-btn-text { background: url("../img/btn-5.png") no-repeat scroll center center transparent; background-size: auto 55%; }
 /* Mitte */
 .ui-grid-d .ui-block-c .ui-btn { border-top-left-radius: 10px; border-top-right-radius: 10px; }
-.ui-grid-d .ui-block-c { padding-top: .8em !important; }
+.ui-grid-d .ui-block-c { padding-top: .9em !important; }
 .ui-grid-d .ui-block-c .ui-btn-text { background: url("../img/btn-3.png") no-repeat scroll center center transparent; background-size: auto 100%; padding-bottom: 3.4em; }
