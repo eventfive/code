@@ -15,11 +15,12 @@
 .in, .out { -webkit-animation-timing-function: ease-in-out; -webkit-animation-duration: 100ms !important; }
 
 /* Background */
-.ui-body-c, .ui-overlay-c { background: #EBEBEB; }
+.ui-body-c { background: #EBEBEB; }
+.ui-overlay-c { background: url("../img/spinner_32.gif") no-repeat scroll center center #000000; }
 
 /* Header */
 .ui-header.ui-bar-a { font-family: 'nove', Helvetica, Arial, sans-serif; text-shadow: none; background: #1cb79d; border: none; box-shadow: 0 0 3px 0px #747474; }
-.ui-header .ui-title { font-size: 25px; margin-top: 0.6em; margin-bottom: 0.6em; margin-right: 0; margin-left: 0; }
+.ui-header .ui-title { font-size: 25px; margin-top: 0.7em; margin-bottom: 0.5em; margin-right: 0; margin-left: 0; }
 
 /* Footer */
 .ui-footer.ui-bar-a { background: none; border: none; }
@@ -36,11 +37,11 @@
 .ui-grid-d { box-shadow: 0 -5px 0 0 #22211f inset; }
 .ui-grid-d li { padding-top: 1.5em !important; padding-bottom: 0em !important; border: none; padding-left: 0; padding-right: 0; background: none; }
 .ui-grid-d .ui-btn-text { display: block; text-indent: -99999px; padding-bottom: 2.5em; }
-.ui-grid-d .ui-block-a .ui-btn-text { background: url("../img/btn-1.png") no-repeat scroll center center transparent; background-size: auto 55%; }
-.ui-grid-d .ui-block-b .ui-btn-text { background: url("../img/btn-2.png") no-repeat scroll center center transparent; background-size: auto 55%; }
-.ui-grid-d .ui-block-d .ui-btn-text { background: url("../img/btn-4.png") no-repeat scroll center center transparent; background-size: auto 55%; }
-.ui-grid-d .ui-block-e .ui-btn-text { background: url("../img/btn-5.png") no-repeat scroll center center transparent; background-size: auto 55%; }
+.ui-grid-d .ui-block-a .ui-btn-text { background: url("../img/btn-1.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-b .ui-btn-text { background: url("../img/btn-2.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-d .ui-btn-text { background: url("../img/btn-4.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-e .ui-btn-text { background: url("../img/btn-5.png") no-repeat scroll center center transparent; background-size: auto 60%; }
 /* Mitte */
 .ui-grid-d .ui-block-c .ui-btn { border-top-left-radius: 10px; border-top-right-radius: 10px; }
-.ui-grid-d .ui-block-c { padding-top: .8em !important; }
-.ui-grid-d .ui-block-c .ui-btn-text { background: url("../img/btn-3.png") no-repeat scroll center center transparent; background-size: auto 100%; padding-bottom: 3.4em; }
+.ui-grid-d .ui-block-c { padding-top: .85em !important; }
+.ui-grid-d .ui-block-c .ui-btn-text { background: url("../img/btn-3.png") no-repeat scroll center center transparent; background-size: auto 115%; padding-bottom: 3.4em; }
