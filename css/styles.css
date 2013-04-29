@@ -33,7 +33,7 @@
 	border: none;
 }
 /* Buttons */
-.ui-grid-d { box-shadow: 0 -5px 0 0 #2D2D2D inset; }
+.ui-grid-d { box-shadow: 0 -5px 0 0 #22211f inset; }
 .ui-grid-d li { padding-top: 1.5em !important; padding-bottom: 0em !important; border: none; padding-left: 0; padding-right: 0; background: none; }
 .ui-grid-d .ui-btn-text { display: block; text-indent: -99999px; padding-bottom: 2.5em; }
 .ui-grid-d .ui-block-a .ui-btn-text { background: url("../img/btn-1.png") no-repeat scroll center center transparent; background-size: auto 55%; }
