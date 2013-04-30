@@ -51,9 +51,12 @@
 /* Willkommen */
 .ui-content { padding-left: 0; padding-right: 0; }
 .ui-content h1, .ui-content .content { padding-left: 35px; padding-right: 35px; }
-.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; color: #de285f; font-size: 35px; margin-top: 50px; margin-bottom: 30px; }
+.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; color: #de285f; font-size: 30px; margin-top: 30px; margin-bottom: 20px; }
 .ui-content .content { background: #FFF; box-shadow: 0 1px #fff, inset 0 -1px rgba(68,45,19,.1); padding-top: 1px; padding-bottom: 15px; line-height: 1.5; }
 
 /* Veranstaltung */
 .ui-content .content.list { padding-left: 15px; padding-right: 15px; background: none; box-shadow: none; }
-.ui-collapsible-set .ui-btn-inner {};
+.ui-collapsible .ui-btn-inner, .ui-collapsible .ui-collapsible-content { background: #FFF; padding-left: 35px; }
+.ui-collapsible .ui-btn { border-bottom: 1px solid rgba(68,45,19,.1); }
+.ui-collapsible .ui-btn-inner { font-weight: bold; background: #c8e0dc; color: #1c9381; text-shadow: none; }
+.ui-collapsible-collapsed .ui-btn-inner { background: #FFF; color: #575351; font-weight: normal !important; } /* geschlossen */
