@@ -26,9 +26,9 @@
 
 /* Content */
 .ui-content { padding-left: 0; padding-right: 0; }
-.ui-content h1, .ui-content .content { padding-left: 25px; padding-right: 25px; }
-.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; color: #de285f; font-size: 30px; margin-bottom: 30px; }
-.ui-content .content { background: #FFF; box-shadow: 0 1px #fff, inset 0 -1px rgba(68,45,19,.1); padding-top: 1px; padding-bottom: 20px; line-height: 1.5; }
+.ui-content h1, .ui-content .content { padding-left: 35px; padding-right: 35px; }
+.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; color: #de285f; font-size: 35px; height: 85px; }
+.ui-content .content { background: #FFF; box-shadow: 0 1px #fff, inset 0 -1px rgba(68,45,19,.1); padding-top: 1px; padding-bottom: 15px; line-height: 1.5; }
 
 /* Footer */
 .ui-footer.ui-bar-a { background: none; border: none; }
