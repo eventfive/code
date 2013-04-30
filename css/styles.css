@@ -17,7 +17,7 @@
 .in, .out { -webkit-animation-timing-function: ease-in-out; -webkit-animation-duration: 100ms !important; }
 
 /* Background */
-.ui-body-c { background: #EBEBEB; }
+.ui-body-c { background: #ebebeb; }
 .ui-overlay-c { background: url("../img/spinner_32.gif") no-repeat scroll center center #000000; }
 
 /* Header */
@@ -25,8 +25,10 @@
 .ui-header .ui-title { font-size: 25px; margin-top: 0.7em; margin-bottom: 0.5em; margin-right: 0; margin-left: 0; }
 
 /* Content */
-.ui-content { padding-left: 25px; padding-right: 25px; }
-.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; color: #de285f; font-size: 27px; }
+.ui-content { padding-left: 0; padding-right: 0; }
+.ui-content h1, .ui-content .content { padding-left: 25px; padding-right: 25px; }
+.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; color: #de285f; font-size: 30px; margin-bottom: 30px; }
+.ui-content .content { background: #FFF; box-shadow: 0 1px #fff, inset 0 -1px rgba(68,45,19,.1); padding-top: 1px; padding-bottom: 20px; line-height: 1.5; }
 
 /* Footer */
 .ui-footer.ui-bar-a { background: none; border: none; }
