@@ -10,7 +10,7 @@
 /* ! Custom                               */
 /* ====================================== */
 
-/* Mobile Reset */
+/* jMobile Reset */
 * { -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection */
 	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
 	-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -18,7 +18,9 @@
 input, textarea { -webkit-appearance: none; -webkit-border-radius: 0; }
 .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
 a { text-decoration: none; }
-a.button { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; }
+a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; }
+div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px 1px rgba(0,0,0,.05); border: solid 2px #cdcdcd; }
+.ui-btn-inner { border: none; }
 
 /* Transition timings */
 .in, .out { -webkit-animation-timing-function: ease-in-out; -webkit-animation-duration: 100ms !important; }
@@ -56,6 +58,15 @@ a.button { display: block; padding: 3px 10px 5px; background: #1c9280; color: #F
 /* ====================================== */
 /* ! Content                              */
 /* ====================================== */
+
+/* Init */
+#init, #init .ui-content { height: 100%; }
+#init .logo { height: 40%; width: 100%; background: url("../img/logo.png") center center no-repeat; background-size: auto 50%; }
+#init .label { text-align: center; font-size: 35px; font-family: 'nove'; color: #de285f; }
+fieldset { width: 80%; margin: 0 auto !important; }
+#init .ui-btn-inner { font-size: 35px; }
+#init div.ui-input-text { margin: 20px 0; }
+#init input.ui-input-text { font-size: 35px; text-align: center; }
 
 /* Willkommen */
 .ui-content { padding-left: 0; padding-right: 0; }

@@ -19,6 +19,7 @@ jQuery(document).ready(function () {
 		}).bind('collapse', function () {
 			$(this).children().next().slideUp(500);
 	});
+	
 });
 
 
@@ -29,4 +30,19 @@ jQuery.when(deviceReadyDeferred, jqmReadyDeferred).then(doWhenBothFrameworksLoad
 function doWhenBothFrameworksLoaded() {
 	alert('Ready');
 	var where = $('body').attr("id");
+	
+	// INIT
+	if (where == "init") {
+		$('.user').hide();
+		window.setTimeout(enableusername, 2000);
+	}
+	
+	function enableusername() {
+		$('.user').fadeIn();
+		//window.setTimeout(redirect, 2000);
+	}
+		
+	function redirect() {
+		location.href = "welcome.html";
+	}
 }
