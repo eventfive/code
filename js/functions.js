@@ -28,12 +28,5 @@ jQuery.when(deviceReadyDeferred, jqmReadyDeferred).then(doWhenBothFrameworksLoad
 // Ab hier können alle Funktionnen laufen, die jQuery UND Phonegap betreffen
 function doWhenBothFrameworksLoaded() {
 	alert('Ready');
-	// Funktionen für WILLKOMMEN
-	if ( $('#willkommen').hasClass('ui-page-active') ) {
-		alert('willkommen');
-	}
-	// Funktionen für KALENDER
-	if ( $('#kalender').hasClass('ui-page-active') ) {
-		alert('kalender');
-	}
+	var where = $('body').attr("id");
 }
