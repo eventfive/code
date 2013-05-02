@@ -13,6 +13,12 @@ function deviceReady() {
 // JQUERY /////////////////////////////////////////////////////////
 jQuery(document).ready(function () {
   jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
+  // Accordion animation
+  $('.listanimation').bind('expand', function () {
+    $(this).children().slideDown(500);
+	}).bind('collapse', function () {
+		$(this).children().next().slideUp(500);
+	});
 });
 
 

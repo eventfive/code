@@ -66,8 +66,7 @@
 .ui-collapsible .ui-icon.ui-icon-plus { background: url("../img/list-down.png") no-repeat center center transparent; background-size: 100% auto; }
 .ui-collapsible .ui-icon.ui-icon-minus { background: url("../img/list-up.png") no-repeat center center transparent; background-size: 100% auto; }
 .ui-collapsible .description { background: #FFF; border: solid 1px #cdcdcd; padding: 15px; }
-.ui-collapsible .description .logo, .ui-collapsible .description .time { float: left; }
-.ui-collapsible .description .logo { width: 50%; min-width: 250px; }
-.ui-collapsible .description .time { width: 50%; text-align: right; font-size: 10px; }
+.ui-collapsible .description .logo, .ui-collapsible .description .time { float: left; width: 50%; }
+.ui-collapsible .description .time {text-align: right; font-size: 10px; }
 .ui-collapsible .description .time span { display: block; }
 .ui-collapsible .description .text { font-size: 12px; margin-top: 10px; }
