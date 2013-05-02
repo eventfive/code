@@ -4,21 +4,19 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.hfkbremen.VOIVOI"
-        version   = "1.3">
+        version   = "2.0">
     <name>VOIVOI</name>
 
-    <!--<description>VOIVOI  - dokumentiere deine Sicht einer Veranstaltung!
+    <description>VOIVOI  - dokumentiere deine Sicht einer Veranstaltung!
 
 Die bietet App einen neuen und einfachen Weg, Momente einzufangen und zu teilen. Zu verschiedenen Kategorien kann man ein Bild aufnehmen und optional mit einem Kommentar versehen. Basierend auf dem Prinzip einer Einwegkamera ist jede Kategorie nach Aufnahme eines Bildes aufgebraucht.
 Die dadurch entwickelte Dokumentation lässt an den Eindrücken der anderen Besucher teilhaben.
 
 Voraussetzung für die Nutzung von VOIVOI ist eine bestehende Internetverbindung.
 
-    </description>-->
+    </description>
 
-    <author href="http://eventfive.de" email="info@eventfive.de">
-        HfK Bremen
-    </author>
+    <author href="http://eventfive.de" email="info@eventfive.de">eventfive GmbH</author>
 
 	<!-- If you do not want any permissions to be added to your app, add the
     following tag to your config.xml; you will still have the INTERNET
@@ -35,7 +33,7 @@ Voraussetzung für die Nutzung von VOIVOI ist eine bestehende Internetverbindung
 	
 	<access origin="http://voivoi.eventfive.de" /> <!-- denies access to external resources.  -->
 
-    <!--<preference name="phonegap-version" value="2.5.0" />-->
+    <preference name="phonegap-version" value="2.5.0" />
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
