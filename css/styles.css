@@ -21,6 +21,8 @@ a { text-decoration: none; }
 a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; }
 div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px 1px rgba(0,0,0,.05); border: solid 2px #cdcdcd; }
 .ui-btn-inner { border: none; }
+.ui-focus, .ui-focus .ui-input-text { background: #FFF !important; text-shadow: none !important; color: #575351 !important; }
+.ui-input-text.ui-focus, .ui-input-search.ui-focus { box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); }
 
 /* Transition timings */
 .in, .out { -webkit-animation-timing-function: ease-in-out; -webkit-animation-duration: 100ms !important; }
@@ -38,7 +40,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 .ui-footer.ui-bar-a { background: none; border: none; }
 /* Buttons Farben */
 .ui-grid-d .ui-btn { background-image: linear-gradient(to top, #000000, #3b3937); }
-.ui-grid-d .ui-btn-active, .ui-focus, .ui-btn:focus { background: none !important; background-color: #4f4d4b !important; box-shadow: inset 0 0 6px rgba(15,14,9,.75); }
+.ui-grid-d .ui-btn-active, .ui-grid-d .ui-focus, .ui-grid-d .ui-btn:focus { background: none !important; background-color: #4f4d4b !important; box-shadow: inset 0 0 6px rgba(15,14,9,.75); }
 /* Buttons */
 .ui-grid-d { box-shadow: 0 -5px 0 0 #22211f inset; }
 .ui-grid-d li { padding-top: 1.5em !important; padding-bottom: 0em !important; border: none; padding-left: 0; padding-right: 0; background: none; }
@@ -60,13 +62,14 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 /* ====================================== */
 
 /* Init */
-#init, #init .ui-content { height: 100%; }
+#init, #init .ui-content { height: 100%; margin: 0; padding: 0; }
 #init .logo { height: 40%; width: 100%; background: url("../img/logo.png") center center no-repeat; background-size: auto 50%; }
 #init .label { text-align: center; font-size: 35px; font-family: 'nove'; color: #de285f; }
 fieldset { width: 80%; margin: 0 auto !important; }
 #init .ui-btn-inner { font-size: 35px; }
 #init div.ui-input-text { margin: 20px 0; }
-#init input.ui-input-text { font-size: 35px; text-align: center; }
+#init input.ui-input-text { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 5px; }
+#init .ui-btn-inner { padding-top: 5px; padding-bottom: 8px; }
 
 /* Willkommen */
 .ui-content { padding-left: 0; padding-right: 0; }
