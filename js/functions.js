@@ -28,7 +28,6 @@ jQuery(document).ready(function () {
 jQuery.when(deviceReadyDeferred, jqmReadyDeferred).then(doWhenBothFrameworksLoaded);
 // Ab hier können alle Funktionnen laufen, die jQuery UND Phonegap betreffen
 function doWhenBothFrameworksLoaded() {
-	alert('Ready');
 	var where = $('body').attr("id");
 	
 	// INIT
