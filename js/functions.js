@@ -12,12 +12,12 @@ function deviceReady() {
 
 // JQUERY /////////////////////////////////////////////////////////
 jQuery(document).ready(function () {
-  jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
-  // Accordion animation
-  $('.listanimation').bind('expand', function () {
-    $(this).children().slideDown(500);
-	}).bind('collapse', function () {
-		$(this).children().next().slideUp(500);
+	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
+	// Accordion animation
+	$('.listanimation').bind('expand', function () {
+		$(this).children().slideDown(500);
+		}).bind('collapse', function () {
+			$(this).children().next().slideUp(500);
 	});
 });
 
@@ -28,4 +28,12 @@ jQuery.when(deviceReadyDeferred, jqmReadyDeferred).then(doWhenBothFrameworksLoad
 // Ab hier können alle Funktionnen laufen, die jQuery UND Phonegap betreffen
 function doWhenBothFrameworksLoaded() {
 	alert('Ready');
+	// Funktionen für WILLKOMMEN
+	if ( $('#willkommen').hasClass('ui-page-active') ) {
+		alert('willkommen');
+	}
+	// Funktionen für KALENDER
+	if ( $('#kalender').hasClass('ui-page-active') ) {
+		alert('kalender');
+	}
 }
