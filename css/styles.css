@@ -4,24 +4,25 @@
 
 @import url(jquery.mobile.css);
 /* Novocento */
-@font-face { font-family: 'nove'; src: url('../font/Novecentowide-DemiBold-webfont.eot'); src: url('../font/Novecentowide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'), url('../font/Novecentowide-DemiBold-webfont.woff') format('woff'), url('../font/Novecentowide-DemiBold-webfont.ttf') format('truetype'), url('../font/Novecentowide-DemiBold-webfont.svg#NovecentowideLightBold') format('svg'); font-weight: normal; font-style: normal;
-}
+@font-face {font-family: 'nove';src: url('../webfonts/26D8EC_0_0.eot');src: url('../webfonts/26D8EC_0_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/26D8EC_0_0.woff') format('woff'),url('../webfonts/26D8EC_0_0.ttf') format('truetype'),url('../webfonts/26D8EC_0_0.svg#wf') format('svg');}
 
 /* ====================================== */
 /* ! Custom                               */
 /* ====================================== */
 
 * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+.clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
 
 /* Transition timings */
 .in, .out { -webkit-animation-timing-function: ease-in-out; -webkit-animation-duration: 100ms !important; }
+.ui-mobile-viewport-transitioning, .ui-mobile-viewport-transitioning .ui-page { overflow: visible; }
 
 /* Background */
-.ui-body-c { background: #ebebeb; }
+.ui-body-c { background: #ebebeb; color: #575351; }
 .ui-overlay-c { background: url("../img/spinner_32.gif") no-repeat scroll center center #000000; }
 
 /* Header */
-.ui-header.ui-bar-a { font-family: 'nove', Helvetica, Arial, sans-serif; text-shadow: none; background: #1cb79d; border: none; box-shadow: 0 0 3px 0px #747474; }
+.ui-header.ui-bar-a { font-family: 'nove', Helvetica, Arial, sans-serif; text-shadow: none; background: #1cb79d; border: none; box-shadow: 0 0 3px 0px #747474; letter-spacing:-1px; }
 .ui-header .ui-title { font-size: 25px; margin-top: 0.7em; margin-bottom: 0.5em; margin-right: 0; margin-left: 0; }
 
 /* Footer */
@@ -51,12 +52,19 @@
 /* Willkommen */
 .ui-content { padding-left: 0; padding-right: 0; }
 .ui-content h1, .ui-content .content { padding-left: 35px; padding-right: 35px; }
-.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; color: #de285f; font-size: 30px; margin-top: 30px; margin-bottom: 20px; }
-.ui-content .content { background: #FFF; box-shadow: 0 1px #fff, inset 0 -1px rgba(68,45,19,.1); padding-top: 1px; padding-bottom: 15px; line-height: 1.5; }
+.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; letter-spacing:-1px; color: #de285f; font-size: 30px; margin-top: 30px; margin-bottom: 20px; }
+.ui-content .content { background: #f7f6f6; box-shadow: 0 1px #fff, inset 0 -1px rgba(68,45,19,.1); padding-top: 1px; padding-bottom: 15px; line-height: 1.5; }
 
 /* Veranstaltung */
-.ui-content .content.list { padding-left: 15px; padding-right: 15px; background: none; box-shadow: none; }
-.ui-collapsible .ui-btn-inner, .ui-collapsible .ui-collapsible-content { background: #FFF; padding-left: 35px; }
-.ui-collapsible .ui-btn { border-bottom: 1px solid rgba(68,45,19,.1); }
-.ui-collapsible .ui-btn-inner { font-weight: bold; background: #c8e0dc; color: #1c9381; text-shadow: none; }
-.ui-collapsible-collapsed .ui-btn-inner { background: #FFF; color: #575351; font-weight: normal !important; } /* geschlossen */
+.ui-content .content.list { padding-left: 0; padding-right: 0; background: none; box-shadow: none; }
+.ui-collapsible { padding-left: 15px; padding-right: 15px; border-bottom: 2px solid rgba(68,45,19,.1); background: #f7f6f6; }
+.ui-collapsible .ui-btn-inner, .ui-collapsible .ui-collapsible-content { padding-left: 35px; }
+.ui-collapsible .ui-btn { border: none; }
+.ui-collapsible .ui-btn-inner { background: #f7f6f6; color: #575351; font-weight: normal; text-shadow: none; border: none; } /* ausgewählt */
+.ui-collapsible .ui-btn-inner.selected { font-weight: bold; background: #c8e0dc; color: #1c9381; } /* geschlossen */
+.ui-collapsible .ui-icon { border: none; background: none; box-shadow: none; border-radius: 0; right: 25px; }
+.ui-collapsible .ui-icon.ui-icon-plus { background: url("../img/list-down.png") no-repeat center center transparent; background-size: 100% auto; }
+.ui-collapsible .ui-icon.ui-icon-minus { background: url("../img/list-up.png") no-repeat center center transparent; background-size: 100% auto; }
+.ui-collapsible .description { background: #FFF; border: solid 1px #cdcdcd; padding: 10px; width: 250px; height: 60px; }
+.ui-collapsible .description .logo, .ui-collapsible .description .date { float: left; }
+.ui-collapsible .description .date { text-align: right; }
