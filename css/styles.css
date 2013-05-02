@@ -10,8 +10,14 @@
 /* ! Custom                               */
 /* ====================================== */
 
-* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+/* Mobile Reset */
+* { -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection */
+	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+	-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+	-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */ }
+input, textarea { -webkit-appearance: none; -webkit-border-radius: 0; }
 .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
+a { text-decoration: none; font-weight: normal; }
 
 /* Transition timings */
 .in, .out { -webkit-animation-timing-function: ease-in-out; -webkit-animation-duration: 100ms !important; }
@@ -39,6 +45,7 @@
 .ui-grid-d .ui-block-b .ui-btn-text { background: url("../img/btn-2.png") no-repeat scroll center center transparent; background-size: auto 60%; }
 .ui-grid-d .ui-block-d .ui-btn-text { background: url("../img/btn-4.png") no-repeat scroll center center transparent; background-size: auto 60%; }
 .ui-grid-d .ui-block-e .ui-btn-text { background: url("../img/btn-5.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-btn-active { border: none; }
 /* Mitte */
 .ui-grid-d .ui-block-c .ui-btn { border-top-left-radius: 10px; border-top-right-radius: 10px; }
 .ui-grid-d .ui-block-c { padding-top: .85em !important; }
@@ -65,8 +72,9 @@
 .ui-collapsible .ui-icon { border: none; background: none; box-shadow: none; border-radius: 0; right: 25px; }
 .ui-collapsible .ui-icon.ui-icon-plus { background: url("../img/list-down.png") no-repeat center center transparent; background-size: 100% auto; }
 .ui-collapsible .ui-icon.ui-icon-minus { background: url("../img/list-up.png") no-repeat center center transparent; background-size: 100% auto; }
-.ui-collapsible .description { background: #FFF; border: solid 1px #cdcdcd; padding: 15px; }
+.ui-collapsible .description { background: #FFF; border: solid 1px #cdcdcd; padding: 15px; margin-right: 10px; }
 .ui-collapsible .description .logo, .ui-collapsible .description .time { float: left; width: 50%; }
 .ui-collapsible .description .time {text-align: right; font-size: 10px; }
 .ui-collapsible .description .time span { display: block; }
 .ui-collapsible .description .text { font-size: 12px; margin-top: 10px; }
+.ui-collapsible .select a.button { display: block; padding: 3px 10px 5px; margin: 10px 20px; float: right; background: #1cb79d; color: #FFF; font-family: 'nove'; font-size: 10px; letter-spacing: 1px; }
