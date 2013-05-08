@@ -19,7 +19,13 @@ jQuery(document).ready(function () {
 		}).bind('collapse', function () {
 			$(this).children().next().slideUp(500);
 	});
-	
+	// MENU functions
+	$('a[href="#welcome"]').on("click", function(e){
+		alert("willkommen");
+	});
+	$('a[href="#calender"]').on("click", function(e){
+		alert("kalender");
+	});
 });
 
 
