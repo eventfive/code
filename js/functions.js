@@ -1,6 +1,7 @@
 // Globale Variablen festlegen
 var deviceReadyDeferred = jQuery.Deferred();
 var jqmReadyDeferred = jQuery.Deferred();
+var loading = false;
 
 
 // PHONEGAP ///////////////////////////////////////////////////////
@@ -13,8 +14,15 @@ function deviceReady() {
 // JQUERY /////////////////////////////////////////////////////////
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
-	
-
+	$('a[href="#welcome"]').on("click", function(event){
+		// Seitenwechsel abbrechen
+		event.preventDefault();
+		$.mobile.loading('show', { html: '<div class="loading-spinner"></div>' });
+		// Funktionen ausführen
+		alert("asdasd");
+		// Seitenwechsel manuell starten
+		$.mobile.navigate( "#welcome" );
+	});
 });
 
 
@@ -33,17 +41,18 @@ function doWhenBothFrameworksLoaded() {
 	
 	// START screen
 	if ( $('.ui-page').attr("id") == "start" &&  $('#start.ui-page').css("display") != "none" ) {
-		$('.user').hide();
-		window.setTimeout(enableusername, 2000);
+		$('.user').hide().delay(2000).fadeIn();
 	}
-	function enableusername() { $('.user').fadeIn(); }
 	
 	// MENU functions
-	$('a[href="#welcome"]').on("click", function(e){
+	$('a[href="#welcome"]').on("click", function(event){
+		// Seitenwechsel abbrechen
+		event.preventDefault();
+		$.mobile.loading('show', { html: "<div class='loader'></div>" });
+		// Funktionen ausführen
 		
-	});
-	$('a[href="#calender"]').on("click", function(e){
-		
+		// Seitenwechsel manuell starten
+		$.mobile.navigate( "#welcome" );
 	});
 	
 }
