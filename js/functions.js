@@ -13,31 +13,25 @@ function deviceReady() {
 // JQUERY /////////////////////////////////////////////////////////
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
-	// Accordion animation
-	$('.listanimation').bind('expand', function () {
-		$(this).children().slideDown(500);
-		}).bind('collapse', function () {
-			$(this).children().next().slideUp(500);
-	});
-	// MENU functions
-	$('a[href="#welcome"]').on("click", function(e){
-		alert("willkommen");
-	});
-	$('a[href="#calender"]').on("click", function(e){
-		alert("kalender");
-	});
+	
+
 });
 
 
 // PHONEGAP & JQUERY //////////////////////////////////////////////
 // Hier legen wir fest, dass sobald jQuery und PhoneGap bereit sind, die Funktion "doWhenBothFrameworksLoaded" aufgerufen wird
 jQuery.when(deviceReadyDeferred, jqmReadyDeferred).then(doWhenBothFrameworksLoaded);
-// Ab hier können alle Funktionnen laufen, die jQuery UND Phonegap betreffen
+// Ab hier können alle Funktionen laufen!
 function doWhenBothFrameworksLoaded() {
-	var where = $('body').attr("id");
-	
-	// INIT
-	if (where == "init") {
+
+	// Accordion animation
+	$('.listanimation').bind('expand', function () {
+		$(this).children().slideDown(500);
+		}).bind('collapse', function () {
+			$(this).children().next().slideUp(500);
+	});
+	// START screen
+	if ( $('.ui-page').attr("id") == "start" &&  $('#start.ui-page').css("display") != "none" ) {
 		$('.user').hide();
 		window.setTimeout(enableusername, 2000);
 	}
@@ -46,8 +40,18 @@ function doWhenBothFrameworksLoaded() {
 		$('.user').fadeIn();
 		//window.setTimeout(redirect, 2000);
 	}
-		
+	
 	function redirect() {
 		location.href = "welcome.html";
 	}
+	
+	
+	// MENU functions
+	$('a[href="#welcome"]').on("click", function(e){
+		alert("willkommen");
+	});
+	$('a[href="#calender"]').on("click", function(e){
+		alert("kalender");
+	});
+	
 }

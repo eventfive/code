@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width, height=device-height" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <!-- JavaScript -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile.js"></script>
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+</head>
+<body>
+<div data-role="page" id="init">
+    <div data-role="content">
+        <div class="logo"></div>
+        <div class="user">
+        	<form id="user" method="post" action="app.html">
+              <fieldset>
+                <div class="label">Dein Name?</div>
+				<input name="username" type="text" id="usernamearea" maxlength="12" />
+		  <!-- <div class="error">Bitte nenn uns doch deinen Namen</div> -->
+				<input class="button" type="submit" id="sender" value="Weiter"/>
+                <div class="clear"></div>
+              </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
