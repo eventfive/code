@@ -40,10 +40,10 @@ function doWhenBothFrameworksLoaded() {
 	
 	// MENU functions
 	$('a[href="#welcome"]').on("click", function(e){
-		alert("willkommen");
+		
 	});
 	$('a[href="#calender"]').on("click", function(e){
-		alert("kalender");
+		
 	});
 	
 }

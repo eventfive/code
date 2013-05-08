@@ -68,7 +68,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 #start .user .label { text-align: center; font-size: 35px; font-family: 'nove'; color: #de285f; }
 #start .user div.ui-input-text { margin: 20px 0; }
 #start .user input { font-size: 35px; text-align: center; }
-#start .user .button { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 8px; }
+#start .user .button { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 10px; }
 
 /* Willkommen */
 .ui-content { padding-left: 0; padding-right: 0; }
