@@ -61,15 +61,14 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 /* ! Content                              */
 /* ====================================== */
 
-/* Init */
-#init, #init .ui-content { height: 100%; margin: 0; padding: 0; }
-#init .logo { height: 40%; width: 100%; background: url("../img/logo.png") center center no-repeat; background-size: auto 50%; }
-#init .label { text-align: center; font-size: 35px; font-family: 'nove'; color: #de285f; }
-fieldset { width: 80%; margin: 0 auto !important; }
-#init .ui-btn-inner { font-size: 35px; }
-#init div.ui-input-text { margin: 20px 0; }
-#init input.ui-input-text { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 5px; }
-#init .ui-btn-inner { padding-top: 5px; padding-bottom: 8px; }
+/* start */
+#start, #start .ui-content { height: 100%; margin: 0; padding: 0; }
+#start .logo { height: 40%; width: 100%; background: url("../img/logo.png") center center no-repeat; background-size: auto 50%; }
+#start .user { width: 80%; margin: 0 auto; }
+#start .user .label { text-align: center; font-size: 35px; font-family: 'nove'; color: #de285f; }
+#start .user div.ui-input-text { margin: 20px 0; }
+#start .user input { font-size: 35px; text-align: center; }
+#start .user .button { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 8px; }
 
 /* Willkommen */
 .ui-content { padding-left: 0; padding-right: 0; }

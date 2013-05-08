@@ -12,9 +12,21 @@
     <script type="text/javascript" src="js/functions.js"></script>
 </head>
 <body>
+<div data-role="page" id="start">
+    <div data-role="content">
+        <div class="logo"></div>
+        <div class="user">
+            <div class="label">Dein Name?</div>
+            <input name="username" type="text" id="username" maxlength="12" />
+      <!-- <div class="error">Bitte nenn uns doch deinen Namen</div> -->
+            <a class="button" href="#welcome">Weiter</a>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
 <!-- Willkommen -->
 <div data-role="page" id="welcome">
-    <div data-role="header" data-fullscreen="false" data-position="fixed">
+    <div data-role="header" data-position="fixed">
         <h1>Willkommen</h1>
     </div>
     <div data-role="content">
@@ -23,7 +35,7 @@
         	<p>Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet .Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
         </div>
     </div>
-    <div data-role="footer" data-id="persistent-navigation" data-fullscreen="false" data-position="fixed">
+    <div data-role="footer" data-id="persistent-navigation" data-position="fixed">
         <div data-role="navbar" data-grid="d">
             <ul>
                 <li><a href="#welcome" class="ui-btn-active ui-state-persist">Willkommen</a></li>
@@ -38,7 +50,7 @@
 
 <!-- Kalender -->
 <div data-role="page" id="calender">
-    <div data-role="header" data-fullscreen="false" data-position="fixed">
+    <div data-role="header" data-position="fixed">
         <h1>Kalender</h1>
     </div>
     <div data-role="content">
@@ -90,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div data-role="footer" data-fullscreen="false" data-id="persistent-navigation" data-position="fixed">
+    <div data-role="footer" data-id="persistent-navigation" data-position="fixed">
         <div data-role="navbar" data-grid="d">
             <ul>
                 <li><a href="#welcome" class="navlink welcome">Willkommen</a></li>
