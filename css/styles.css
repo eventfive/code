@@ -30,7 +30,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 
 /* Background */
 .ui-body-c { background: #ebebeb; color: #575351; }
-.ui-overlay-c { background: url("../img/spinner_32.gif") no-repeat scroll center center #000000; }
+.ui-overlay-c { background: url("../img/spinner_32.gif") no-repeat scroll center center black; }
 
 /* Header */
 .ui-header.ui-bar-a { font-family: 'nove', Helvetica, Arial, sans-serif; text-shadow: none; background: /*#1cb79d*/ #1c9280; border: none; box-shadow: 0 0 3px 0px #747474; letter-spacing:-1px; }
@@ -39,7 +39,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 /* Footer */
 .ui-footer.ui-bar-a { background: none; border: none; }
 /* Buttons Farben */
-.ui-grid-d .ui-btn { background: linear-gradient(to bottom, #3b3937 0%,#000000 60%); }
+.ui-grid-d .ui-btn { background: linear-gradient(to bottom, #3b3937 0%, black 60%); }
 .ui-grid-d .ui-btn-active, .ui-grid-d .ui-focus, .ui-grid-d .ui-btn:focus { background: none !important; background-color: #4f4d4b !important; box-shadow: inset 0 0 6px rgba(15,14,9,.75); }
 /* Buttons */
 .ui-grid-d { box-shadow: 0 -5px 0 0 #22211f inset; }

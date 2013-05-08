@@ -30,21 +30,13 @@ function doWhenBothFrameworksLoaded() {
 		}).bind('collapse', function () {
 			$(this).children().next().slideUp(500);
 	});
+	
 	// START screen
 	if ( $('.ui-page').attr("id") == "start" &&  $('#start.ui-page').css("display") != "none" ) {
 		$('.user').hide();
 		window.setTimeout(enableusername, 2000);
 	}
-	
-	function enableusername() {
-		$('.user').fadeIn();
-		//window.setTimeout(redirect, 2000);
-	}
-	
-	function redirect() {
-		location.href = "welcome.html";
-	}
-	
+	function enableusername() { $('.user').fadeIn(); }
 	
 	// MENU functions
 	$('a[href="#welcome"]').on("click", function(e){
