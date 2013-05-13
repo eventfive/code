@@ -19,6 +19,7 @@ input, textarea { -webkit-appearance: none; -webkit-border-radius: 0; }
 .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
 a { text-decoration: none; }
 a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; }
+label.ui-input-text { font-family: 'nove'; font-size: 35px; text-align: center; color: #DE265F; }
 div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px 1px rgba(0,0,0,.05); border: solid 2px #cdcdcd; }
 .ui-btn-inner { border: none; }
 .ui-focus, .ui-focus .ui-input-text { background: #000 !important; text-shadow: none !important; color: #575351 !important; }
@@ -68,7 +69,6 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 #start, #start .ui-content { height: 100%; margin: 0; padding: 0; }
 #start .logo { height: 40%; width: 100%; background: url("../img/logo.png") center center no-repeat; background-size: auto 50%; }
 #start .user { width: 80%; margin: 0 auto; }
-#start .user .label { text-align: center; font-size: 35px; font-family: 'nove'; color: #de285f; }
 #start .user div.ui-input-text { margin: 20px 0; }
 #start .user input { font-size: 35px; text-align: center; }
 #start .user .button { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 10px; }

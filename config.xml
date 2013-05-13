@@ -31,7 +31,8 @@ Voraussetzung für die Nutzung von VOIVOI ist eine bestehende Internetverbindung
 	<feature name="http://api.phonegap.com/1.0/file"/> <!-- maps to WRITE_EXTERNAL_STORAGE permission -->
 	<feature name="http://api.phonegap.com/1.0/notification"/> <!-- maps to VIBRATE permission -->
 	
-	<access origin="http://voivoi.eventfive.de" /> <!-- denies access to external resources.  -->
+	<access origin="*" />
+	<!--<access origin="http://voivoi.eventfive.de" /> <!-- denies access to external resources.  -->
 
     <preference name="phonegap-version" value="2.5.0" />
     <preference name="orientation"      value="portrait" />

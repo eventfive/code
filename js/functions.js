@@ -42,7 +42,7 @@ function doWhenBothFrameworksLoaded() {
 	// START screen
 	if ( $('#start.ui-page').css("display") != "none" ) {
 		$('.user').hide().delay(2000).fadeIn();
-		
+		alert("ready");
 		$("#sendName").click(function() {
 			$.ajax({
 				type: "POST",
