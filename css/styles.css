@@ -14,16 +14,20 @@
 * { -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection */
 	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
 	-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-	-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */ }
-input, textarea { -webkit-appearance: none; -webkit-border-radius: 0; }
+	-webkit-user-select: auto !important;       /* prevent copy paste, to allow, change 'none' to 'text' */ }
+
 .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
 a { text-decoration: none; }
 a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; }
 label.ui-input-text { font-family: 'nove'; font-size: 35px; text-align: center; color: #DE265F; }
 div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px 1px rgba(0,0,0,.05); border: solid 2px #cdcdcd; }
 .ui-btn-inner { border: none; }
-.ui-focus, .ui-focus .ui-input-text { background: #000 !important; text-shadow: none !important; color: #575351 !important; }
+.ui-focus, .ui-btn:focus { background: #FFF !important; text-shadow: none !important; color: #575351 !important; }
 .ui-input-text.ui-focus, .ui-input-search.ui-focus { box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); }
+
+/* Messages */
+.error { color: #DE265F; }
+.error.username { font-size: 12px; font-weight: bold; height: 20px; text-align: center; margin-bottom: 20px; }
 
 /* Loading spinner */
 .ui-loader { background: url("../img/spinner_32.gif") no-repeat scroll center center #ebebeb; height: 100%; width: 100%; border-radius: 0 !important; left: 0 !important; top: 0 !important; margin: 0 !important; opacity: 1 !important; z-index: 999 !important; }
@@ -69,7 +73,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 #start, #start .ui-content { height: 100%; margin: 0; padding: 0; }
 #start .logo { height: 40%; width: 100%; background: url("../img/logo.png") center center no-repeat; background-size: auto 50%; }
 #start .user { width: 80%; margin: 0 auto; }
-#start .user div.ui-input-text { margin: 20px 0; }
+#start .user div.ui-input-text { margin: 20px 0 5px; }
 #start .user input { font-size: 35px; text-align: center; }
 #start .user .button { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 10px; }
 
