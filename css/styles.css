@@ -26,6 +26,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 
 /* Loading spinner */
 .ui-loader { background: url("../img/spinner_32.gif") no-repeat scroll center center #ebebeb; height: 100%; width: 100%; border-radius: 0 !important; left: 0 !important; top: 0 !important; margin: 0 !important; opacity: 1 !important; z-index: 999 !important; }
+.ui-loader .ui-icon { display: none; }
 
 /* Transition timings */
 .in, .out { -webkit-animation-timing-function: ease-in-out; -webkit-animation-duration: 100ms !important; }
