@@ -21,7 +21,7 @@ a { text-decoration: none; }
 a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; }
 div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px 1px rgba(0,0,0,.05); border: solid 2px #cdcdcd; }
 .ui-btn-inner { border: none; }
-.ui-focus, .ui-focus .ui-input-text { background: #FFF !important; text-shadow: none !important; color: #575351 !important; }
+.ui-focus, .ui-focus .ui-input-text { background: #000 !important; text-shadow: none !important; color: #575351 !important; }
 .ui-input-text.ui-focus, .ui-input-search.ui-focus { box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); }
 
 /* Loading spinner */
