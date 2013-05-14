@@ -5,8 +5,11 @@ var jqmReadyDeferred = jQuery.Deferred();
 var date = new Date();
 var timestamp = date.getTime();
 // Weitere Variablen
-var uuid = timestamp;
+var uuid = "2";
 var startAnimation = true;
+var username;
+var array = new Array();
+var data = "";
 
 
 // PHONEGAP ///////////////////////////////////////////////////////
@@ -19,7 +22,36 @@ function deviceReady() {
 // JQUERY /////////////////////////////////////////////////////////
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
-		
+	
+	// Accordion animation
+	$('.listanimation').bind('expand', function () {
+		$(this).children().slideDown(500);
+		}).bind('collapse', function () {
+			$(this).children().next().slideUp(500);
+	});
+	
+	// Kommentar Counter
+	$('#comment').NobleCount('#counter',{
+			max_chars: 140,
+		});
+	$("label").inFieldLabels();
+			
+				
+	$.ajax({
+		type: "GET",
+    	dataType: "jsonp",
+		url: "http://kiste.eventfive.de/asd/func.php?option=getData",
+		data: { id: uuid, unique: timestamp },
+		cache: false,
+		complete: function(data) {
+					console.log(data);
+					if ( username != null && username != "") {
+						$('span.username').html(username);
+						$.mobile.navigate( "#welcome" );
+					}
+					else $('.user').fadeIn();
+				  }
+	});
 	
 });
 
@@ -36,24 +68,9 @@ function doWhenBothFrameworksLoaded() {
 
 	// START screen
 	if ( startAnimation == true ) {
-		$('.user').hide().delay(2000).fadeIn();
-		startAnimation = false;
+		$('.user').hide()
+		startAnimation = false;		
 	}
-	$("#sendName").click(function() {
-		var username = $.trim($("#username").val());
-		if ( username.length > 0 ) {
-			$.ajax({
-				type: "POST",
-				dataType: "jsonp",
-				url: "http://kiste.eventfive.de/voivoi/func.php?option=sendName&unique=" + timestamp,
-				data: { id: uuid, username: username },
-				beforeSend: function() { $.mobile.loading('show') },
-				//error: AjaxFailed,
-				complete: goToWelcome,
-			});
-		}
-		else { $('.error.username').hide().html("Bitte nenn uns doch deinen Namen!").fadeIn(); }
-	});
 	
 	// MENU functions
 	$('a[href="#welcome"]').on("click", function(event){
@@ -62,19 +79,28 @@ function doWhenBothFrameworksLoaded() {
 		goToWelcome;
 	});
 	
-	// Weitere Funktionen
-	// Accordion animation
-	$('.listanimation').bind('expand', function () {
-		$(this).children().slideDown(500);
-		}).bind('collapse', function () {
-			$(this).children().next().slideUp(500);
-	});
 }
 
-function goToWelcome() {
-		$.mobile.loading('show');
-		// Funktionen ausführen
-		
-		// Seitenwechsel manuell starten
-		$.mobile.navigate( "#welcome" );
+function sendName() {
+	username = $.trim($("input#username").val());
+	if ( username.length > 0 ) {
+		$.ajax({
+			type: "POST",
+			dataType: "jsonp",
+			url: "http://kiste.eventfive.de/voivoi/func.php?option=sendName" ,
+			data: { id: uuid, username: username, unique: timestamp },
+			beforeSend: function() { $.mobile.loading('show') },
+			//error: AjaxFailed,
+			complete: goToWelcome,
+		});
 	}
+	else { $('.error.username').hide().html("Bitte nenn uns doch deinen Namen!").fadeIn(); }
+};
+
+function goToWelcome() {
+	$.mobile.loading('show');
+	// Funktionen ausführen
+	
+	// Seitenwechsel manuell starten
+	$.mobile.navigate( "#welcome" );
+}

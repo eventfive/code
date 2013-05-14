@@ -17,8 +17,9 @@
 	-webkit-user-select: auto !important;       /* prevent copy paste, to allow, change 'none' to 'text' */ }
 
 .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
-a { text-decoration: none; }
+a { text-decoration: none; color: #575351; }
 a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; }
+a.button.send { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 10px; }
 label.ui-input-text { font-family: 'nove'; font-size: 35px; text-align: center; color: #DE265F; }
 div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px 1px rgba(0,0,0,.05); border: solid 2px #cdcdcd; }
 .ui-btn-inner { border: none; }
@@ -75,7 +76,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 #start .user { width: 80%; margin: 0 auto; }
 #start .user div.ui-input-text { margin: 20px 0 5px; }
 #start .user input { font-size: 35px; text-align: center; }
-#start .user .button { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 10px; }
+
 
 /* Willkommen */
 .ui-content { padding-left: 0; padding-right: 0; }
@@ -99,3 +100,17 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 .ui-collapsible .description .time span { display: block; }
 .ui-collapsible .description .text { font-size: 12px; margin-top: 10px; }
 .ui-collapsible .select a.button { margin: 10px 20px; float: right; font-size: 12px; }
+
+/* Kategorien */
+#categories .content { padding-bottom: 0; }
+#categories .chooseCat .ui-btn, #categories .chooseCat .ui-focus, #categories .takePic, #categories .leaveCom  { color: #575351; border: none; border-bottom: 1px solid rgba(68,45,19,.1); border-radius: 0; background: #f7f6f6; box-shadow: none; text-align: left; font-weight: normal; margin: 0 !important; }
+#categories .chooseCat .ui-btn-inner, #categories .chooseCat option,  #categories .leaveCom { padding: 10px 0 10px 35px; }
+#categories .chooseCat .ui-btn-text, #categories .takePic, #categories .leaveCom label, #categories .leaveCom textarea { font-size: 13px !important; font-family: Arial, Helvetica, sans-serif; color: #575351; text-align: left; }
+#categories .chooseCat .ui-icon { background: url("../img/list-choose.png") no-repeat center right transparent !important; background-size: 50% auto !important; border-radius: 0; right: 20px; }
+#categories .takePic { padding: 10px 0 10px 35px; }
+#categories .takePic span { display: block; width: 100%; }
+#categories .takePic a.button { border-radius: 0; float: right; width: auto; font-size: 11px; margin-right: 20px; margin-top: 10px; }
+#categories .leaveCom { padding-right: 20px; }
+#categories .leaveCom textarea { border-radius: 0; height: 130px; margin-top: 10px; }
+#categories .leaveCom .maxlenght { font-size: 11px; margin: 10px 0; text-align: right; }
+#categories a.button.send { width: 80% !important; margin: 20px auto 0; }

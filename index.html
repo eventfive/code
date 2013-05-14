@@ -8,6 +8,7 @@
     <!-- JavaScript -->
 	<script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery.mobile.js"></script>
+    <script type="text/javascript" src="js/noblecounter.js"></script>
     <script type="text/javascript" src="phonegap.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
 </head>
@@ -19,7 +20,7 @@
             <label for="username">Dein Name?</label>
             <input type="text" id="username" name="username" value="" maxlength="12" >
       		<div class="error username"></div>
-            <a class="button" id="sendName">Weiter</a>
+            <a class="button send" rel="external" onClick="sendName();">Weiter</a>
             <div class="clear"></div>
         </div>
     </div>
@@ -30,7 +31,7 @@
         <h1>Willkommen</h1>
     </div>
     <div data-role="content">
-        <h1>Hallo <span class="name">Max!</span></h1>
+        <h1>Hallo <span class="username"></span></h1>
         <div class="content">
         	<p>Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet .Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
         </div>
@@ -114,5 +115,46 @@
         </div>
     </div>
 </div>
+
+<!-- Kategorie wählen -->
+<div data-role="page" id="categories">
+    <div data-role="header" data-fullscreen="false" data-position="fixed">
+        <h1>Aufnehmen</h1>
+    </div>
+    <div data-role="content">
+        <h1>Mache dein Bild!</h1>
+        <div class="content list chooseCat">
+            <select name="select-native-1" id="chooseCat">
+                <option value="1" selected disabled >1. Kategorie auswählen</option>
+                <option value="2">The 2nd Option</option>
+                <option value="3">The 3rd Option</option>
+                <option value="4">The 4th Option</option>
+            </select>
+        </div>
+        <div class="content list takePic">
+            <span>2. Bild aufnehmen</span>
+            <a class="button">Kamera öffnen</a>
+            <br class="clear" />
+        </div>
+        <div class="content list leaveCom">
+            <label for="comment">3. Kommentar hinterlassen</label>
+            <textarea type="text" id="comment" name="comment" value="" maxlength="140"></textarea>
+            <div class="maxlenght"><span id="counter"></span> Zeichen verbleiben</div>
+        </div>
+        <a class="button send" rel="external" onClick="">Abschicken</a>
+    </div>
+    <div data-role="footer" data-id="persistent-navigation" data-fullscreen="false" data-position="fixed">
+        <div data-role="navbar" data-grid="d">
+            <ul>
+                <li><a href="#welcome">Willkommen</a></li>
+                <li><a href="#calender">Kalender</a></li>
+                <li><a href="#categories" class="ui-btn-active ui-state-persist">Kategorien</a></li>
+                <li><a href="#gallery">Gallerie</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
