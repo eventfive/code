@@ -61,16 +61,13 @@ jQuery.when(deviceReadyDeferred, jqmReadyDeferred).then(doWhenBothFrameworksLoad
 // Ab hier können alle Funktionen laufen!
 function doWhenBothFrameworksLoaded() {
 	
-	alert("Hallo!");
-	
 	// GeräteID auslesen
 	uuid = device.uuid;
-	alert(uuid);
 
 
 	// START screen
 	if ( startAnimation == true ) {
-		$('.user').hide()
+		//$('.user').hide()
 		startAnimation = false;		
 	}
 	
