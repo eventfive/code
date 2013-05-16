@@ -5,7 +5,7 @@ var jqmReadyDeferred = jQuery.Deferred();
 var date = new Date();
 var timestamp = date.getTime();
 // Weitere Variablen
-var uuid = "3";
+var uuid = "1";
 var startAnimation = true;
 var username;
 var array = new Array();
@@ -38,18 +38,27 @@ jQuery(document).ready(function () {
 				
 	$.ajax({
 		type: "GET",
-    	dataType: "jsonp",
+		contentType: "application/json",
+    	dataType: "JSONP",
+		crossDomain: true,
+		jsonp: 'jsoncallback',
 		url: "http://kiste.eventfive.de/asd/func.php?option=getData",
 		data: { id: uuid, unique: timestamp },
 		cache: false,
-		complete: function(data) {
+		success: function(data){
+			$.each(data, function(i,item){ 
+				var username = item.username;
+				alert(username);
+			});
+		},
+		/*complete: function(data) {
 					console.log(data);
 					if ( username != null && username != "") {
 						$('span.username').html(username);
 						$.mobile.navigate( "#welcome" );
 					}
 					else $('.user').fadeIn();
-				  }
+				  }*/
 	});
 	
 });
