@@ -62,6 +62,8 @@ jQuery.when(deviceReadyDeferred, jqmReadyDeferred).then(doWhenBothFrameworksLoad
 // Ab hier können alle Funktionen laufen!
 function doWhenBothFrameworksLoaded() {
 	
+	alert("Hallo!");
+	
 	// GeräteID auslesen
 	uuid = getName(device.uuid);
 	alert(uuid);
