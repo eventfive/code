@@ -64,7 +64,7 @@ function doWhenBothFrameworksLoaded() {
 	alert("Hallo!");
 	
 	// GeräteID auslesen
-	uuid = getName(device.uuid);
+	uuid = device.uuid;
 	alert(uuid);
 
 
