@@ -5,7 +5,7 @@ var jqmReadyDeferred = jQuery.Deferred();
 var date = new Date();
 var timestamp = date.getTime();
 // Weitere Variablen
-var uuid = "2";
+var uuid = "3";
 var startAnimation = true;
 var username;
 var array = new Array();
@@ -34,7 +34,6 @@ jQuery(document).ready(function () {
 	$('#comment').NobleCount('#counter',{
 			max_chars: 140,
 		});
-	$("label").inFieldLabels();
 			
 				
 	$.ajax({
@@ -90,7 +89,7 @@ function sendName() {
 		$.ajax({
 			type: "POST",
 			dataType: "jsonp",
-			url: "http://kiste.eventfive.de/voivoi/func.php?option=sendName" ,
+			url: "http://kiste.eventfive.de/asd/func.php?option=sendName" ,
 			data: { id: uuid, username: username, unique: timestamp },
 			beforeSend: function() { $.mobile.loading('show') },
 			//error: AjaxFailed,
