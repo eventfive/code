@@ -5,7 +5,8 @@ var jqmReadyDeferred = jQuery.Deferred();
 var date = new Date();
 var timestamp = date.getTime();
 // Weitere Variablen
-var uuid = "1";
+var appURL = "http://kiste.eventfive.de/asd/"
+var uuid = "5", platform = "Desktop", osVersion = "1";
 var startAnimation = true;
 var username;
 var array = new Array();
@@ -34,32 +35,8 @@ jQuery(document).ready(function () {
 	$('#comment').NobleCount('#counter',{
 			max_chars: 140,
 		});
-			
-				
-	$.ajax({
-		type: "GET",
-		contentType: "application/json",
-    	dataType: "JSONP",
-		crossDomain: true,
-		jsonp: 'jsoncallback',
-		url: "http://kiste.eventfive.de/asd/func.php?option=getData",
-		data: { id: uuid, unique: timestamp },
-		cache: false,
-		success: function(data){
-			$.each(data, function(i,item){ 
-				var username = item.username;
-				alert(username);
-			});
-		},
-		/*complete: function(data) {
-					console.log(data);
-					if ( username != null && username != "") {
-						$('span.username').html(username);
-						$.mobile.navigate( "#welcome" );
-					}
-					else $('.user').fadeIn();
-				  }*/
-	});
+	
+	
 	
 });
 
@@ -72,13 +49,36 @@ function doWhenBothFrameworksLoaded() {
 	
 	// GeräteID auslesen
 	uuid = device.uuid;
+	platform = device.platform;
+	osVersion = device.version;
 
 
 	// START screen
 	if ( startAnimation == true ) {
-		//$('.user').hide()
+		$('.user').hide()
 		startAnimation = false;		
-	}
+	}		
+				
+	$.ajax({
+		type: "GET",
+		contentType: "application/json",
+    	dataType: "JSONP",
+		crossDomain: true,
+		jsonp: 'jsoncallback',
+		url: appURL + "func.php?option=getData",
+		data: { id: uuid, unique: timestamp },
+		cache: false,
+		success: function(data){
+			$.each(data, function(i,item){ 
+				username = item.username;
+			});
+			if ( username != null && username != "") {
+				$('span.username').html(username);
+				$.mobile.navigate( "#welcome" );
+			}
+			else $('.user').fadeIn();
+		},
+	});
 	
 	// MENU functions
 	$('a[href="#welcome"]').on("click", function(event){
@@ -94,12 +94,13 @@ function sendName() {
 	if ( username.length > 0 ) {
 		$.ajax({
 			type: "POST",
-			dataType: "jsonp",
-			url: "http://kiste.eventfive.de/asd/func.php?option=sendName" ,
-			data: { id: uuid, username: username, unique: timestamp },
+			contentType: "application/json",
+    		dataType: "JSONP",
+			jsonp: 'jsoncallback',
+			url: appURL + "func.php?option=sendName" ,
+			data: { id: uuid, platform: platform, osVersion: osVersion, username: username, unique: timestamp },
 			beforeSend: function() { $.mobile.loading('show') },
-			//error: AjaxFailed,
-			complete: goToWelcome,
+			success: goToWelcome,
 		});
 	}
 	else { $('.error.username').hide().html("Bitte nenn uns doch deinen Namen!").fadeIn(); }
