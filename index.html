@@ -22,7 +22,7 @@
             <label for="username">Dein Name?</label>
             <input type="text" id="username" name="username" value="" maxlength="12" >
       		<div class="error username"></div>
-            <a class="button send" rel="external" onClick="sendName();">Weiter</a>
+            <a class="button send" rel="external" onClick="saveName();">Weiter</a>
             <div class="clear"></div>
         </div>
     </div>
@@ -85,10 +85,7 @@
         <h1>Mache dein Bild!</h1>
         <div class="content list chooseCat">
             <select name="select-native-1" id="chooseCat">
-                <option value="1" selected disabled >1. Kategorie auswählen</option>
-                <option value="2">The 2nd Option</option>
-                <option value="3">The 3rd Option</option>
-                <option value="4">The 4th Option</option>
+                <option value="label" selected >1. Kategorie auswählen</option>
             </select>
         </div>
         <div class="content list takePic">
