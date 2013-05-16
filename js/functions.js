@@ -1,16 +1,16 @@
-// Framework Variablen
-var deviceReadyDeferred = jQuery.Deferred();
-var jqmReadyDeferred = jQuery.Deferred();
 // Zeit in Millisekunden wird an jeden Request angehangen um ihn unique zu machen (Safari Bug)
 var date = new Date();
 var timestamp = date.getTime();
-// Weitere Variablen
+// Config & Variablen
+var deviceReadyDeferred = jQuery.Deferred();
+var jqmReadyDeferred = jQuery.Deferred();
 var appURL = "http://kiste.eventfive.de/asd/"
-var uuid = "5", platform = "Desktop", osVersion = "1";
-var startAnimation = true;
+var uuid, platform, osVersion;
+var eventID, eventTitle, eventDescription, eventDate, eventTime, eventLogo;
+var restartApp = true;
 var username;
-var array = new Array();
-var data = "";
+// Dummy Daten für lokales testen
+var uuid = "0", platform = "Desktop", osVersion = "0";
 
 
 // PHONEGAP ///////////////////////////////////////////////////////
@@ -32,62 +32,69 @@ jQuery(document).ready(function () {
 	});
 	
 	// Kommentar Counter
-	$('#comment').NobleCount('#counter',{
-			max_chars: 140,
-		});
+	$('#comment').NobleCount('#counter',{ max_chars: 140 });
 	
-	
-	
+
 });
 
 
 // PHONEGAP & JQUERY //////////////////////////////////////////////
 // Hier legen wir fest, dass sobald jQuery und PhoneGap bereit sind, die Funktion "doWhenBothFrameworksLoaded" aufgerufen wird
 jQuery.when(deviceReadyDeferred, jqmReadyDeferred).then(doWhenBothFrameworksLoaded);
-// Ab hier können alle Funktionen laufen!
+// Ab hier können alle App-Funktionen laufen!
 function doWhenBothFrameworksLoaded() {
 	
-	// GeräteID auslesen
+	// GeräteInfos auslesen
 	uuid = device.uuid;
 	platform = device.platform;
 	osVersion = device.version;
 
 
 	// START screen
-	if ( startAnimation == true ) {
-		$('.user').hide()
-		startAnimation = false;		
+	if ( restartApp == true ) {
+		getEventsData();
+		getUserData();
+		restartApp = false;
 	}		
-				
+
+	// MENU functions
+	$('a[href="#welcome"]').on("click", function(event){
+		// Seitenwechsel abbrechen
+		// event.preventDefault();
+	});
+	$('a[href="#events"]').on("click", function(event){
+		/*event.preventDefault();
+		getEventsData();
+		$.mobile.navigate( "#events" );*/
+	});
+	
+}
+
+/////// FUNKTIONEN //////////////////////
+
+function getUserData() {
 	$.ajax({
 		type: "GET",
 		contentType: "application/json",
     	dataType: "JSONP",
 		crossDomain: true,
 		jsonp: 'jsoncallback',
-		url: appURL + "func.php?option=getData",
-		data: { id: uuid, unique: timestamp },
+		url: appURL + "app.php?option=getUserData",
+		data: { userID: uuid, unique: timestamp },
 		cache: false,
 		success: function(data){
-			$.each(data, function(i,item){ 
+			$.each(data, function(i,item){
 				username = item.username;
+				if ( username != null && username != "") {
+					$('span.username').html(username);
+					$.mobile.navigate( "#welcome" );
+				}
+				else $('#start .user').fadeIn();
 			});
-			if ( username != null && username != "") {
-				$('span.username').html(username);
-				$.mobile.navigate( "#welcome" );
-			}
-			else $('.user').fadeIn();
 		},
 	});
+};
 	
-	// MENU functions
-	$('a[href="#welcome"]').on("click", function(event){
-		// Seitenwechsel abbrechen
-		event.preventDefault();
-		goToWelcome;
-	});
-	
-}
 
 function sendName() {
 	username = $.trim($("input#username").val());
@@ -97,19 +104,52 @@ function sendName() {
 			contentType: "application/json",
     		dataType: "JSONP",
 			jsonp: 'jsoncallback',
-			url: appURL + "func.php?option=sendName" ,
-			data: { id: uuid, platform: platform, osVersion: osVersion, username: username, unique: timestamp },
+			url: appURL + "sendName" ,
+			data: { userID: uuid, platform: platform, osVersion: osVersion, username: username, unique: timestamp },
 			beforeSend: function() { $.mobile.loading('show') },
-			success: goToWelcome,
+			cache: false,
+			success: function() {
+				$('span.username').html(username);
+				$.mobile.navigate( "#welcome" );
+				}
 		});
 	}
-	else { $('.error.username').hide().html("Bitte nenn uns doch deinen Namen!").fadeIn(); }
+	else { $('.error.username').hide().html("Bitte nenn uns doch einen Namen").fadeIn(); }
 };
 
-function goToWelcome() {
-	$.mobile.loading('show');
-	// Funktionen ausführen
-	
-	// Seitenwechsel manuell starten
-	$.mobile.navigate( "#welcome" );
-}
+
+function getEventsData() {
+	// Vorher 
+	$('#eventCollapsible').empty()
+	$.ajax({
+		type: "GET",
+		contentType: "application/json",
+    	dataType: "JSONP",
+		crossDomain: true,
+		jsonp: 'jsoncallback',
+		url: appURL + "app.php?option=getEventsData",
+		data: { userID: uuid, unique: timestamp },
+		//beforeSend: function() { $.mobile.loading('show') },
+		cache: false,
+		success: function(data){
+			$.each(data, function(i,item){
+				$('#eventCollapsible').append(
+				'<div data-role="collapsible" class="listanimation">' +
+					'<h3>' + item.eventTitle + '</h3>' +
+					'<div class="description">' +
+						'<div class="logo"><img src="' + appURL + '/events/' + item.eventID + '/' + item.eventLogo + '" width="100%"/></div>' +
+						'<div class="time">' +
+							'<span class="date">' + item.eventDate + '</span>' +
+                            '<span class="clock">' + item.eventTime + '</span>' +
+                        '</div>' +
+						'<br class="clear" />' +
+						'<div class="text">' + item.eventDescription + '</div>' +
+                    '</div>' +
+					'<div class="select"><a class="button" onClick="selectEvent(' + item.eventID + ')">Auswählen</a></div>' +
+					'<br class="clear" />' +
+				'</div>'
+				).trigger('create');
+			})
+		},
+	});
+};
