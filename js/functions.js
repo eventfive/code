@@ -32,7 +32,7 @@ jQuery(document).ready(function () {
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
 		event.preventDefault();
-		$('#categories').trigger('create');
+		$('#chooseCat').trigger('create');
 		// Den ersten SELECT Eintrag löschen
 		$('#categories .chooseCat .ui-btn-text').empty()
 		// Manuell den Text auf das Dropdown-Select klatschen
@@ -286,14 +286,12 @@ function sendPicture(eventID) {
 	$.mobile.loading('show');
 	
 	// Parameter die über POST mitgesendet werden
-	var categoryOrder = $('select#chooseCat option:selected').val();
-	var comment = $.trim($("textarea#comment").val());
-	
 	var imageURI = $('#pictureFromCamera').attr("src");
 	var params = new Object();
-		params.userID = device.uuid;
-		params.categoryOrder = categoryOrder;
-		params.comment = comment;
+		params.userID = uuid;
+		params.eventID = eventID;
+		params.categoryOrder = $('select#chooseCat option:selected').val();
+		params.comment = $.trim($("textarea#comment").val());
 	
 	// Man muss Optionen festlegen, wie und als was die Daten gesendet werden
 	var options = new FileUploadOptions();
@@ -313,7 +311,7 @@ function sendPicture(eventID) {
 // get from Camera
 function capturePhoto() {
   navigator.camera.getPicture(onPhotoURISuccess, null, {
-	quality: 75,
+	quality: 80,
 	targetWidth: 1024,
 	targetHeight: 768,
 	correctOrientation: true,
@@ -334,7 +332,7 @@ function sendPictureOK() {
 	$('textarea#comment').val('');
 	$('#comment').NobleCount('#counter',{ max_chars: 140 });
 	// alles neu laden
-	$('#categories').trigger('create');
+	$('#chooseCat').trigger('create');
 	// Spinner ausblenden
 	$.mobile.loading('hide');
 	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Status', 'OK' );
