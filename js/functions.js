@@ -27,13 +27,7 @@ jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
 	
 
-	// START screen
-	if ( restartApp == true ) {
-		// Holt sich die Daten aller aktiven Events UND DANN erst die Usereinstellungen dazu
-		// Quasi ein manueler synchroner Prozess, da JSONP das von Haus aus nicht unterstützt
-		getEventsData();
-		restartApp = false;
-	}
+	
 
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
@@ -66,7 +60,6 @@ function doWhenBothFrameworksLoaded() {
 		getEventsData();
 		restartApp = false;
 	}
-	
 	
 	// Accordion animation
 	$('.listanimation').bind('expand', function () {
