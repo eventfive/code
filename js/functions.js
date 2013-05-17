@@ -9,7 +9,7 @@ var uuid, platform, osVersion;
 var restartApp = true;
 var username, eventID;
 // Dummy Daten für lokales testen
-var uuid = "10", platform = "Desktop", osVersion = "0";
+var uuid = "100", platform = "Desktop", osVersion = "0";
 
 
 // PHONEGAP ///////////////////////////////////////////////////////
@@ -36,6 +36,7 @@ jQuery(document).ready(function () {
 		$('.chooseCat .ui-icon').html("Auswählen");
 		$.mobile.navigate( "#categories" );
 	});
+	
 
 });
 
@@ -125,7 +126,13 @@ function getUserData() {
 		data: { userID: uuid, unique: timestamp },
 		cache: false,
 		success: function(data){
-					if ( $.isEmptyObject(data) ) $('#start .user').fadeIn();
+					// FALLS noch keine Daten vorhanden sind
+					if ( $.isEmptyObject(data) ) {
+						$('.yesEvent').hide();
+						$('.noEvent').show();
+						$('#start .user').fadeIn();
+					}
+					// Ansonsten abgefragte Daten überall einfügen
 					else { $.each(data, function(i,item) {
 								// Event auswählen
 								$('.eventID-' + item.selectedEventID + ' .ui-btn-inner').addClass('selected');
@@ -235,27 +242,35 @@ function selectEvent(eventID) {
 
 
 function sendPicture(eventID) {
-	// Spinner anschalten
-	$.mobile.loading('show');
-	
-	// Parameter die über POST mitgesendet werden
-	var imageURI = $('#pictureFromCamera').attr("src");
-	var params = new Object();
-		params.userID = uuid;
-		params.eventID = eventID;
-		params.categoryOrder = $('select#chooseCat option:selected').val();
-		params.comment = $.trim($("textarea#comment").val());
-	
-	// Man muss Optionen festlegen, wie und als was die Daten gesendet werden
-	var options = new FileUploadOptions();
-		options.fileKey = "file";
-		options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
-		options.mimeType = "image/jpeg";
-		options.params = params;
-	
-	// Und nun hochladen
-	var ft = new FileTransfer();
-	ft.upload(imageURI, appURL + "app.php?option=sendPicture", sendPictureOK, sendPictureFAIL, options);
+	if ($('select#chooseCat option:selected').prop('disabled') == true) {
+		$('.error.takePicture').html("Du hast schon ein Bild für diese Kategorie abgegeben!").fadeIn();
+	}
+	else if (!$('#pictureFromCamera').attr('src')) {
+		$('.error.takePicture').html("Nicht so voreilig, du musst vorher noch ein Bild aufnehmen!").fadeIn();
+	}
+	else {
+		// Spinner anschalten
+		$.mobile.loading('show');
+		
+		// Parameter die über POST mitgesendet werden
+		var imageURI = $('#pictureFromCamera').attr("src");
+		var params = new Object();
+			params.userID = uuid;
+			params.eventID = eventID;
+			params.categoryOrder = $('select#chooseCat option:selected').val();
+			params.comment = $.trim($("textarea#comment").val());
+		
+		// Man muss Optionen festlegen, wie und als was die Daten gesendet werden
+		var options = new FileUploadOptions();
+			options.fileKey = "file";
+			options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+			options.mimeType = "image/jpeg";
+			options.params = params;
+		
+		// Und nun hochladen
+		var ft = new FileTransfer();
+		ft.upload(imageURI, appURL + "app.php?option=sendPicture", sendPictureOK, sendPictureFAIL, options);
+	}
 	
 };
 
@@ -264,9 +279,9 @@ function sendPicture(eventID) {
 // get from Camera
 function capturePhoto() {
   navigator.camera.getPicture(onPhotoURISuccess, null, {
-	quality: 75,
-	targetWidth: 1024,
-	targetHeight: 768,
+	quality: 90,
+	targetWidth: 2048,
+	targetHeight: 1536,
 	correctOrientation: true,
 	saveToPhotoAlbum: false,
 	destinationType: Camera.DestinationType.FILE_URI });
@@ -282,6 +297,7 @@ function onPhotoURISuccess(imageURI) {
 // Benachrichtigungen
 function sendPictureOK() { 
 	// UI zurücksetzen
+	$('#pictureFromCamera').removeAttr("src")
 	$('textarea#comment').val('');
 	$('#comment').NobleCount('#counter',{ max_chars: 140 });
 	$('.pictureFromCameraOK').hide();

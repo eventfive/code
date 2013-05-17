@@ -81,15 +81,19 @@
     <div data-role="header" data-tap-toggle="false" data-position="fixed">
         <h1>Aufnehmen</h1>
     </div>
-    <div data-role="content">
-        <h1>Mache dein Bild!</h1>
+    <div data-role="content" class="noEvent" style="display:none;">
+    	<h1>Mach dein Bild</h1>
+        <span class="error">Bitte wähle zuerst eine Veranstaltung aus!</span>
+    </div>
+    <div data-role="content" class="yesEvent">
+        <h1>Mach dein Bild</h1>
         <div class="content list chooseCat">
        		<label for="chooseCat">1. Kategorie wählen</label>
             <select name="select-native-1" id="chooseCat"></select>
         </div>
         <div class="content list takePic">
             <span>2. Bild aufnehmen</span>
-            <img id="pictureFromCamera" style="width: 10px; height: 10px;" />
+            <img id="pictureFromCamera" style="display:none" />
             <span class="pictureFromCameraOK" style="display:none">Bild aufgenommen</span>
             <a class="button" onclick="capturePhoto();">Kamera öffnen</a>
             <br class="clear" />
@@ -101,6 +105,35 @@
         </div>
         <div class="error takePicture"></div>
         <a class="button send" id="sendPicture" rel="external" onClick="sendPicture(eventID);">Abschicken</a>
+    </div>
+    <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
+        <div data-role="navbar" data-grid="d">
+            <ul>
+                <li><a href="#welcome">Willkommen</a></li>
+                <li><a href="#events">Kalender</a></li>
+                <li><a href="#categories" class="ui-btn-active ui-state-persist">Kategorien</a></li>
+                <li><a href="#gallery">Gallerie</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Gallerieansicht -->
+<div data-role="page" id="gallery">
+    <div data-role="header" data-tap-toggle="false" data-position="fixed">
+        <h1>Aufnehmen</h1>
+    </div>
+	<div data-role="content" class="noEvent" style="display:none;">
+    	<h1>Gallerie</h1>
+		<span class="error">Bitte wähle zuerst eine Veranstaltung aus!</span>
+    </div>
+    <div data-role="content" class="yesEvent">
+        <h1>Gallerie</h1>
+        <div class="content list images">
+       		<span>Hier kommen die Bilder...</span>
+        </div>
     </div>
     <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
         <div data-role="navbar" data-grid="d">
