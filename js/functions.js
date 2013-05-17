@@ -33,8 +33,7 @@ jQuery(document).ready(function () {
 	// Kommentar Counter
 	$('#comment').NobleCount('#counter',{ max_chars: 140 });
 	
-	
-	
+
 			
 
 	// MENU functions
@@ -128,6 +127,8 @@ function getUserData() {
 								$('.eventID-' + item.selectedEventID + '.ui-collapsible .ui-btn-inner').addClass('selected');
 								// Kategorien laden
 								getEventCategories(item.selectedEventID);
+								// Benutzte Kategorien laden
+								getSentPictures(item.selectedEventID);
 								// Username einsetzen
 								$('span.username').html(item.username);
 								// Weiterleitung
@@ -176,13 +177,14 @@ function selectEvent(eventID) {
 			$('.eventID-' + eventID + '.ui-collapsible .ui-btn-inner').addClass('selected');
 			$('.listanimation').trigger('collapse');
 			getEventCategories(eventID);
+			getSentPictures(eventID);
 			$.mobile.loading('hide');
 			}
 	});
 }
 
 function getEventCategories(eventID) {
-	$('.categoryOption').remove();
+	$('select#chooseCat option').remove();
 	$.ajax({
 		type: "GET",
 		contentType: "application/json",
@@ -193,8 +195,57 @@ function getEventCategories(eventID) {
 		cache: false,
 		success: function(data) {
 					$.each(data, function(i,item) {
-						$('select#chooseCat').append('<option class="categoryOption" value="' + i + '">' + item.categoryTitle + '</option>');
+						$('select#chooseCat').append('<option id="' + item.categoryOrder + '" value="' + item.categoryOrder + '">' + item.categoryTitle + '</option>');
+						var onClickEventID = "sendPicture(" + item.eventID + ")";
+						$("a#sendPicture").attr("onClick", onClickEventID);
 					});
 				}
 	});
 }
+
+function getSentPictures(eventID) {
+	$.ajax({
+		type: "GET",
+		contentType: "application/json",
+		dataType: "JSONP",
+		jsonp: 'jsoncallback',
+		url: appURL + "app.php?option=getSentPictures" ,
+		data: { userID: uuid, eventID: eventID, unique: timestamp },
+		cache: false,
+		success: function(data) {
+					$.each(data, function(i,item) {
+						var disableOption = "select#chooseCat option#" + item.categoryOrder + "";
+						$(disableOption).attr('disabled', 'disabled');						
+					});
+				}
+	});
+}
+
+function sendPicture(eventID) {
+	categoryOrder = $('select#chooseCat option:selected').val();
+	comment = $.trim($("textarea#comment").val());
+	
+	if ($('select#chooseCat option:selected').prop('disabled') == true) {
+		$('.error.takePicture').html("Du hast schon ein Bild für diese Kategorie abgegeben!").fadeIn();
+	}
+	else {
+		$.ajax({
+			type: "POST",
+			contentType: "application/json",
+    		dataType: "JSONP",
+			jsonp: 'jsoncallback',
+			url: appURL + "app.php?option=sendPicture" ,
+			data: { userID: uuid, eventID: eventID, categoryOrder: categoryOrder, comment: comment, unique: timestamp },
+			beforeSend: function() { 
+				$.mobile.loading('show');
+				$('.error.takePicture').empty()
+				},
+			cache: false,
+			success: function() {
+				var selected = "select#chooseCat option[value=" + categoryOrder + "]";
+				$('select#chooseCat option:selected').attr('disabled', 'disabled');
+				$.mobile.loading('hide');
+				}
+		});
+	}
+};

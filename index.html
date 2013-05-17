@@ -30,7 +30,7 @@
 
 <!-- Willkommen -->
 <div data-role="page" id="welcome">
-    <div data-role="header" data-fullscreen="false" data-position="fixed">
+    <div data-role="header" data-tap-toggle="false" data-position="fixed">
         <h1>Willkommen</h1>
     </div>
     <div data-role="content">
@@ -39,7 +39,7 @@
         	<p>Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet .Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
         </div>
     </div>
-    <div data-role="footer" data-id="persistent-navigation" data-fullscreen="false" data-position="fixed">
+    <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
         <div data-role="navbar" data-grid="d">
             <ul>
                 <li><a href="#welcome" class="ui-btn-active ui-state-persist">Willkommen</a></li>
@@ -54,7 +54,7 @@
 
 <!-- Kalender -->
 <div data-role="page" id="events">
-    <div data-role="header" data-fullscreen="false" data-position="fixed">
+    <div data-role="header" data-tap-toggle="false" data-position="fixed">
         <h1>Kalender</h1>
     </div>
     <div data-role="content">
@@ -63,7 +63,7 @@
         	<div data-role="collapsible-set" data-inset="false" data-iconpos="right" id="eventCollapsible"></div>
         </div>
     </div>
-    <div data-role="footer" data-id="persistent-navigation" data-fullscreen="false" data-position="fixed">
+    <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
         <div data-role="navbar" data-grid="d">
             <ul>
                 <li><a href="#welcome">Willkommen</a></li>
@@ -78,15 +78,14 @@
 
 <!-- Kategorie wählen -->
 <div data-role="page" id="categories">
-    <div data-role="header" data-fullscreen="false" data-position="fixed">
+    <div data-role="header" data-tap-toggle="false" data-position="fixed">
         <h1>Aufnehmen</h1>
     </div>
     <div data-role="content">
         <h1>Mache dein Bild!</h1>
         <div class="content list chooseCat">
-            <select name="select-native-1" id="chooseCat">
-                <option value="label" selected >1. Kategorie auswählen</option>
-            </select>
+       		<span>1. Kategorie auswählen</span>
+            <select name="select-native-1" id="chooseCat"></select>
         </div>
         <div class="content list takePic">
             <span>2. Bild aufnehmen</span>
@@ -98,9 +97,10 @@
             <textarea type="text" id="comment" name="comment" value="" maxlength="140"></textarea>
             <div class="maxlenght"><span id="counter"></span> Zeichen verbleiben</div>
         </div>
-        <a class="button send" rel="external" onClick="">Abschicken</a>
+        <div class="error takePicture"></div>
+        <a class="button send" id="sendPicture" rel="external" onClick="sendPicture(eventID);">Abschicken</a>
     </div>
-    <div data-role="footer" data-id="persistent-navigation" data-fullscreen="false" data-position="fixed">
+    <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
         <div data-role="navbar" data-grid="d">
             <ul>
                 <li><a href="#welcome">Willkommen</a></li>

@@ -27,8 +27,9 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 .ui-input-text.ui-focus, .ui-input-search.ui-focus { box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); }
 
 /* Messages */
-.error { color: #DE265F; }
-.error.username { font-size: 12px; font-weight: bold; height: 20px; text-align: center; margin-bottom: 20px; }
+.error { color: #DE265F; font-size: 12px; font-weight: bold; text-align: center; }
+.error.username { margin-bottom: 20px; }
+.error.takePicture { margin: 20px 0; }
 
 /* Loading spinner */
 .ui-loader { background: url("../img/spinner_32.gif") no-repeat scroll center center #ebebeb; height: 100%; width: 100%; border-radius: 0 !important; left: 0 !important; top: 0 !important; margin: 0 !important; opacity: 1 !important; z-index: 999 !important; }
