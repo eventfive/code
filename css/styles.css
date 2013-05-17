@@ -91,7 +91,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 .ui-collapsible .ui-btn-inner, .ui-collapsible .ui-collapsible-content { padding-left: 35px; }
 .ui-collapsible .ui-btn { border: none; }
 .ui-collapsible .ui-btn-inner { background: #f7f6f6; color: #575351; font-weight: normal; text-shadow: none; border: none; } /* ausgewählt */
-.ui-collapsible .ui-btn-inner.selected { font-weight: bold; background: #c8e0dc; color: #1c9381; } /* geschlossen */
+.ui-collapsible .ui-btn-inner.selected { font-weight: bold; background: url("../img/list-checked.png") no-repeat 13px center #c8e0dc; background-size: auto 30%; color: #1c9381; } /* geschlossen */
 .ui-collapsible .ui-icon { border: none; background: none; box-shadow: none; border-radius: 0; right: 25px; }
 .ui-collapsible .ui-icon.ui-icon-plus { background: url("../img/list-down.png") no-repeat center center transparent; background-size: 100% auto; }
 .ui-collapsible .ui-icon.ui-icon-minus { background: url("../img/list-up.png") no-repeat center center transparent; background-size: 100% auto; }
@@ -100,18 +100,22 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 .ui-collapsible .description .time {text-align: right; font-size: 10px; }
 .ui-collapsible .description .time span { display: block; }
 .ui-collapsible .description .text { font-size: 12px; margin-top: 10px; }
-.ui-collapsible .select a.button { margin: 10px 20px; float: right; font-size: 12px; }
+.ui-collapsible .select a.button { margin: 10px 20px; float: right; font-size: 12px; border-radius: 0; }
 
 /* Kategorien */
 #categories .content { padding-bottom: 0; }
-#categories .chooseCat .ui-btn, #categories .chooseCat .ui-focus, #categories .takePic, #categories .leaveCom  { color: #575351; border: none; border-bottom: 1px solid rgba(68,45,19,.1); border-radius: 0; background: #f7f6f6; box-shadow: none; text-align: left; font-weight: normal; margin: 0 !important; }
-#categories .chooseCat .ui-btn-inner, #categories .chooseCat option,  #categories .leaveCom { padding: 10px 0 10px 35px; }
-#categories .chooseCat .ui-btn-text, #categories .takePic, #categories .leaveCom label, #categories .leaveCom textarea { font-size: 13px !important; font-family: Arial, Helvetica, sans-serif; color: #575351; text-align: left; }
-#categories .chooseCat .ui-icon { background: url("../img/list-choose.png") no-repeat center right transparent !important; background-size: 50% auto !important; border-radius: 0; right: 20px; }
+#categories .chooseCat, #categories .chooseCat .ui-btn, #categories .chooseCat .ui-focus, #categories .takePic, #categories .leaveCom  { color: #575351; border: none; border-bottom: 1px solid rgba(68,45,19,.1); border-radius: 0; background: #f7f6f6 !important; box-shadow: none; text-align: left; font-weight: normal; margin: 0 !important; }
+#categories .chooseCat,  #categories .leaveCom { padding: 10px 0 10px 35px; }
+#categories .chooseCat, #categories .chooseCat .ui-btn-text, #categories .takePic, #categories label, #categories .leaveCom textarea { font-size: 13px !important; font-family: Arial, Helvetica, sans-serif; color: #575351; text-align: left; }
+#categories .chooseCat .ui-btn { border: none; }
+#categories .chooseCat .ui-btn-text { color: #1C9381; font-weight: bold; }
+#categories .chooseCat .ui-btn-inner { padding-left: 0; }
+#categories .chooseCat .ui-ico { background: url("../img/list-choose.png") no-repeat center right transparent !important; background-size: 50% auto !important; border-radius: 0; right: 20px; }
+#categories .chooseCat .ui-icon { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; font-size: 11px; border-radius: 0; border: none; width: auto; right: 20px; margin-top: -13px }
 #categories .takePic { padding: 10px 0 10px 35px; }
 #categories .takePic span { display: block; width: 100%; }
 #categories .takePic a.button { border-radius: 0; float: right; width: auto; font-size: 11px; margin-right: 20px; margin-top: 10px; }
 #categories .leaveCom { padding-right: 20px; }
-#categories .leaveCom textarea { border-radius: 0; height: 130px; margin-top: 10px; }
-#categories .leaveCom .maxlenght { font-size: 11px; margin: 10px 0; text-align: right; }
+#categories .leaveCom textarea { border-radius: 0; height: 130px; margin-top: 0; }
+#categories .leaveCom .maxlenght { font-size: 11px; margin: 10px 0 0; text-align: right; color: #928f8d; }
 #categories a.button.send { width: 80% !important; margin: 20px auto 0; }

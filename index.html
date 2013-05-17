@@ -84,18 +84,18 @@
     <div data-role="content">
         <h1>Mache dein Bild!</h1>
         <div class="content list chooseCat">
-       		<span>1. Kategorie auswählen</span>
+       		<label for="chooseCat">1. Kategorie wählen</label>
             <select name="select-native-1" id="chooseCat"></select>
         </div>
         <div class="content list takePic">
             <span>2. Bild aufnehmen</span>
-            <a class="button">Kamera öffnen</a>
+            <a class="button" onclick="capturePhoto();">Kamera öffnen</a>
             <br class="clear" />
         </div>
         <div class="content list leaveCom">
             <label for="comment">3. Kommentar hinterlassen</label>
-            <textarea type="text" id="comment" name="comment" value="" maxlength="140"></textarea>
             <div class="maxlenght"><span id="counter"></span> Zeichen verbleiben</div>
+            <textarea type="text" id="comment" name="comment" value="" maxlength="140"></textarea>
         </div>
         <div class="error takePicture"></div>
         <a class="button send" id="sendPicture" rel="external" onClick="sendPicture(eventID);">Abschicken</a>
