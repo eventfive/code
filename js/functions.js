@@ -32,6 +32,7 @@ jQuery(document).ready(function () {
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
 		event.preventDefault();
+		$('#categories').trigger('create');
 		// Den ersten SELECT Eintrag löschen
 		$('#categories .chooseCat .ui-btn-text').empty()
 		// Manuell den Text auf das Dropdown-Select klatschen
@@ -281,12 +282,18 @@ function sendPicture(eventID) {
 
 
 function sendPicture(eventID) {
+	// Spinner anschalten
+	$.mobile.loading('show');
+	
 	// Parameter die über POST mitgesendet werden
+	var categoryOrder = $('select#chooseCat option:selected').val();
+	var comment = $.trim($("textarea#comment").val());
+	
 	var imageURI = $('#pictureFromCamera').attr("src");
 	var params = new Object();
 		params.userID = device.uuid;
-		params.categoryOrder = $('select#chooseCat option:selected').val();
-		params.comment = $.trim($("textarea#comment").val());
+		params.categoryOrder = categoryOrder;
+		params.comment = comment;
 	
 	// Man muss Optionen festlegen, wie und als was die Daten gesendet werden
 	var options = new FileUploadOptions();
@@ -298,6 +305,7 @@ function sendPicture(eventID) {
 	// Und nun hochladen
 	var ft = new FileTransfer();
 	ft.upload(imageURI, appURL + "app.php?option=sendPicture", sendPictureOK, sendPictureFAIL, options);
+	
 };
 
 
@@ -321,5 +329,17 @@ function onPhotoURISuccess(imageURI) {
 }
 
 // Benachrichtigungen
-function sendPictureOK() { navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Status', 'OK' ); };
-function sendPictureFAIL(error) { alert("Beim Senden ist ein Fehler aufgetreten. Fehlercode: " + error.code); }
+function sendPictureOK() { 
+	// Input Field zurücksetzen
+	$('textarea#comment').val('');
+	$('#comment').NobleCount('#counter',{ max_chars: 140 });
+	// alles neu laden
+	$('#categories').trigger('create');
+	// Spinner ausblenden
+	$.mobile.loading('hide');
+	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Status', 'OK' );
+	}
+function sendPictureFAIL(error) {
+	$.mobile.loading('hide');
+	alert("Beim Senden ist ein Fehler aufgetreten. Fehlercode: " + error.code);
+	}
