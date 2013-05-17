@@ -78,13 +78,10 @@ function doWhenBothFrameworksLoaded() {
 	// Kommentar Counter
 	$('#comment').NobleCount('#counter',{ max_chars: 140 });
 
-
-	// Benachrichtigungen
-	function sendPictureOK() { navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Status', 'OK' ); };
 	
 }
 
-/////// FUNKTIONEN //////////////////////
+/////// FUNKTIONEN AJAX //////////////////////
 
 function getEventsData() {
 	// Vorher 
@@ -245,12 +242,18 @@ function selectEvent(eventID) {
 	});
 }
 
-
-
-
+/*
 function sendPicture(eventID) {
-	categoryOrder = $('select#chooseCat option:selected').val();
-	comment = $.trim($("textarea#comment").val());
+	// Kategorie
+	var categoryOrder = $('select#chooseCat option:selected').val();
+	// Bild
+	var options = new FileUploadOptions();
+	options.fileKey = "file";
+	options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+	options.mimeType = "image/jpeg";
+    var imageURI = $('#pictureFromCamera').attr("src");
+	// Kommentar
+	var comment = $.trim($("textarea#comment").val());
 	
 	if ($('select#chooseCat option:selected').prop('disabled') == true) {
 		$('.error.takePicture').html("Du hast schon ein Bild für diese Kategorie abgegeben!").fadeIn();
@@ -281,14 +284,31 @@ function sendPicture(eventID) {
 					 }
 		});
 	}
+};*/
+
+
+function sendPicture(eventID) {
+	// Parameter die über POST mitgesendet werden
+	var imageURI = $('#pictureFromCamera').attr("src");
+	var params = new Object();
+		params.userID = device.uuid;
+		params.categoryOrder = $('select#chooseCat option:selected').val();
+		params.comment = $.trim($("textarea#comment").val());
+	
+	// Man muss Optionen festlegen, wie und als was die Daten gesendet werden
+	var options = new FileUploadOptions();
+		options.fileKey = "file";
+		options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+		options.mimeType = "image/jpeg";
+		options.params = params;
+	
+	// Und nun hochladen
+	var ft = new FileTransfer();
+	ft.upload(imageURI, appURL + "app.php?option=sendPicture", sendPictureOK, sendPictureFAIL, options);
 };
 
 
-// Camera ////////////////////////////////////////////////////////////
-//Photo URI
-function onPhotoURISuccess(imageURI) {
-  alert("success");
-}
+/////// FUNKTIONEN PHONEGAP //////////////////////
 // get from Camera
 function capturePhoto() {
   navigator.camera.getPicture(onPhotoURISuccess, null, {
@@ -299,3 +319,14 @@ function capturePhoto() {
 	saveToPhotoAlbum: true,
 	destinationType: Camera.DestinationType.FILE_URI });
 }
+function onPhotoURISuccess(imageURI) {
+	// Bild in das HTML-Dokument laden
+	var image = document.getElementById('pictureFromCamera');
+	image.src = imageURI;
+	// Bestätigung anzeigen
+	$('.pictureFromCameraOK').show();
+}
+
+// Benachrichtigungen
+function sendPictureOK() { navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Status', 'OK' ); };
+function sendPictureFAIL(error) { alert("Beim Senden ist ein Fehler aufgetreten. Fehlercode: " + error.code); }

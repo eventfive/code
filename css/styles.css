@@ -108,12 +108,13 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 #categories .chooseCat,  #categories .leaveCom { padding: 10px 0 10px 35px; }
 #categories .chooseCat, #categories .chooseCat .ui-btn-text, #categories .takePic, #categories label, #categories .leaveCom textarea { font-size: 13px !important; font-family: Arial, Helvetica, sans-serif; color: #575351; text-align: left; }
 #categories .chooseCat .ui-btn { border: none; }
-#categories .chooseCat .ui-btn-text { color: #1C9381; font-weight: bold; }
+#categories .chooseCat .ui-btn-text, #categories .takePic span.pictureFromCameraOK { color: #1C9381; font-weight: bold; }
 #categories .chooseCat .ui-btn-inner { padding-left: 0; }
 #categories .chooseCat .ui-ico { background: url("../img/list-choose.png") no-repeat center right transparent !important; background-size: 50% auto !important; border-radius: 0; right: 20px; }
 #categories .chooseCat .ui-icon { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; font-size: 11px; border-radius: 0; border: none; width: auto; right: 20px; margin-top: -13px }
 #categories .takePic { padding: 10px 0 10px 35px; }
 #categories .takePic span { display: block; width: 100%; }
+#categories .takePic span.pictureFromCameraOK { float: left; margin-top: 12px; width: auto; }
 #categories .takePic a.button { border-radius: 0; float: right; width: auto; font-size: 11px; margin-right: 20px; margin-top: 10px; }
 #categories .leaveCom { padding-right: 20px; }
 #categories .leaveCom textarea { border-radius: 0; height: 130px; margin-top: 0; }
