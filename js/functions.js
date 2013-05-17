@@ -25,14 +25,11 @@ function deviceReady() {
 // JQUERY /////////////////////////////////////////////////////////
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
-	
-
-	
 
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
 		event.preventDefault();
-		$('#chooseCat').trigger('create');
+		//$('#chooseCat').trigger('create');
 		// Den ersten SELECT Eintrag löschen
 		$('#categories .chooseCat .ui-btn-text').empty()
 		// Manuell den Text auf das Dropdown-Select klatschen
@@ -236,50 +233,6 @@ function selectEvent(eventID) {
 	});
 }
 
-/*
-function sendPicture(eventID) {
-	// Kategorie
-	var categoryOrder = $('select#chooseCat option:selected').val();
-	// Bild
-	var options = new FileUploadOptions();
-	options.fileKey = "file";
-	options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
-	options.mimeType = "image/jpeg";
-    var imageURI = $('#pictureFromCamera').attr("src");
-	// Kommentar
-	var comment = $.trim($("textarea#comment").val());
-	
-	if ($('select#chooseCat option:selected').prop('disabled') == true) {
-		$('.error.takePicture').html("Du hast schon ein Bild für diese Kategorie abgegeben!").fadeIn();
-	}
-	else {
-		$.ajax({
-			type: "POST",
-			contentType: "application/json",
-    		dataType: "JSONP",
-			jsonp: 'jsoncallback',
-			url: appURL + "app.php?option=sendPicture" ,
-			data: { userID: uuid, eventID: eventID, categoryOrder: categoryOrder, comment: comment, unique: timestamp },
-			beforeSend: function() { 
-				$.mobile.loading('show');
-				$('.error.takePicture').empty()
-				},
-			cache: false,
-			success: function() {
-						// Abgebebenes Foto deaktieren
-						var selected = "select#chooseCat option[value=" + categoryOrder + "]";
-						$('select#chooseCat option:selected').attr('disabled', 'disabled');
-						// UI wieder zurücksetzen
-						$('#categories .chooseCat .ui-btn-text').empty()
-						$('textarea#comment').val("");
-						// Benachrichtigung
-						sendPictureOK();
-						$.mobile.loading('hide');
-					 }
-		});
-	}
-};*/
-
 
 function sendPicture(eventID) {
 	// Spinner anschalten
@@ -311,7 +264,7 @@ function sendPicture(eventID) {
 // get from Camera
 function capturePhoto() {
   navigator.camera.getPicture(onPhotoURISuccess, null, {
-	quality: 80,
+	quality: 75,
 	targetWidth: 1024,
 	targetHeight: 768,
 	correctOrientation: true,
@@ -328,11 +281,10 @@ function onPhotoURISuccess(imageURI) {
 
 // Benachrichtigungen
 function sendPictureOK() { 
-	// Input Field zurücksetzen
+	// UI zurücksetzen
 	$('textarea#comment').val('');
 	$('#comment').NobleCount('#counter',{ max_chars: 140 });
-	// alles neu laden
-	$('#chooseCat').trigger('create');
+	$('.pictureFromCameraOK').hide();
 	// Spinner ausblenden
 	$.mobile.loading('hide');
 	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Status', 'OK' );
