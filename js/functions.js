@@ -268,7 +268,7 @@ function capturePhoto() {
 	targetWidth: 1024,
 	targetHeight: 768,
 	correctOrientation: true,
-	saveToPhotoAlbum: true,
+	saveToPhotoAlbum: false,
 	destinationType: Camera.DestinationType.FILE_URI });
 }
 function onPhotoURISuccess(imageURI) {
