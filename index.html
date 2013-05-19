@@ -46,7 +46,7 @@
                 <li><a href="#events">Kalender</a></li>
                 <li><a href="#categories">Kategorien</a></li>
                 <li><a href="#gallery">Gallerie</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#about">Kontakt</a></li>
             </ul>
         </div>
     </div>
@@ -70,7 +70,7 @@
                 <li><a href="#events" class="ui-btn-active ui-state-persist">Kalender</a></li>
                 <li><a href="#categories">Kategorien</a></li>
                 <li><a href="#gallery">Gallerie</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#about">Kontakt</a></li>
             </ul>
         </div>
     </div>
@@ -113,7 +113,7 @@
                 <li><a href="#events">Kalender</a></li>
                 <li><a href="#categories" class="ui-btn-active ui-state-persist">Kategorien</a></li>
                 <li><a href="#gallery">Gallerie</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#about">Kontakt</a></li>
             </ul>
         </div>
     </div>
@@ -123,7 +123,7 @@
 <!-- Gallerieansicht -->
 <div data-role="page" id="gallery">
     <div data-role="header" data-tap-toggle="false" data-position="fixed">
-        <h1>Aufnehmen</h1>
+        <h1>Gallerie</h1>
     </div>
 	<div data-role="content" class="noEvent" style="display:none;">
     	<h1>Gallerie</h1>
@@ -132,7 +132,15 @@
     <div data-role="content" class="yesEvent">
         <h1>Gallerie</h1>
         <div class="content list images">
-       		<span>Hier kommen die Bilder...</span>
+       		<div class="imageWrapper">
+            	<h2>Das letzte Bier</h2>
+            	<div class="thumbnail"><img src="http://kiste.eventfive.de/asd/events/2/uploads/2_FDFBE6EA-EDE6-4713-8499-CCB6F2E7FA38.jpg" /></div>
+                <div class="details">
+                    <span class="username"></span>
+                    <span class="text">Ujujuj</span>
+                    <span class="time">2013-05-08 13:37:12</span>
+                </div>
+            </div>
         </div>
     </div>
     <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
@@ -140,9 +148,43 @@
             <ul>
                 <li><a href="#welcome">Willkommen</a></li>
                 <li><a href="#events">Kalender</a></li>
-                <li><a href="#categories" class="ui-btn-active ui-state-persist">Kategorien</a></li>
+                <li><a href="#categories">Kategorien</a></li>
+                <li><a href="#gallery" class="ui-btn-active ui-state-persist">Gallerie</a></li>
+                <li><a href="#about">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Über die App -->
+<div data-role="page" id="about">
+    <div data-role="header" data-tap-toggle="false" data-position="fixed">
+        <h1>Info</h1>
+    </div>
+    <div data-role="content" class="yesEvent">
+        <h1>Über</h1>
+        <div class="content list publisher">
+       		<p>Version: 2.0</p>
+       		<p>Herausgeber:<br>
+            eventfive GmbH<br>
+            <a href="http://www.eventfive.de" target="_blank">eventfive.de</a></p>
+            <p><strong>Kontakt:</strong></p>
+            <input type="text" id="contactName" value="Name">
+            <input type="email" id="contactEmail" value="E-Mail Adresse">
+            <textarea type="text" id="contactMessage">Nachricht</textarea>
+            <input type="hidden" id="contactVersion" value="2.0" >
+        </div>
+        <a class="button send" id="sendMessage" rel="external" onClick="sendMessage">Abschicken</a>
+    </div>
+    <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
+        <div data-role="navbar" data-grid="d">
+            <ul>
+                <li><a href="#welcome">Willkommen</a></li>
+                <li><a href="#events">Kalender</a></li>
+                <li><a href="#categories">Kategorien</a></li>
                 <li><a href="#gallery">Gallerie</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#about" class="ui-btn-active ui-state-persist">Kontakt</a></li>
             </ul>
         </div>
     </div>

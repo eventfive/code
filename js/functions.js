@@ -20,12 +20,18 @@ function deviceReady() {
 	var pictureSource = navigator.camera.PictureSourceType;
 	var destinationType = navigator.camera.DestinationType;
 }
+document.addEventListener("offline", onOffline, false);
+function onOffline() { 	
+	navigator.notification.alert( 'Bitte verbinde dich mit dem Internet um diese App nutzen zu können.', navigator.app.exitApp(), 'Internetverbindung', 'Schließen' );
+}
 
 
 // JQUERY /////////////////////////////////////////////////////////
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
 
+	//$.mobile.navigate( "#welcome" );
+	
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
 		event.preventDefault();
@@ -35,9 +41,18 @@ jQuery(document).ready(function () {
 		// Manuell den Text auf das Dropdown-Select klatschen
 		$('.chooseCat .ui-icon').html("Auswählen");
 		$.mobile.navigate( "#categories" );
+		// Den ersten SELECT Eintrag löschen
+		$('#categories .chooseCat .ui-btn-text').empty()
+		// Manuell den Text auf das Dropdown-Select klatschen
+		$('.chooseCat .ui-icon').html("Auswählen");
+		$.mobile.navigate( "#categories" );
 	});
 	
-
+	$('a[href="#gallery"]').on("click", function(event){
+		event.preventDefault();
+		getPictureGallery();
+		$.mobile.navigate( "#gallery" );
+	});
 });
 
 
@@ -54,6 +69,7 @@ function doWhenBothFrameworksLoaded() {
 
 	// START screen
 	if ( restartApp == true ) {
+		$.mobile.loading('show')
 		// Holt sich die Daten aller aktiven Events UND DANN erst die Usereinstellungen dazu
 		// Quasi ein manueler synchroner Prozess, da JSONP das von Haus aus nicht unterstützt
 		getEventsData();
@@ -128,8 +144,12 @@ function getUserData() {
 		success: function(data){
 					// FALLS noch keine Daten vorhanden sind
 					if ( $.isEmptyObject(data) ) {
+						// "Event auswählen" einblenden
 						$('.yesEvent').hide();
 						$('.noEvent').show();
+						// Loader ausblenden
+						$.mobile.loading('hide');
+						// User Registrierung einblenden
 						$('#start .user').fadeIn();
 					}
 					// Ansonsten abgefragte Daten überall einfügen
@@ -140,6 +160,8 @@ function getUserData() {
 								getEventCategories(item.selectedEventID);
 								// Username einsetzen
 								$('span.username').html(item.username);
+								// Loader ausschalten
+								$.mobile.loading('hide');
 								// Weiterleitung
 								$.mobile.navigate( "#welcome" );
 							})
@@ -180,6 +202,24 @@ function getSentPictures(eventID) {
 		jsonp: 'jsoncallback',
 		url: appURL + "app.php?option=getSentPictures" ,
 		data: { userID: uuid, eventID: eventID, unique: timestamp },
+		cache: false,
+		success: function(data) {
+					$.each(data, function(i,item) {
+						var disableOption = "select#chooseCat option#" + item.categoryOrder + "";
+						$(disableOption).attr('disabled', 'disabled');						
+					});
+				}
+	});
+}
+
+function getPictureGallery() {
+	$.ajax({
+		type: "GET",
+		contentType: "application/json",
+		dataType: "JSONP",
+		jsonp: 'jsoncallback',
+		url: appURL + "app.php?option=getPictureGallery" ,
+		data: { userID: uuid, eventID: "2", unique: timestamp },
 		cache: false,
 		success: function(data) {
 					$.each(data, function(i,item) {

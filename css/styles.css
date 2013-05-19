@@ -18,10 +18,11 @@
 
 .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
 a { text-decoration: none; color: #575351; }
-a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; }
+a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; margin: 20px auto 0; width: 80% !important; }
 a.button.send { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 10px; }
 label.ui-input-text { font-family: 'nove'; font-size: 35px; text-align: center; color: #DE265F; }
-div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px 1px rgba(0,0,0,.05); border: solid 2px #cdcdcd; }
+div.ui-input-text { background: #EBEBEB; box-shadow: 0 0 5px 1px rgba(0,0,0,.05); border-radius: 3px; border: solid 2px #cdcdcd; }
+textarea { border-radius: 0 !important; height: 130px !important; margin-top: 0 !important; border-radius: 3px; border: solid 2px #cdcdcd; }
 .ui-btn-inner { border: none; }
 .ui-focus, .ui-btn:focus { background: #FFF !important; text-shadow: none !important; color: #575351 !important; }
 .ui-input-text.ui-focus, .ui-input-search.ui-focus { box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); }
@@ -32,7 +33,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 .error.takePicture { margin: 20px 0; }
 
 /* Loading spinner */
-.ui-loader { background: url("../res/app/spinner_32.gif") no-repeat scroll center center #ebebeb; height: 100%; width: 100%; border-radius: 0 !important; left: 0 !important; top: 0 !important; margin: 0 !important; opacity: 1 !important; z-index: 999 !important; }
+.ui-loader { background: url("../res/app/spinner_32.gif") no-repeat scroll center center #ebebeb; height: 100%; width: 100%; border-radius: 0 !important; left: 0 !important; top: 0 !important; margin: 0 !important; opacity: 1 !important; z-index: 998 !important; }
 .ui-loader .ui-icon { display: none; }
 
 /* Transition timings */
@@ -73,8 +74,8 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 
 /* start */
 #start, #start .ui-content { height: 100%; margin: 0; padding: 0; }
-#start .logo { height: 40%; width: 100%; background: url("../res/app/logo.png") center center no-repeat; background-size: auto 50%; }
-#start .user { width: 80%; margin: 0 auto; }
+#start .logo { height: 40%; width: 100%; background: url("../res/app/logo.png") center center no-repeat; background-size: auto 50%; position: relative; z-index: 999; }
+#start .user { width: 80%; margin: 0 auto; position: relative; z-index: 999; }
 #start .user div.ui-input-text { margin: 20px 0 5px; }
 #start .user input { font-size: 35px; text-align: center; }
 
@@ -115,8 +116,15 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 #categories .takePic { padding: 10px 0 10px 35px; }
 #categories .takePic span { display: block; width: 100%; }
 #categories .takePic span.pictureFromCameraOK { float: left; margin-top: 12px; width: auto; }
-#categories .takePic a.button { border-radius: 0; float: right; width: auto; font-size: 11px; margin-right: 20px; margin-top: 10px; }
+#categories .takePic a.button { border-radius: 0; float: right; width: auto !important; font-size: 11px; margin-right: 20px; margin-top: 10px; }
 #categories .leaveCom { padding-right: 20px; }
-#categories .leaveCom textarea { border-radius: 0; height: 130px; margin-top: 0; }
 #categories .leaveCom .maxlenght { font-size: 11px; margin: 10px 0 0; text-align: right; color: #928f8d; }
-#categories a.button.send { width: 80% !important; margin: 20px auto 0; }
+
+/* Gallery */
+#gallery .imageWrapper { margin-bottom: 10px; }
+#gallery .thumbnail { height: 150px; overflow: hidden; position: relative; background: #f7f6f6; }
+#gallery .imageWrapper img { position: absolute; top: -45%; left: 0; width: 100%; }
+#gallery .imageWrapper .details {  }
+
+/* Über */
+#about .publisher { color: #575351; border: none; border-bottom: 1px solid rgba(68,45,19,.1); border-radius: 0; background: #f7f6f6 !important; box-shadow: none; text-align: left; font-weight: normal; margin: 0 !important; padding: 10px 25px 10px 35px; }
