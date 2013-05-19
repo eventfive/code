@@ -32,7 +32,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 .error.takePicture { margin: 20px 0; }
 
 /* Loading spinner */
-.ui-loader { background: url("../img/spinner_32.gif") no-repeat scroll center center #ebebeb; height: 100%; width: 100%; border-radius: 0 !important; left: 0 !important; top: 0 !important; margin: 0 !important; opacity: 1 !important; z-index: 999 !important; }
+.ui-loader { background: url("../res/app/spinner_32.gif") no-repeat scroll center center #ebebeb; height: 100%; width: 100%; border-radius: 0 !important; left: 0 !important; top: 0 !important; margin: 0 !important; opacity: 1 !important; z-index: 999 !important; }
 .ui-loader .ui-icon { display: none; }
 
 /* Transition timings */
@@ -56,15 +56,15 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 .ui-grid-d li { padding-top: 1.5em !important; padding-bottom: 0em !important; border: none; padding-left: 0; padding-right: 0; background: none; }
 .ui-grid-d .ui-btn-inner { border: none; }
 .ui-grid-d .ui-btn-text { display: block; text-indent: -99999px; padding-bottom: 2.5em; }
-.ui-grid-d .ui-block-a .ui-btn-text { background: url("../img/btn-1.png") no-repeat scroll center center transparent; background-size: auto 60%; }
-.ui-grid-d .ui-block-b .ui-btn-text { background: url("../img/btn-2.png") no-repeat scroll center center transparent; background-size: auto 60%; }
-.ui-grid-d .ui-block-d .ui-btn-text { background: url("../img/btn-4.png") no-repeat scroll center center transparent; background-size: auto 60%; }
-.ui-grid-d .ui-block-e .ui-btn-text { background: url("../img/btn-5.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-a .ui-btn-text { background: url("../res/app/btn-1.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-b .ui-btn-text { background: url("../res/app/btn-2.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-d .ui-btn-text { background: url("../res/app/btn-4.png") no-repeat scroll center center transparent; background-size: auto 60%; }
+.ui-grid-d .ui-block-e .ui-btn-text { background: url("../res/app/btn-5.png") no-repeat scroll center center transparent; background-size: auto 60%; }
 .ui-grid-d .ui-btn-active { border: none; }
 /* Mitte */
 .ui-grid-d .ui-block-c .ui-btn { border-top-left-radius: 10px; border-top-right-radius: 10px; }
 .ui-grid-d .ui-block-c { padding-top: .85em !important; }
-.ui-grid-d .ui-block-c .ui-btn-text { background: url("../img/btn-3.png") no-repeat scroll center center transparent; background-size: auto 115%; padding-bottom: 3.4em; }
+.ui-grid-d .ui-block-c .ui-btn-text { background: url("../res/app/btn-3.png") no-repeat scroll center center transparent; background-size: auto 115%; padding-bottom: 3.4em; }
 
 
 /* ====================================== */
@@ -73,7 +73,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 
 /* start */
 #start, #start .ui-content { height: 100%; margin: 0; padding: 0; }
-#start .logo { height: 40%; width: 100%; background: url("../img/logo.png") center center no-repeat; background-size: auto 50%; }
+#start .logo { height: 40%; width: 100%; background: url("../res/app/logo.png") center center no-repeat; background-size: auto 50%; }
 #start .user { width: 80%; margin: 0 auto; }
 #start .user div.ui-input-text { margin: 20px 0 5px; }
 #start .user input { font-size: 35px; text-align: center; }
@@ -91,10 +91,10 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 .ui-collapsible .ui-btn-inner, .ui-collapsible .ui-collapsible-content { padding-left: 35px; }
 .ui-collapsible .ui-btn { border: none; }
 .ui-collapsible .ui-btn-inner { background: #f7f6f6; color: #575351; font-weight: normal; text-shadow: none; border: none; } /* ausgewählt */
-.ui-collapsible .ui-btn-inner.selected { font-weight: bold; background: url("../img/list-checked.png") no-repeat 13px center #c8e0dc; background-size: auto 30%; color: #1c9381; } /* geschlossen */
+.ui-collapsible .ui-btn-inner.selected { font-weight: bold; background: url("../res/app/list-checked.png") no-repeat 13px center #c8e0dc; background-size: auto 30%; color: #1c9381; } /* geschlossen */
 .ui-collapsible .ui-icon { border: none; background: none; box-shadow: none; border-radius: 0; right: 25px; }
-.ui-collapsible .ui-icon.ui-icon-plus { background: url("../img/list-down.png") no-repeat center center transparent; background-size: 100% auto; }
-.ui-collapsible .ui-icon.ui-icon-minus { background: url("../img/list-up.png") no-repeat center center transparent; background-size: 100% auto; }
+.ui-collapsible .ui-icon.ui-icon-plus { background: url("../res/app/list-down.png") no-repeat center center transparent; background-size: 100% auto; }
+.ui-collapsible .ui-icon.ui-icon-minus { background: url("../res/app/list-up.png") no-repeat center center transparent; background-size: 100% auto; }
 .ui-collapsible .description { background: #FFF; border: solid 1px #cdcdcd; padding: 15px; margin-right: 10px; }
 .ui-collapsible .description .logo, .ui-collapsible .description .time { float: left; width: 50%; }
 .ui-collapsible .description .time {text-align: right; font-size: 10px; }
@@ -110,7 +110,7 @@ div.ui-input-text { border-radius: 3px; background: #f5f5f5; box-shadow: 0 0 5px
 #categories .chooseCat .ui-btn { border: none; }
 #categories .chooseCat .ui-btn-text, #categories .takePic span.pictureFromCameraOK { color: #1C9381; font-weight: bold; }
 #categories .chooseCat .ui-btn-inner { padding-left: 0; }
-#categories .chooseCat .ui-ico { background: url("../img/list-choose.png") no-repeat center right transparent !important; background-size: 50% auto !important; border-radius: 0; right: 20px; }
+#categories .chooseCat .ui-ico { background: url("../res/app/list-choose.png") no-repeat center right transparent !important; background-size: 50% auto !important; border-radius: 0; right: 20px; }
 #categories .chooseCat .ui-icon { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; font-size: 11px; border-radius: 0; border: none; width: auto; right: 20px; margin-top: -13px }
 #categories .takePic { padding: 10px 0 10px 35px; }
 #categories .takePic span { display: block; width: 100%; }
