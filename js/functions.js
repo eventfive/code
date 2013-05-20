@@ -21,8 +21,10 @@ function deviceReady() {
 	var destinationType = navigator.camera.DestinationType;
 }
 document.addEventListener("offline", onOffline, false);
-function onOffline() { 	
-	navigator.notification.alert( 'Bitte verbinde dich mit dem Internet um diese App nutzen zu können.', navigator.app.exitApp(), 'Internetverbindung', 'Schließen' );
+function onOffline() { navigator.notification.confirm( 'Bitte verbinde dich mit dem Internet um diese App nutzen zu können', onConfirm, 'Fehler', 'Nochmal versuchen,Beenden' ) }
+function onConfirm(buttonIndex) {
+	if ( buttonIndex == "1" ) location.reload();
+	if ( buttonIndex == "2" ) navigator.app.exitApp()
 }
 
 
