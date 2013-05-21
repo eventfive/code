@@ -17,12 +17,15 @@
 	-webkit-user-select: auto !important;       /* prevent copy paste, to allow, change 'none' to 'text' */ }
 
 .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
+/* Links */
 a { text-decoration: none; color: #575351; }
 a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; margin: 20px auto 0; width: 80% !important; }
 a.button.send { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 10px; }
+/* Inputs */
 label.ui-input-text { font-family: 'nove'; font-size: 35px; text-align: center; color: #DE265F; }
-div.ui-input-text { background: #EBEBEB; box-shadow: 0 0 5px 1px rgba(0,0,0,.05); border-radius: 3px; border: solid 2px #cdcdcd; }
-textarea { border-radius: 0 !important; height: 130px !important; margin-top: 0 !important; border-radius: 3px; border: solid 2px #cdcdcd; }
+div.ui-input-text, textarea { background: #EBEBEB; border-radius: 3px !important; border: solid 2px #cdcdcd !important; }
+textarea { height: 130px !important; margin-top: 0 !important; }
+/* Misc */
 .ui-btn-inner { border: none; }
 .ui-focus, .ui-btn:focus { background: #FFF !important; text-shadow: none !important; color: #575351 !important; }
 .ui-input-text.ui-focus, .ui-input-search.ui-focus { box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); }

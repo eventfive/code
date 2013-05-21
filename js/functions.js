@@ -21,7 +21,7 @@ function deviceReady() {
 	var destinationType = navigator.camera.DestinationType;
 }
 document.addEventListener("offline", onOffline, false);
-function onOffline() { navigator.notification.confirm( 'Bitte verbinde dich mit dem Internet um diese App nutzen zu können', onConfirm, 'Fehler', 'Nochmal versuchen,Beenden' ) }
+function onOffline() { navigator.notification.confirm( 'Bitte verbinde dich mit dem Internet um diese App nutzen zu können.', onConfirm, 'Fehler', 'Nochmal versuchen,Beenden' ) }
 function onConfirm(buttonIndex) {
 	if ( buttonIndex == "1" ) location.reload();
 	if ( buttonIndex == "2" ) navigator.app.exitApp()
@@ -32,7 +32,13 @@ function onConfirm(buttonIndex) {
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
 
-	//$.mobile.navigate( "#welcome" );
+	if ( restartApp == true ) {
+		$.mobile.loading('show')
+		// Holt sich die Daten aller aktiven Events UND DANN erst die Usereinstellungen dazu
+		// Quasi ein manueler synchroner Prozess, da JSONP das von Haus aus nicht unterstützt
+		getEventsData();
+		restartApp = false;
+	}
 	
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
@@ -78,12 +84,6 @@ function doWhenBothFrameworksLoaded() {
 		restartApp = false;
 	}
 	
-	// Accordion animation
-	$('.listanimation').bind('expand', function () {
-		$(this).children().slideDown(500);
-		}).bind('collapse', function () {
-			$(this).children().next().slideUp(500);
-	});
 	
 	// Kommentar Counter
 	$('#comment').NobleCount('#counter',{ max_chars: 140 });
@@ -126,6 +126,12 @@ function getEventsData() {
 						'</div>'
 						).trigger('create');
 					})
+					// Accordion animation
+					$('.listanimation').bind('expand', function () {
+						$(this).children().slideDown(500);
+						}).bind('collapse', function () {
+							$(this).children().next().slideUp(500);
+					});
 					// UND HIER DIE USERDATEN HOLEN
 					getUserData();
 				  }
