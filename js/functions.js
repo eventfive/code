@@ -32,13 +32,6 @@ function onConfirm(buttonIndex) {
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
 
-	if ( restartApp == true ) {
-		$.mobile.loading('show')
-		// Holt sich die Daten aller aktiven Events UND DANN erst die Usereinstellungen dazu
-		// Quasi ein manueler synchroner Prozess, da JSONP das von Haus aus nicht unterstützt
-		getEventsData();
-		restartApp = false;
-	}
 	
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
