@@ -4,7 +4,7 @@ var timestamp = date.getTime();
 // Config & Variablen
 var deviceReadyDeferred = jQuery.Deferred();
 var jqmReadyDeferred = jQuery.Deferred();
-var appURL = "http://kiste.eventfive.de/asd/"
+var appURL = "http://voivoi.eventfive.de/"
 var uuid, platform, osVersion;
 var restartApp = true;
 var username, eventID;
@@ -32,14 +32,7 @@ function onConfirm(buttonIndex) {
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
 
-	// START screen
-	if ( restartApp == true ) {
-		$.mobile.loading('show');
-		// Holt sich die Daten aller aktiven Events UND DANN erst die Usereinstellungen dazu
-		// Quasi ein manueler synchroner Prozess, da JSONP das von Haus aus nicht unterstützt
-		getEventsData();
-		restartApp = false;
-	}
+	
 	
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
@@ -61,7 +54,6 @@ jQuery(document).ready(function () {
 		event.preventDefault();
 		$.mobile.loading('show');
 		getPictureGallery();
-		$.mobile.navigate( "#gallery" );
 	});
 });
 
@@ -230,13 +222,16 @@ function getPictureGallery() {
 		jsonp: 'jsoncallback',
 		url: appURL + "app.php?option=getPictureGallery" ,
 		data: { userID: uuid, eventID: "2", unique: timestamp },
-		cache: false,
+		cache: true,
 		success: function(data) {
+					// Alte Bilder löschen
+					$('#categories .chooseCat .ui-btn-text').empty();
+					// Neue Laden
 					$.each(data, function(i,item) {
 						$('.content.list.images').append(
 							'<div class="imageWrapper">' +
 								'<div class="thumbnail">' +
-									'<img src="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '.jpg" />' +
+									'<img src="res/app/background.gif" data-original="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '.jpg" />' +
 									'<div class="details">' +
 										'<h2>' + item.categoryTitle + '</h2>' +
 										'<span>Von: ' + item.username + '</span>' +
@@ -247,6 +242,15 @@ function getPictureGallery() {
 							'</div>'
 							);
 					});
+					// Lazyload aktivieren
+					$(".thumbnail img").lazyload( {
+						effect: "fadeIn",
+					});
+					// Lazyload funktioniert erst ab dem SCROLL Event, also 1px scrollen damit die Bilder geladen werden
+					$(window).scrollTop(1);
+					// Zur Ansicht wechseln
+					$.mobile.navigate( "#gallery" );
+					// Spinner ausblenden
 					$.mobile.loading('hide');
 				}
 	});
@@ -341,9 +345,9 @@ function sendPicture(eventID) {
 // get from Camera
 function capturePhoto() {
   navigator.camera.getPicture(onPhotoURISuccess, null, {
-	quality: 90,
-	targetWidth: 2048,
-	targetHeight: 1536,
+	quality: 80,
+	targetWidth: 1024,
+	targetHeight: 768,
 	correctOrientation: true,
 	saveToPhotoAlbum: false,
 	destinationType: Camera.DestinationType.FILE_URI });

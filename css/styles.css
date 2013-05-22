@@ -18,7 +18,7 @@
 
 .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
 /* Links */
-a { text-decoration: none; color: #575351; }
+a { text-decoration: none; color: #1C9280 !important; }
 a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; margin: 20px auto 0; width: 80% !important; }
 a.button.send { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 10px; }
 /* Inputs */
@@ -128,10 +128,11 @@ textarea { height: 130px !important; margin-top: 0 !important; }
 #gallery .imageWrapper { margin-bottom: 5px; }
 #gallery .thumbnail { height: 200px; overflow: hidden; position: relative; background: #f7f6f6; }
 #gallery .imageWrapper img { position: absolute; top: -45%; left: 0; width: 100%; }
-#gallery .imageWrapper .details { background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5); width: 50%; height: 100%; position: absolute; top: 0; left: 0; color: #FFF; text-shadow: none; padding-left: 10px; }
+#gallery .imageWrapper .details { background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5); width: 45%; max-width: 150px; height: 100%; position: absolute; top: 0; left: 0; color: #FFF; text-shadow: none; padding-left: 10px; }
 #gallery .imageWrapper .details h2 { font-size: 16px; margin: 10px 0 5px; }
 #gallery .imageWrapper .details span { display: block; font-size: 12px; }
 #gallery .imageWrapper .details span.time { position: absolute; bottom: 7px; right: 10px; text-align: right; }
 
 /* Über */
 #about .publisher { color: #575351; border: none; border-bottom: 1px solid rgba(68,45,19,.1); border-radius: 0; background: #f7f6f6 !important; box-shadow: none; text-align: left; font-weight: normal; margin: 0 !important; padding: 10px 25px 10px 35px; }
+#about .publisher img { width: 80%; margin-top: 10px; }

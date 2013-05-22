@@ -34,14 +34,14 @@ Voraussetzung für die Nutzung von VOIVOI ist eine bestehende Internetverbindung
 	<access origin="*" />
 	<!--<access origin="http://voivoi.eventfive.de" /> <!-- denies access to external resources.  -->
 
-    <preference name="phonegap-version" value="2.5.0" />
+    <preference name="phonegap-version" value="2.7.0" />
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
 	<preference name="autorotate"		value="false" readonly="true"/>
 	<!-- IOS specific -->
-	<preference name="prerendered-icon" value="false" /> <!-- Icon will be  rendered with gloss effect -->
-	<preference name="webviewbounce" value="false" /> <!-- prevent the "bouncing" on srolling end -->
+	<preference name="prerendered-icon" value="true" /> <!-- Icon will be NOT rendered with gloss effect -->
+	<preference name="webviewbounce" value="true" /> <!-- false = prevent the "bouncing" on srolling end -->
 	<!-- Android specific -->
 	<!-- <preference name="load-url-timeout" value="15000" /> --> <!-- default is 2000ms -->
 	
