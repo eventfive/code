@@ -32,7 +32,7 @@ function onConfirm(buttonIndex) {
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
 
-	
+
 	
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
@@ -222,7 +222,7 @@ function getPictureGallery() {
 		jsonp: 'jsoncallback',
 		url: appURL + "app.php?option=getPictureGallery" ,
 		data: { userID: uuid, eventID: "2", unique: timestamp },
-		cache: true,
+		cache: false,
 		success: function(data) {
 					// Alte Bilder löschen
 					$('#categories .chooseCat .ui-btn-text').empty();
@@ -230,15 +230,17 @@ function getPictureGallery() {
 					$.each(data, function(i,item) {
 						$('.content.list.images').append(
 							'<div class="imageWrapper">' +
-								'<div class="thumbnail">' +
-									'<img src="res/app/background.gif" data-original="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '.jpg" />' +
-									'<div class="details">' +
-										'<h2>' + item.categoryTitle + '</h2>' +
-										'<span>Von: ' + item.username + '</span>' +
-										'<span class="text">Kommentar: ' + item.comment + '</span>' +
-										'<span class="time">' + item.timestamp + '</span>' +
+								'<a href="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '.jpg" rel="external" category="' + item.categoryTitle + '">' +
+									'<div class="thumbnail">' +
+										'<img src="res/app/background.gif" data-original="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '.jpg" />' +
+										'<div class="details">' +
+											'<h2>' + item.categoryTitle + '</h2>' +
+											'<span>Von: ' + item.username + '</span>' +
+											'<span class="text">Kommentar: ' + item.comment + '</span>' +
+											'<span class="time">' + item.timestamp + '</span>' +
+										'</div>' +
 									'</div>' +
-								'</div>' +
+								'</a>' +
 							'</div>'
 							);
 					});
@@ -247,7 +249,12 @@ function getPictureGallery() {
 						effect: "fadeIn",
 					});
 					// Lazyload funktioniert erst ab dem SCROLL Event, also 1px scrollen damit die Bilder geladen werden
-					$(window).scrollTop(1);
+					$.mobile.silentScroll(1);
+					// Popup aktivieren
+					$('.imageWrapper a').magnificPopup({ 
+					  type: 'image',
+					  image: { titleSrc: 'category', }
+					});
 					// Zur Ansicht wechseln
 					$.mobile.navigate( "#gallery" );
 					// Spinner ausblenden

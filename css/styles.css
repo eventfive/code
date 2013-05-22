@@ -3,6 +3,7 @@
 /* ====================================== */
 
 @import url(jquery.mobile.css);
+@import url(jquery.magnific.css);
 /* Novocento */
 @font-face {font-family: 'nove';src: url('../webfonts/26D8EC_0_0.eot');src: url('../webfonts/26D8EC_0_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/26D8EC_0_0.woff') format('woff'),url('../webfonts/26D8EC_0_0.ttf') format('truetype'),url('../webfonts/26D8EC_0_0.svg#wf') format('svg');}
 
@@ -127,7 +128,7 @@ textarea { height: 130px !important; margin-top: 0 !important; }
 #gallery .ui-content { padding-top: 5px; padding-bottom: 0; }
 #gallery .imageWrapper { margin-bottom: 5px; }
 #gallery .thumbnail { height: 200px; overflow: hidden; position: relative; background: #f7f6f6; }
-#gallery .imageWrapper img { position: absolute; top: -45%; left: 0; width: 100%; }
+#gallery .imageWrapper img { position: absolute; top: -0%; left: 0; width: 100%; }
 #gallery .imageWrapper .details { background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5); width: 45%; max-width: 150px; height: 100%; position: absolute; top: 0; left: 0; color: #FFF; text-shadow: none; padding-left: 10px; }
 #gallery .imageWrapper .details h2 { font-size: 16px; margin: 10px 0 5px; }
 #gallery .imageWrapper .details span { display: block; font-size: 12px; }
