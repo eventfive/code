@@ -32,21 +32,25 @@ function onConfirm(buttonIndex) {
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
 
-
+	// lokales testen
+	if ( platform = "Desktop" ) {
+		if ( restartApp == true ) {
+			$.mobile.loading('show');
+			// Holt sich die Daten aller aktiven Events UND DANN erst die Usereinstellungen dazu
+			// Quasi ein manueler synchroner Prozess, da JSONP das von Haus aus nicht unterstützt
+			getEventsData();
+			restartApp = false;
+		}
+	}
 	
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
 		event.preventDefault();
-		//$('#chooseCat').trigger('create');
 		// Den ersten SELECT Eintrag löschen
 		$('#categories .chooseCat .ui-btn-text').empty()
 		// Manuell den Text auf das Dropdown-Select klatschen
 		$('.chooseCat .ui-icon').html("Auswählen");
-		$.mobile.navigate( "#categories" );
-		// Den ersten SELECT Eintrag löschen
-		$('#categories .chooseCat .ui-btn-text').empty()
-		// Manuell den Text auf das Dropdown-Select klatschen
-		$('.chooseCat .ui-icon').html("Auswählen");
+		// Weiterleiten
 		$.mobile.navigate( "#categories" );
 	});
 	
@@ -121,10 +125,12 @@ function getEventsData() {
 						).trigger('create');
 					})
 					// Accordion animation
-					$('.listanimation').bind('expand', function () {
-						$(this).children().slideDown(500);
-						}).bind('collapse', function () {
-							$(this).children().next().slideUp(500);
+					$(document).on('expand', '.ui-collapsible', function() {
+						$(this).children().next().hide();
+						$(this).children().next().slideDown(500);
+					})
+					$(document).on('collapse', '.ui-collapsible', function() {
+						$(this).children().next().slideUp(500);
 					});
 					// UND HIER DIE USERDATEN HOLEN
 					getUserData();
@@ -162,6 +168,8 @@ function getUserData() {
 								getEventCategories(item.selectedEventID);
 								// Username einsetzen
 								$('span.username').html(item.username);
+								// Ausgewähltes Event speichern
+								$('input#eventID').val(item.selectedEventID);
 								// Loader ausschalten
 								$.mobile.loading('hide');
 								// Weiterleitung
@@ -215,13 +223,18 @@ function getSentPictures(eventID) {
 }
 
 function getPictureGallery() {
+	// Aktuelle EventID lesen
+	eventID = $('input#eventID').val();
+	// Alte Fotos löschen
+	$('.content.list.images').empty()
+	// Neue Fotos holen
 	$.ajax({
 		type: "GET",
 		contentType: "application/json",
 		dataType: "JSONP",
 		jsonp: 'jsoncallback',
 		url: appURL + "app.php?option=getPictureGallery" ,
-		data: { userID: uuid, eventID: "2", unique: timestamp },
+		data: { userID: uuid, eventID: eventID, unique: timestamp },
 		cache: false,
 		success: function(data) {
 					// Alte Bilder löschen
@@ -305,6 +318,8 @@ function selectEvent(eventID) {
 					$('#categories .chooseCat .ui-btn-text').empty();
 					// Alles zuklappen
 					$('.listanimation').trigger('collapse');
+					// EventID abspeichern
+					$('input#eventID').val(eventID);
 					// Kategorien der neuen Auswahl laden
 					getEventCategories(eventID);
 					// Ladespinner ausblenden
@@ -313,8 +328,34 @@ function selectEvent(eventID) {
 	});
 }
 
+function sendMail() {
+	var contactName = $.trim($("#contactName").val());
+	var contactEmail = $.trim($("#contactEmail").val());
+	var contactMessage = $.trim($("#contactMessage").val());
+	var contactVersion = $.trim($("#contactVersion").val());
+	
+	$.ajax({
+		type: "GET",
+		contentType: "application/json",
+		dataType: "JSONP",
+		jsonp: 'jsoncallback',
+		url: appURL + "mail.php?option=fromApp" ,
+		data: { contactName: contactName, contactEmail: contactEmail, contactMessage: contactMessage, contactVersion: contactVersion, unique: timestamp },
+		beforeSend: function() { $.mobile.loading('show') },
+		cache: false,
+		success: function() {
+					$.mobile.loading('hide');
+					navigator.notification.alert('Deine Nachricht wurde abgeschickt!', true, 'Fertig', 'OK' );
+				 }
+	});
+}
 
-function sendPicture(eventID) {
+
+function sendPicture() {
+	// Aktuelle EventID lesen
+	eventID = $('input#eventID').val();
+	
+	// Warnungen
 	if ($('select#chooseCat option:selected').prop('disabled') == true) {
 		$('.error.takePicture').html("Du hast schon ein Bild für diese Kategorie abgegeben!").fadeIn();
 	}
@@ -342,7 +383,7 @@ function sendPicture(eventID) {
 		
 		// Und nun hochladen
 		var ft = new FileTransfer();
-		ft.upload(imageURI, appURL + "app.php?option=sendPicture", sendPictureOK, sendPictureFAIL, options);
+		ft.upload(imageURI, appURL + "app.php?option=sendPicture", sendPictureOK, sendPictureFAIL, options, true);
 	}
 	
 };
@@ -370,15 +411,14 @@ function onPhotoURISuccess(imageURI) {
 // Benachrichtigungen
 function sendPictureOK() { 
 	// UI zurücksetzen
-	$('#pictureFromCamera').removeAttr("src")
 	$('textarea#comment').val('');
 	$('#comment').NobleCount('#counter',{ max_chars: 140 });
 	$('.pictureFromCameraOK').hide();
 	// Spinner ausblenden
 	$.mobile.loading('hide');
-	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Status', 'OK' );
+	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Fertig', 'OK' );
 	}
 function sendPictureFAIL(error) {
 	$.mobile.loading('hide');
-	alert("Beim Senden ist ein Fehler aufgetreten. Fehlercode: " + error.code);
+	navigator.notification.alert("Beim Senden ist ein Fehler aufgetreten. Fehlercode: " + error.code + ". Versuch es noch einmal!", true, 'Fehler', 'OK' );
 	}

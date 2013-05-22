@@ -19,7 +19,7 @@
 
 .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
 /* Links */
-a { text-decoration: none; color: #1C9280 !important; }
+a { text-decoration: none; color: #575351 !important; }
 a.button, .ui-submit { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; border-radius: 3px; border: none; margin: 20px auto 0; width: 80% !important; }
 a.button.send { font-size: 35px; text-align: center; padding-top: 5px; padding-bottom: 10px; }
 /* Inputs */
@@ -105,7 +105,7 @@ textarea { height: 130px !important; margin-top: 0 !important; }
 .ui-collapsible .description .time {text-align: right; font-size: 10px; }
 .ui-collapsible .description .time span { display: block; }
 .ui-collapsible .description .text { font-size: 12px; margin-top: 10px; }
-.ui-collapsible .select a.button { margin: 10px 20px; float: right; font-size: 12px; border-radius: 0; }
+.ui-collapsible .select a.button { margin: 10px 20px; float: right; font-size: 12px; border-radius: 0; width: auto !important; }
 
 /* Kategorien */
 #categories .content { padding-bottom: 0; }

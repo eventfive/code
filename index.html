@@ -16,6 +16,9 @@
 </head>
 <body>
 
+<!-- In den Inputs werden die Einstellungen gespeichert -->
+<input type="hidden" id="eventID" value"" >
+
 <!-- Startbildschirm -->
 <div data-role="page" id="start">
     <div data-role="content">
@@ -38,7 +41,9 @@
     <div data-role="content">
         <h1>Hallo <span class="username"></span></h1>
         <div class="content">
-        	<p>Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet .Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Willkommen bei dem Projekt VOIVOI. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        	<p>Willkommen bei VOIVOI! Für zahlreiche Veranstaltungen bietet die App einen neuen und einfachen Weg, Momente einzufangen und zu teilen.</ br>
+            Zu verschiedenen Kategorien kann man ein Bild aufnehmen und optional mit einem Kommentar versehen. Basierend auf dem Prinzip einer Einwegkamera ist jede Kategorie nach Aufnahme eines Bildes aufgebraucht.</ br>
+            Die dadurch entwickelte Dokumentation lässt an den Eindrücken der anderen Besucher teilhaben.</p>
         </div>
     </div>
     <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
@@ -106,7 +111,7 @@
             <textarea type="text" id="comment" name="comment" value="" maxlength="140"></textarea>
         </div>
         <div class="error takePicture"></div>
-        <a class="button send" id="sendPicture" rel="external" onClick="sendPicture(eventID);">Abschicken</a>
+        <a class="button send" id="sendPicture" rel="external" onClick="sendPicture()">Abschicken</a>
     </div>
     <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
         <div data-role="navbar" data-grid="d">
@@ -156,9 +161,8 @@
     <div data-role="content" class="yesEvent">
         <h1>Über</h1>
         <div class="content list publisher">
-        	<img src="res/app/logo-eventfive.png" />
+        	<a href="http://voivoi.eventfive.de" target="_blank" rel="external"><img src="res/app/logo-eventfive.png" /></a>
        		<p>Version: 2.0<br>
-	        <a href="http://voivoi.eventfive.de" target="_blank">Zur Website</a></p>
         </div>
         <h1>Kontakt</h1>
         <div class="content list publisher">
@@ -167,7 +171,7 @@
             <textarea type="text" id="contactMessage">Nachricht</textarea>
             <input type="hidden" id="contactVersion" value="2.0" >
         </div>
-        <a class="button send" id="sendMessage" rel="external" onClick="sendMessage">Abschicken</a>
+        <a class="button send" id="sendMessage" rel="external" onClick="sendMail()">Abschicken</a>
     </div>
     <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
         <div data-role="navbar" data-grid="d">
