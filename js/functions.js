@@ -32,6 +32,14 @@ function onConfirm(buttonIndex) {
 jQuery(document).ready(function () {
 	jqmReadyDeferred.resolve();   // Hier wird jQuery mitgeteilt, dass es selbst fertig ist
 
+	// START screen
+	if ( restartApp == true ) {
+		$.mobile.loading('show');
+		// Holt sich die Daten aller aktiven Events UND DANN erst die Usereinstellungen dazu
+		// Quasi ein manueler synchroner Prozess, da JSONP das von Haus aus nicht unterstützt
+		getEventsData();
+		restartApp = false;
+	}
 	
 	// MENU functions
 	$('a[href="#categories"]').on("click", function(event){
@@ -51,6 +59,7 @@ jQuery(document).ready(function () {
 	
 	$('a[href="#gallery"]').on("click", function(event){
 		event.preventDefault();
+		$.mobile.loading('show');
 		getPictureGallery();
 		$.mobile.navigate( "#gallery" );
 	});
@@ -224,9 +233,21 @@ function getPictureGallery() {
 		cache: false,
 		success: function(data) {
 					$.each(data, function(i,item) {
-						var disableOption = "select#chooseCat option#" + item.categoryOrder + "";
-						$(disableOption).attr('disabled', 'disabled');						
+						$('.content.list.images').append(
+							'<div class="imageWrapper">' +
+								'<div class="thumbnail">' +
+									'<img src="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '.jpg" />' +
+									'<div class="details">' +
+										'<h2>' + item.categoryTitle + '</h2>' +
+										'<span>Von: ' + item.username + '</span>' +
+										'<span class="text">Kommentar: ' + item.comment + '</span>' +
+										'<span class="time">' + item.timestamp + '</span>' +
+									'</div>' +
+								'</div>' +
+							'</div>'
+							);
 					});
+					$.mobile.loading('hide');
 				}
 	});
 }
