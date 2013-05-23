@@ -122,7 +122,6 @@ function getEventsData() {
 								'<div class="logo"><img src="' + appURL + 'events/' + item.eventID + '/' + item.eventLogo + '" width="100%"/></div>' +
 								'<div class="time">' +
 									'<span class="date">' + item.eventDate + '</span>' +
-									'<span class="clock">' + item.eventTime + '</span>' +
 								'</div>' +
 								'<br class="clear" />' +
 								'<div class="text">' + item.eventDescription + '</div>' +

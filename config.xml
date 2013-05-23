@@ -46,7 +46,6 @@ Voraussetzung für die Nutzung von VOIVOI ist eine bestehende Internetverbindung
 	<!-- <preference name="load-url-timeout" value="15000" /> --> <!-- default is 2000ms -->
 	
 	<!-- ICONS -->
-    <icon src="res/icon/icon.png" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />
     <icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:density="hdpi" />
