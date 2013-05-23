@@ -14,7 +14,8 @@ var uuid = "67", platform = "Desktop", osVersion = "0";
 
 // PHONEGAP ///////////////////////////////////////////////////////
 document.addEventListener("deviceReady", deviceReady, false);
-function deviceReady() {		
+function deviceReady() {
+	navigator.splashscreen.hide();	// Splashscreen deaktivieren
 	deviceReadyDeferred.resolve();  // Wie oben benannt wird jQuery nun mitgeteilt, dass deviceReady() fertig ist
 	// Fotovariablen
 	var pictureSource = navigator.camera.PictureSourceType;
@@ -42,23 +43,33 @@ jQuery(document).ready(function () {
 			restartApp = false;
 		}
 	}
-	
 
-	// Verschiedenes
+	// Bei Tap auf Gallery werden alle Bilder des Events geladen
 	$('a[href="#gallery"]').on("click", function(event){
 		event.preventDefault();
 		$.mobile.loading('show');
 		getPictureGallery();
 	});
 	
+	// Kategorieansicht immer wieder zurücksetzen...
 	$( '#categories' ).on( "pageshow", function( event ) {
-		event.preventDefault();
+		// Verbrauchte Kategorien laden
+		getSentPictures();
 		// Den ersten SELECT Eintrag löschen
 		$('#categories .chooseCat .ui-btn-text').empty()
 		// Manuell den Text auf das Dropdown-Select klatschen
 		$('.chooseCat .ui-icon').html("Auswählen");
-		// Weiterleiten
-		$.mobile.navigate( "#categories" );
+		// Kommentar entfernen
+		$('textarea#comment').val('');
+		// Kommentar Counter zurücksetzen
+		$('#comment').NobleCount('#counter',{ max_chars: 140 });
+		// Altes Bild aus dem TEMP löschen
+		$('#pictureFromCamera').removeAttr("src")
+		// "Bild aufgenommen"-Meldung ausblenden
+		$('.pictureFromCameraOK').hide();
+		// Warnungen ausblenden
+		$('.error.takePicture').empty();
+		
 	});
 
 });
@@ -83,12 +94,7 @@ function doWhenBothFrameworksLoaded() {
 		getEventsData();
 		restartApp = false;
 	}
-	
-	
-	// Kommentar Counter
-	$('#comment').NobleCount('#counter',{ max_chars: 140 });
-
-	
+		
 }
 
 /////// FUNKTIONEN AJAX //////////////////////
@@ -154,6 +160,10 @@ function getUserData() {
 		success: function(data){
 					// Falls noch KEIN Username vorhanden ist
 					if ( $.isEmptyObject(data) ) {
+						// UI ausblenden
+						$('.eventSelected').hide();
+						// "Event auswählen" einblenden
+						$('.eventMissing').show();
 						// Loader ausblenden
 						$.mobile.loading('hide');
 						// User Registrierung einblenden
@@ -171,12 +181,12 @@ function getUserData() {
 								else {
 									// Event auswählen
 									$('.eventID-' + item.selectedEventID + ' .ui-btn-inner').addClass('selected');
+									// Ausgewähltes Event speichern
+									$('input#eventID').val(item.selectedEventID);
 									// Kategorien laden
 									getEventCategories(item.selectedEventID);
 									// Username einsetzen
 									$('span.username').html(item.username);
-									// Ausgewähltes Event speichern
-									$('input#eventID').val(item.selectedEventID);
 								}
 								// Loader ausschalten
 								$.mobile.loading('hide');
@@ -188,7 +198,10 @@ function getUserData() {
 	});
 };
 
-function getEventCategories(eventID) {
+function getEventCategories() {
+	// Aktuelle EventID lesen
+	eventID = $('input#eventID').val();
+	
 	$('select#chooseCat option').remove();
 	$.ajax({
 		type: "GET",
@@ -207,12 +220,15 @@ function getEventCategories(eventID) {
 						$("a#sendPicture").attr("onClick", onClickEventID);
 					})
 					// VERBRAUCHTE Kategorien laden
-					getSentPictures(eventID);
+					getSentPictures();
 				}
 	});
 }
 
-function getSentPictures(eventID) {
+function getSentPictures() {
+	// Aktuelle EventID lesen
+	eventID = $('input#eventID').val();
+	
 	$.ajax({
 		type: "GET",
 		contentType: "application/json",
@@ -422,15 +438,17 @@ function onPhotoURISuccess(imageURI) {
 
 // Benachrichtigungen
 function sendPictureOK() { 
-	// UI zurücksetzen
-	$('#pictureFromCamera').removeAttr("src")
-	$('textarea#comment').val('');
-	// Zeichen counter zurücksetzen
-	$('#comment').NobleCount('#counter',{ max_chars: 140 });
-	$('.pictureFromCameraOK').hide();
+	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Fertig', 'OK' );
+	// Seite neu laden
+	$.mobile.changePage(window.location.href, {
+		allowSamePageTransition: true,
+		transition: 'none',
+		reloadPage: true
+	});
+	// Weiterleiten
+	//$.mobile.navigate( "#categories" );
 	// Spinner ausblenden
 	$.mobile.loading('hide');
-	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Fertig', 'OK' );
 	}
 function sendPictureFAIL(error) {
 	$.mobile.loading('hide');

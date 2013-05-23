@@ -130,7 +130,7 @@ textarea { height: 130px !important; margin-top: 0 !important; }
 #gallery .imageWrapper { margin-bottom: 5px; }
 #gallery .thumbnail { height: 200px; overflow: hidden; position: relative; background: #f7f6f6; }
 #gallery .imageWrapper img { position: absolute; top: -0%; left: 0; width: 100%; }
-#gallery .imageWrapper .details { background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5); width: 45%; max-width: 150px; height: 100%; position: absolute; top: 0; left: 0; color: #FFF; text-shadow: none; padding-left: 10px; }
+#gallery .imageWrapper .details { background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5); width: 45%; max-width: 200px; height: 100%; position: absolute; top: 0; left: 0; color: #FFF; text-shadow: none; padding-left: 10px; }
 #gallery .imageWrapper .details h2 { font-size: 16px; margin: 10px 0 5px; }
 #gallery .imageWrapper .details span { display: block; font-size: 12px; }
 #gallery .imageWrapper .details span.time { position: absolute; bottom: 7px; right: 10px; text-align: right; }

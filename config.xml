@@ -41,20 +41,27 @@ Voraussetzung für die Nutzung von VOIVOI ist eine bestehende Internetverbindung
 	<preference name="autorotate"		value="false" readonly="true"/>
 	<!-- IOS specific -->
 	<preference name="prerendered-icon" value="true" /> <!-- Icon will be NOT rendered with gloss effect -->
-	<preference name="webviewbounce" value="true" /> <!-- false = prevent the "bouncing" on srolling end -->
+	<preference name="webviewbounce" value="false" /> <!-- prevent the "bouncing" on srolling end -->
 	<!-- Android specific -->
 	<!-- <preference name="load-url-timeout" value="15000" /> --> <!-- default is 2000ms -->
 	
-
+	<!-- ICONS -->
     <icon src="res/icon/icon.png" />
-    <!--<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
+    <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />
     <icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:density="hdpi" />
     <icon src="res/icon/android/icon-96-xhdpi.png"  gap:platform="android"    gap:density="xhdpi" />
     <icon src="res/icon/ios/icon-57.png"            gap:platform="ios"        width="57" height="57" />
     <icon src="res/icon/ios/icon-72.png"            gap:platform="ios"        width="72" height="72" />
     <icon src="res/icon/ios/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
-    <icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />-->
+    <icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
+	
+	<!-- SPLASHSCREENS -->
+	<gap:splash src="splash/ios/Default.png" 				gap:platform="ios" width="320" height="480" />
+	<gap:splash src="splash/ios/Default-2x.png" 			gap:platform="ios" width="640" height="960" />
+	<gap:splash src="splash/ios/Default-iphone5.png"		gap:platform="ios" width="640" height="1136" />
+	<gap:splash src="splash/ios/Default-Portrait.png" 		gap:platform="ios" width="768" height="1024" />
+	<gap:splash src="splash/ios/Default-Portrait-2x.png" 	gap:platform="ios" width="1536" height="2048" />
 
 	
 	<gap:platforms>
