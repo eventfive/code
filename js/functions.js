@@ -423,6 +423,7 @@ function onPhotoURISuccess(imageURI) {
 // Benachrichtigungen
 function sendPictureOK() { 
 	// UI zurücksetzen
+	$('#pictureFromCamera').removeAttr("src")
 	$('textarea#comment').val('');
 	// Zeichen counter zurücksetzen
 	$('#comment').NobleCount('#counter',{ max_chars: 140 });
