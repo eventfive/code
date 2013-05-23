@@ -9,7 +9,7 @@ var uuid, platform, osVersion;
 var restartApp = true;
 var username, eventID;
 // Dummy Daten für lokales testen
-var uuid = "100", platform = "Desktop", osVersion = "0";
+var uuid = "67", platform = "Desktop", osVersion = "0";
 
 
 // PHONEGAP ///////////////////////////////////////////////////////
@@ -43,8 +43,15 @@ jQuery(document).ready(function () {
 		}
 	}
 	
-	// MENU functions
-	$('a[href="#categories"]').on("click", function(event){
+
+	// Verschiedenes
+	$('a[href="#gallery"]').on("click", function(event){
+		event.preventDefault();
+		$.mobile.loading('show');
+		getPictureGallery();
+	});
+	
+	$( '#categories' ).on( "pageshow", function( event ) {
 		event.preventDefault();
 		// Den ersten SELECT Eintrag löschen
 		$('#categories .chooseCat .ui-btn-text').empty()
@@ -53,12 +60,7 @@ jQuery(document).ready(function () {
 		// Weiterleiten
 		$.mobile.navigate( "#categories" );
 	});
-	
-	$('a[href="#gallery"]').on("click", function(event){
-		event.preventDefault();
-		$.mobile.loading('show');
-		getPictureGallery();
-	});
+
 });
 
 
@@ -150,11 +152,8 @@ function getUserData() {
 		data: { userID: uuid, unique: timestamp },
 		cache: false,
 		success: function(data){
-					// FALLS noch keine Daten vorhanden sind
+					// Falls noch KEIN Username vorhanden ist
 					if ( $.isEmptyObject(data) ) {
-						// "Event auswählen" einblenden
-						$('.yesEvent').hide();
-						$('.noEvent').show();
 						// Loader ausblenden
 						$.mobile.loading('hide');
 						// User Registrierung einblenden
@@ -162,14 +161,23 @@ function getUserData() {
 					}
 					// Ansonsten abgefragte Daten überall einfügen
 					else { $.each(data, function(i,item) {
-								// Event auswählen
-								$('.eventID-' + item.selectedEventID + ' .ui-btn-inner').addClass('selected');
-								// Kategorien laden
-								getEventCategories(item.selectedEventID);
-								// Username einsetzen
-								$('span.username').html(item.username);
-								// Ausgewähltes Event speichern
-								$('input#eventID').val(item.selectedEventID);
+								// Falls noch KEIN Event ausgewählt wurde
+								if ( item.selectedEventID == null ) {
+									// UI ausblenden
+									$('.eventSelected').hide();
+									// "Event auswählen" einblenden
+									$('.eventMissing').show();
+								}
+								else {
+									// Event auswählen
+									$('.eventID-' + item.selectedEventID + ' .ui-btn-inner').addClass('selected');
+									// Kategorien laden
+									getEventCategories(item.selectedEventID);
+									// Username einsetzen
+									$('span.username').html(item.username);
+									// Ausgewähltes Event speichern
+									$('input#eventID').val(item.selectedEventID);
+								}
 								// Loader ausschalten
 								$.mobile.loading('hide');
 								// Weiterleitung
@@ -322,6 +330,10 @@ function selectEvent(eventID) {
 					$('input#eventID').val(eventID);
 					// Kategorien der neuen Auswahl laden
 					getEventCategories(eventID);
+					// "Event auswählen" ausblenden
+					$('.eventMissing').hide();
+					// UI einblenden
+					$('.eventSelected').show();
 					// Ladespinner ausblenden
 					$.mobile.loading('hide');
 				 }
@@ -412,6 +424,7 @@ function onPhotoURISuccess(imageURI) {
 function sendPictureOK() { 
 	// UI zurücksetzen
 	$('textarea#comment').val('');
+	// Zeichen counter zurücksetzen
 	$('#comment').NobleCount('#counter',{ max_chars: 140 });
 	$('.pictureFromCameraOK').hide();
 	// Spinner ausblenden

@@ -88,15 +88,15 @@
     <div data-role="header" data-tap-toggle="false" data-position="fixed">
         <h1>Aufnehmen</h1>
     </div>
-    <div data-role="content" class="noEvent" style="display:none;">
+    <div data-role="content" class="eventMissing" style="display:none;">
     	<h1>Mach dein Bild</h1>
-        <span class="error">Bitte wähle zuerst eine Veranstaltung aus!</span>
+        <span class="error selectEvent">Bitte wähle zuerst eine Veranstaltung aus!</span>
     </div>
-    <div data-role="content" class="yesEvent">
+    <div data-role="content" class="eventSelected">
         <h1>Mach dein Bild</h1>
         <div class="content list chooseCat">
        		<label for="chooseCat">1. Kategorie wählen</label>
-            <select name="select-native-1" id="chooseCat"></select>
+            <select id="chooseCat"></select>
         </div>
         <div class="content list takePic">
             <span>2. Bild aufnehmen</span>
@@ -132,11 +132,11 @@
     <div data-role="header" data-tap-toggle="false" data-position="fixed">
         <h1>Gallerie</h1>
     </div>
-	<div data-role="content" class="noEvent" style="display:none;">
+	<div data-role="content" class="eventMissing" style="display:none;">
     	<h1>Gallerie</h1>
-		<span class="error">Bitte wähle zuerst eine Veranstaltung aus!</span>
+		<span class="error selectEvent">Bitte wähle zuerst eine Veranstaltung aus!</span>
     </div>
-    <div data-role="content" class="yesEvent">
+    <div data-role="content" class="eventSelected">
         <div class="content list images"></div>
     </div>
     <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
@@ -158,7 +158,7 @@
     <div data-role="header" data-tap-toggle="false" data-position="fixed">
         <h1>Information</h1>
     </div>
-    <div data-role="content" class="yesEvent">
+    <div data-role="content">
         <h1>Über</h1>
         <div class="content list publisher">
         	<a href="http://voivoi.eventfive.de" target="_blank" rel="external"><img src="res/app/logo-eventfive.png" /></a>
