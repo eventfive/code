@@ -15,7 +15,6 @@ var uuid = "67", platform = "Desktop", osVersion = "0";
 // PHONEGAP ///////////////////////////////////////////////////////
 document.addEventListener("deviceReady", deviceReady, false);
 function deviceReady() {
-	navigator.splashscreen.hide();	// Splashscreen deaktivieren
 	deviceReadyDeferred.resolve();  // Wie oben benannt wird jQuery nun mitgeteilt, dass deviceReady() fertig ist
 	// Fotovariablen
 	var pictureSource = navigator.camera.PictureSourceType;
