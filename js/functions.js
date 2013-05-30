@@ -49,26 +49,9 @@ jQuery(document).ready(function () {
 		$.mobile.loading('show');
 		getPictureGallery();
 	});
-	
-	// Kategorieansicht immer wieder zurücksetzen...
+			
 	$( '#categories' ).on( "pageshow", function( event ) {
-		// Verbrauchte Kategorien laden
-		getSentPictures();
-		// Den ersten SELECT Eintrag löschen
-		$('#categories .chooseCat .ui-btn-text').empty()
-		// Manuell den Text auf das Dropdown-Select klatschen
-		$('.chooseCat .ui-icon').html("Auswählen");
-		// Kommentar entfernen
-		$('textarea#comment').val('');
-		// Kommentar Counter zurücksetzen
-		$('#comment').NobleCount('#counter',{ max_chars: 140 });
-		// Altes Bild aus dem TEMP löschen
-		$('#pictureFromCamera').removeAttr("src")
-		// "Bild aufgenommen"-Meldung ausblenden
-		$('.pictureFromCameraOK').hide();
-		// Warnungen ausblenden
-		$('.error.takePicture').empty();
-		
+		reloadCategories();		
 	});
 
 });
@@ -414,6 +397,26 @@ function sendPicture() {
 	
 };
 
+// Kategorieansicht immer wieder zurücksetzen...
+function reloadCategories() {
+	// Verbrauchte Kategorien laden
+	getSentPictures();
+	// Den ersten SELECT Eintrag löschen
+	$('#categories .chooseCat .ui-btn-text').empty()
+	// Manuell den Text auf das Dropdown-Select klatschen
+	$('.chooseCat .ui-icon').html("Auswählen");
+	// Kommentar entfernen
+	$('textarea#comment').val('');
+	// Kommentar Counter zurücksetzen
+	$('#comment').NobleCount('#counter',{ max_chars: 140 });
+	// Altes Bild aus dem TEMP löschen
+	$('#pictureFromCamera').removeAttr("src")
+	// "Bild aufgenommen"-Meldung ausblenden
+	$('.pictureFromCameraOK').hide();
+	// Warnungen ausblenden
+	$('.error.takePicture').empty();
+}
+
 
 /////// FUNKTIONEN PHONEGAP //////////////////////
 // get from Camera
@@ -436,11 +439,11 @@ function onPhotoURISuccess(imageURI) {
 
 // Benachrichtigungen
 function sendPictureOK() { 
-	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Fertig', 'OK' );
+	navigator.notification.alert('Dein Foto wurde abgeschickt!', reloadCategories(), 'Fertig', 'OK' );
 	// Seite neu laden
 	
 	// Weiterleiten
-	$.mobile.navigate( "#categories" );
+	//$.mobile.navigate( "#categories" );
 	// Spinner ausblenden
 	$.mobile.loading('hide');
 	}
@@ -448,3 +451,4 @@ function sendPictureFAIL(error) {
 	$.mobile.loading('hide');
 	navigator.notification.alert("Beim Senden ist ein Fehler aufgetreten. Fehlercode: " + error.code + ". Versuch es noch einmal!", true, 'Fehler', 'OK' );
 	}
+	
