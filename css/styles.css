@@ -83,6 +83,7 @@ textarea { height: 130px !important; margin-top: 0 !important; }
 #start .user { width: 80%; margin: 0 auto; position: relative; z-index: 999; }
 #start .user div.ui-input-text { margin: 20px 0 5px; }
 #start .user input { font-size: 35px; text-align: center; }
+#start a.button.send { width: 100%; }
 
 
 /* Willkommen */
