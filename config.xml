@@ -1,9 +1,13 @@
 <!-- for more info check https://build.phonegap.com/docs/config-xml -->
-
+<!-- APPSTORE ID:
+	 id        = "com.hfkbremen.VOIVOI"
+	 PLAYSTORE ID:
+	 id        = "com.eventfive.VOIVOI" -->
+	 
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.hfkbremen.VOIVOI"
+        id        = "com.eventfive.VOIVOI"
         version   = "2.0">
     <name>VOIVOI</name>
 
@@ -42,6 +46,7 @@ Voraussetzung für die Nutzung von VOIVOI ist eine bestehende Internetverbindung
 	<!-- IOS specific -->
 	<preference name="prerendered-icon" value="true" /> <!-- Icon will be NOT rendered with gloss effect -->
 	<preference name="webviewbounce" value="false" /> <!-- prevent the "bouncing" on srolling end -->
+	<preference name="show-splash-screen-spinner" value="false" /> <!-- hide the ios spinner on splashscreen -->
 	<!-- Android specific -->
 	<!-- <preference name="load-url-timeout" value="15000" /> --> <!-- default is 2000ms -->
 	
