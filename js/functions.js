@@ -438,13 +438,9 @@ function onPhotoURISuccess(imageURI) {
 function sendPictureOK() { 
 	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Fertig', 'OK' );
 	// Seite neu laden
-	$.mobile.changePage(window.location.href, {
-		allowSamePageTransition: true,
-		transition: 'none',
-		reloadPage: true
-	});
+	
 	// Weiterleiten
-	//$.mobile.navigate( "#categories" );
+	$.mobile.navigate( "#categories" );
 	// Spinner ausblenden
 	$.mobile.loading('hide');
 	}
