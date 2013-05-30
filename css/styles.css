@@ -89,7 +89,7 @@ textarea { height: 130px !important; margin-top: 0 !important; }
 /* Willkommen */
 .ui-content { padding-left: 0; padding-right: 0; }
 .ui-content h1, .ui-content .content { padding-left: 35px; padding-right: 35px; }
-.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; letter-spacing:-1px; color: #de285f; font-size: 30px; margin-top: 30px; margin-bottom: 20px; }
+.ui-content h1 { font-family: 'nove', Helvetica, Arial, sans-serif; letter-spacing:-1px; color: #de285f; font-size: 27px; margin-top: 30px; margin-bottom: 20px; }
 .ui-content .content { background: #f7f6f6; box-shadow: 0 1px #fff, inset 0 -1px rgba(68,45,19,.1); padding-top: 1px; padding-bottom: 15px; line-height: 1.5; }
 
 /* Veranstaltung */
