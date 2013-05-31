@@ -9,7 +9,7 @@ var uuid, platform, osVersion;
 var restartApp = true;
 var username, eventID;
 // Dummy Daten für lokales testen
-var uuid = "67", platform = "Desktop", osVersion = "0";
+var uuid = "68", platform = "Desktop", osVersion = "0";
 
 
 // PHONEGAP ///////////////////////////////////////////////////////
@@ -263,9 +263,9 @@ function getPictureGallery() {
 							);
 					});
 					// Lazyload aktivieren
-					$(".thumbnail img").lazyload( {
-						effect: "fadeIn",
-					});
+					//$(".thumbnail img").lazyload( {
+					//	effect: "fadeIn",
+					//});
 					// Lazyload funktioniert erst ab dem SCROLL Event, also 1px scrollen damit die Bilder geladen werden
 					$.mobile.silentScroll(1);
 					// Popup aktivieren
@@ -440,10 +440,6 @@ function onPhotoURISuccess(imageURI) {
 // Benachrichtigungen
 function sendPictureOK() { 
 	navigator.notification.alert('Dein Foto wurde abgeschickt!', reloadCategories(), 'Fertig', 'OK' );
-	// Seite neu laden
-	
-	// Weiterleiten
-	//$.mobile.navigate( "#categories" );
 	// Spinner ausblenden
 	$.mobile.loading('hide');
 	}
