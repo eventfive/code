@@ -9,7 +9,7 @@ var uuid, platform, osVersion;
 var restartApp = true;
 var username, eventID;
 // Dummy Daten für lokales testen
-var uuid = "68", platform = "Desktop", osVersion = "0";
+var uuid = "69", platform = "Desktop", osVersion = "0";
 
 
 // PHONEGAP ///////////////////////////////////////////////////////
@@ -291,7 +291,10 @@ function saveName() {
 			jsonp: 'jsoncallback',
 			url: appURL + "app.php?option=saveName" ,
 			data: { userID: uuid, platform: platform, osVersion: osVersion, username: username, unique: timestamp },
-			beforeSend: function() { $.mobile.loading('show') },
+			beforeSend: function() {
+				$(".user").hide();
+				$.mobile.loading('show')
+				},
 			cache: false,
 			success: function() {
 						$('span.username').html(username);
