@@ -439,7 +439,9 @@ function onPhotoURISuccess(imageURI) {
 
 // Benachrichtigungen
 function sendPictureOK() { 
-	navigator.notification.alert('Dein Foto wurde abgeschickt!', reloadCategories(), 'Fertig', 'OK' );
+	navigator.notification.alert('Dein Foto wurde abgeschickt!', true, 'Fertig', 'OK' );
+	// Seiten reload
+	reloadCategories();
 	// Spinner ausblenden
 	$.mobile.loading('hide');
 	}
