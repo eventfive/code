@@ -152,20 +152,29 @@ function getUserData() {
 					}
 					// Ansonsten abgefragte Daten überall einfügen
 					else { $.each(data, function(i,item) {
-								// Falls noch KEIN Event ausgewählt wurde
-								if ( item.selectedEventID == null || item.eventDisabled == "1" ) {
+								// Falls noch GARKEIN Event jemals ausgewählt wurde
+								if ( item.selectedEventID == null ) {
 									// UI ausblenden
 									$('.eventSelected').hide();
 									// "Event auswählen" einblenden
 									$('.eventMissing').show();
 								}
 								else {
-									// Event auswählen
-									$('.eventID-' + item.selectedEventID + ' .ui-btn-inner').addClass('selected');
-									// Ausgewähltes Event speichern
-									$('input#eventID').val(item.selectedEventID);
-									// Kategorien laden
-									getEventCategories(item.selectedEventID);
+									// Falls schonmal ein Event ausgewählt wurde, aber ABGELAUFEN ist
+									if ( item.eventDisabled == "1" ) {
+										// UI ausblenden
+										$('.eventSelected').hide();
+										// "Event auswählen" einblenden
+										$('.eventMissing').show();
+									}
+									else {
+										// Event auswählen
+										$('.eventID-' + item.selectedEventID + ' .ui-btn-inner').addClass('selected');
+										// Ausgewähltes Event speichern
+										$('input#eventID').val(item.selectedEventID);
+										// Kategorien laden
+										getEventCategories(item.selectedEventID);
+									}
 									// Username einsetzen
 									$('span.username').html(item.username);
 								}
