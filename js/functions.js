@@ -153,7 +153,7 @@ function getUserData() {
 					// Ansonsten abgefragte Daten überall einfügen
 					else { $.each(data, function(i,item) {
 								// Falls noch KEIN Event ausgewählt wurde
-								if ( item.selectedEventID == null ) {
+								if ( item.selectedEventID == null || item.eventDisabled == "1" ) {
 									// UI ausblenden
 									$('.eventSelected').hide();
 									// "Event auswählen" einblenden
