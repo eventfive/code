@@ -96,23 +96,30 @@ function getEventsData() {
 		//beforeSend: function() { $.mobile.loading('show') },
 		cache: false,
 		success: function(data){
-					$.each(data, function(i,item){
-						$('#eventCollapsible').append(
-						'<div data-role="collapsible" class="listanimation eventID-' + item.eventID +'">' +
-							'<h3>' + item.eventTitle + '</h3>' +
-							'<div class="description">' +
-								'<div class="logo"><img src="' + appURL + 'events/' + item.eventID + '/' + item.eventLogo + '" width="100%"/></div>' +
-								'<div class="time">' +
-									'<span class="date">' + item.eventDate + '</span>' +
+					// Falls KEINE AKTIVEN Veranstaltungen verfügbar sind
+					if ( $.isEmptyObject(data) ) {
+						// "Kein Event verfügbar" einblenden
+						$('.noEventActive').show();
+					}
+					// Ansonsten abgefragte Daten überall einfügen
+					else { $.each(data, function(i,item){
+							$('#eventCollapsible').append(
+							'<div data-role="collapsible" class="listanimation eventID-' + item.eventID +'">' +
+								'<h3>' + item.eventTitle + '</h3>' +
+								'<div class="description">' +
+									'<div class="logo"><img src="' + appURL + 'events/' + item.eventID + '/' + item.eventLogo + '" width="100%"/></div>' +
+									'<div class="time">' +
+										'<span class="date">' + item.eventDate + '</span>' +
+									'</div>' +
+									'<br class="clear" />' +
+									'<div class="text">' + item.eventDescription + '</div>' +
 								'</div>' +
+								'<div class="select"><a class="button" onClick="selectEvent(' + item.eventID + ')">Auswählen</a></div>' +
 								'<br class="clear" />' +
-								'<div class="text">' + item.eventDescription + '</div>' +
-							'</div>' +
-							'<div class="select"><a class="button" onClick="selectEvent(' + item.eventID + ')">Auswählen</a></div>' +
-							'<br class="clear" />' +
-						'</div>'
-						).trigger('create');
-					})
+							'</div>'
+							).trigger('create');
+						  })
+					}
 					// Accordion animation
 					$(document).on('expand', '.ui-collapsible', function() {
 						$(this).children().next().hide();
