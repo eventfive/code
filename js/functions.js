@@ -117,8 +117,6 @@ function doWhenBothFrameworksLoaded() {
 /////// FUNKTIONEN AJAX //////////////////////
 
 function getEventsData(forGallery) {
-	// Vorher 
-	$('#eventCollapsible').empty()
 	$.ajax({
 		type: "GET",
 		contentType: "application/json",
@@ -146,8 +144,10 @@ function getEventsData(forGallery) {
 								$('select#chooseEvent').append('<option id="' + item.eventID + '" value="' + item.eventID + '">' + item.eventTitle + '</option>');
 							})
 						}
-						// Ansonsten nur die aktivierten Evets zum Auswählen holen...
+						// Ansonsten nur die aktivierten Events zum Auswählen holen...
 						else {
+							// Vorher 
+							$('#eventCollapsible').empty()
 							$.each(data, function(i,item){
 								$('#eventCollapsible').append(
 									'<div data-role="collapsible" class="listanimation eventID-' + item.eventID +'">' +
