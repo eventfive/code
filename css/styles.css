@@ -124,7 +124,7 @@ textarea { height: 130px !important; margin-top: 0 !important; }
 
 /* Gallery */
 #gallery .ui-content { padding-top: 0; }
-#gallery h1#eventTitle { margin-top: 0; }
+#gallery h1#eventTitle { margin-top: 20px; }
 /* Filter */
 #gallery #eventCollapsible { margin: 0; }
 #gallery .ui-collapsible-content { padding: 0; }

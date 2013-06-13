@@ -7,7 +7,7 @@ var jqmReadyDeferred = jQuery.Deferred();
 var appURL = "http://voivoi.eventfive.de/"
 var uuid, platform, osVersion;
 var restartApp = true;
-var username, eventID, getFromGallery, categoryOrder;
+var username, eventID, forGallery, categoryOrder, galleryEventID, galleryCategoryOrder;
 // Dummy Daten für lokales testen
 var uuid = "69", platform = "Desktop", osVersion = "0";
 
@@ -38,7 +38,7 @@ jQuery(document).ready(function () {
 			$.mobile.loading('show');
 			// Holt sich die Daten aller aktiven Events UND DANN erst die Usereinstellungen dazu
 			// Quasi ein manueler synchroner Prozess, da JSONP das von Haus aus nicht unterstützt
-			getEventsData();
+			getEventsData(0);
 			restartApp = false;
 		}
 	}
@@ -52,9 +52,8 @@ jQuery(document).ready(function () {
 		event.preventDefault();
 		$.mobile.loading('show');
 		eventID = $('input#eventID').val();
-		categoryOrder = 0;
-		onlyUsersPictures = 0;
-		getPictureGallery(eventID,categoryOrder,onlyUsersPictures);
+		getPictureGallery(eventID,0,0);
+		getEventsData(1);
 	});
 	
 	$("#gallery").on('pageshow', function( event ) {
@@ -65,41 +64,30 @@ jQuery(document).ready(function () {
 	// Dropdown EVENT
 	$("#chooseEvent").on('change',function(){
 		$.mobile.loading('show');
-		var galleryEventID = $(this).find(':selected').val();
+		// Einstellungen speichern
+		galleryEventID = $(this).find(':selected').val();
 		$('input#galleryEventID').val(galleryEventID);
-		getFromGallery = true;
-		getEventCategories(galleryEventID,getFromGallery)
+		// Kategorien & Bilder abrufen
+		getEventCategories(galleryEventID,1)
+		getPictureGallery(galleryEventID,0,0);
 	});
 	// Dopdown KATEGORIE
 	$("#chooseCatGallery").on('change',function(){
-		var galleryCategoryOrder = $(this).find(':selected').val();
-		$('input#galleryCategoryOrder').val(galleryCategoryOrder);
-	});
-	
-	// SEND BUTTONS
-	$('a#allPictures').on("click", function(event){
-		event.preventDefault();
 		$.mobile.loading('show');
-		eventID = $('input#galleryEventID').val();
-		categoryOrder = $('input#galleryCategoryOrder').val();
-		onlyUsersPictures = 0;
-		getPictureGallery(eventID,categoryOrder,onlyUsersPictures);
+		// Event lesen
+		galleryEventID = $('input#galleryEventID').val();
+		// Einstellungen speichern
+		galleryCategoryOrder = $(this).find(':selected').val();
+		$('input#galleryCategoryOrder').val(galleryCategoryOrder);
+		// Nur Bilder aus der Kategorie abrufen
+		getPictureGallery(galleryEventID,galleryCategoryOrder,0);
 	});
 	$('a#onlyUserPictures').on("click", function(event){
 		event.preventDefault();
 		$.mobile.loading('show');
-		eventID = $('input#galleryEventID').val();
-		categoryOrder = $('input#galleryCategoryOrder').val();
-		onlyUsersPictures = 1;
-		getPictureGallery(eventID,categoryOrder,onlyUsersPictures);
+		galleryEventID = $('input#galleryEventID').val();
+		getPictureGallery(galleryEventID,0,1);
 	});
-	
-	
-	eventID = $('input#eventID').val();
-		categoryOrder = 0;
-		onlyUsersPictures = 0;
-		getPictureGallery(eventID,categoryOrder,onlyUsersPictures);
-	
 	
 });
 
@@ -120,7 +108,7 @@ function doWhenBothFrameworksLoaded() {
 		$.mobile.loading('show')
 		// Holt sich die Daten aller aktiven Events UND DANN erst die Usereinstellungen dazu
 		// Quasi ein manueler synchroner Prozess, da JSONP das von Haus aus nicht unterstützt
-		getEventsData();
+		getEventsData(0);
 		restartApp = false;
 	}
 		
@@ -128,7 +116,7 @@ function doWhenBothFrameworksLoaded() {
 
 /////// FUNKTIONEN AJAX //////////////////////
 
-function getEventsData() {
+function getEventsData(forGallery) {
 	// Vorher 
 	$('#eventCollapsible').empty()
 	$.ajax({
@@ -139,7 +127,7 @@ function getEventsData() {
 		async: false,
 		jsonp: 'jsoncallback',
 		url: appURL + "app.php?option=getEventsData",
-		data: { userID: uuid, unique: timestamp },
+		data: { userID: uuid, forGallery: forGallery, unique: timestamp },
 		//beforeSend: function() { $.mobile.loading('show') },
 		cache: false,
 		success: function(data){
@@ -149,25 +137,37 @@ function getEventsData() {
 						$('.noEventActive').show();
 					}
 					// Ansonsten abgefragte Daten überall einfügen
-					else { $.each(data, function(i,item){
-							$('#eventCollapsible').append(
-							'<div data-role="collapsible" class="listanimation eventID-' + item.eventID +'">' +
-								'<h3>' + item.eventTitle + '</h3>' +
-								'<div class="description">' +
-									'<div class="logo"><img src="' + appURL + 'events/' + item.eventID + '/' + item.eventLogo + '" width="100%"/></div>' +
-									'<div class="time">' +
-										'<span class="date">' + item.eventDate + '</span>' +
-									'</div>' +
-									'<br class="clear" />' +
-									'<div class="text">' + item.eventDescription + '</div>' +
-								'</div>' +
-								'<div class="select"><a class="button" onClick="selectEvent(' + item.eventID + ')">Auswählen</a></div>' +
-								'<br class="clear" />' +
-							'</div>'
-							).trigger('create');
-							// Kategerien ausgeben
-							$('select#chooseEvent').append('<option id="' + item.eventID + '" value="' + item.eventID + '">' + item.eventTitle + '</option>');
-						  })
+					else { 
+						if ( forGallery == 1 ) {
+							// Alte Events löschen
+							$('select#chooseEvent').empty()
+							$.each(data, function(i,item){
+								// Kategerien ausgeben
+								$('select#chooseEvent').append('<option id="' + item.eventID + '" value="' + item.eventID + '">' + item.eventTitle + '</option>');
+							})
+						}
+						// Ansonsten nur die aktivierten Evets zum Auswählen holen...
+						else {
+							$.each(data, function(i,item){
+								$('#eventCollapsible').append(
+									'<div data-role="collapsible" class="listanimation eventID-' + item.eventID +'">' +
+										'<h3>' + item.eventTitle + '</h3>' +
+										'<div class="description">' +
+											'<div class="logo"><img src="' + appURL + 'events/' + item.eventID + '/' + item.eventLogo + '" width="100%"/></div>' +
+											'<div class="time">' +
+												'<span class="date">' + item.eventDate + '</span>' +
+											'</div>' +
+											'<br class="clear" />' +
+											'<div class="text">' + item.eventDescription + '</div>' +
+										'</div>' +
+										'<div class="select"><a class="button" onClick="selectEvent(' + item.eventID + ')">Auswählen</a></div>' +
+										'<br class="clear" />' +
+									'</div>'
+								).trigger('create');
+							})
+							// UND HIER DIE USERDATEN HOLEN
+							getUserData();
+						}
 					}
 					// Accordion animation
 					$(document).on('expand', '.ui-collapsible', function() {
@@ -177,8 +177,6 @@ function getEventsData() {
 					$(document).on('collapse', '.ui-collapsible', function() {
 						$(this).children().next().slideUp(500);
 					});
-					// UND HIER DIE USERDATEN HOLEN
-					getUserData();
 				  }
 	});
 };
@@ -244,7 +242,7 @@ function getUserData() {
 	});
 };
 
-function getEventCategories(eventID,getFromGallery) {
+function getEventCategories(eventID,forGallery) {
 	$('select#chooseCat option').remove();
 	$.ajax({
 		type: "GET",
@@ -252,10 +250,18 @@ function getEventCategories(eventID,getFromGallery) {
 		dataType: "JSONP",
 		jsonp: 'jsoncallback',
 		url: appURL + "app.php?option=getEventCategories" ,
-		data: { userID: uuid, eventID: eventID, unique: timestamp },
+		data: { userID: uuid, eventID: eventID, forGallery: forGallery, unique: timestamp },
 		cache: false,
 		success: function(data) {
-					if ( getFromGallery == false ) {
+					if ( forGallery == 1 ) {
+						// Alte Kategorien löschen
+						$('select#chooseCatGallery').empty()
+						$.each(data, function(i,item) {
+							// Kategerien ausgeben
+							$('select#chooseCatGallery').append('<option id="' + item.categoryOrder + '" value="' + item.categoryOrder + '">' + item.categoryTitle + '</option>');
+						})
+					}
+					else {
 						$.each(data, function(i,item) {
 							// Kategerien ausgeben
 							$('select#chooseCat').append('<option id="' + item.categoryOrder + '" value="' + item.categoryOrder + '">' + item.categoryTitle + '</option>');
@@ -265,16 +271,6 @@ function getEventCategories(eventID,getFromGallery) {
 						})
 						// VERBRAUCHTE Kategorien laden
 						getSentPictures();
-					}
-					else {
-						$.each(data, function(i,item) {
-							// Kategerien ausgeben
-							$('select#chooseCatGallery').append('<option id="' + item.categoryOrder + '" value="' + item.categoryOrder + '">' + item.categoryTitle + '</option>');
-							// ABSCHICKEN Button konfigurieren
-							//var onClickEventID = "sendPicture(" + item.eventID + ")";
-							//$("a#sendPicture").attr("onClick", onClickEventID);
-						})
-						$.mobile.loading('hide');
 					}
 				}
 	});
