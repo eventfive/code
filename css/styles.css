@@ -106,27 +106,33 @@ textarea { height: 130px !important; margin-top: 0 !important; }
 .ui-collapsible .description .time {text-align: right; font-size: 10px; }
 .ui-collapsible .description .time span { display: block; }
 .ui-collapsible .description .text { font-size: 12px; margin-top: 10px; }
-.ui-collapsible .select a.button { margin: 10px 20px; float: right; font-size: 12px; border-radius: 0; width: auto !important; }
+.ui-collapsible .select a.button { margin: 10px 20px 10px 0px; float: right; font-size: 12px; border-radius: 0; width: auto !important; }
 
 /* Kategorien */
-#categories .content { padding-bottom: 0; }
-#categories .chooseCat, #categories .chooseCat .ui-btn, #categories .chooseCat .ui-focus, #categories .takePic, #categories .leaveCom  { color: #575351; border: none; border-bottom: 1px solid rgba(68,45,19,.1); border-radius: 0; background: #f7f6f6 !important; box-shadow: none; text-align: left; font-weight: normal; margin: 0 !important; }
-#categories .chooseCat,  #categories .leaveCom { padding: 10px 0 10px 35px; }
-#categories .chooseCat, #categories .chooseCat .ui-btn-text, #categories .takePic, #categories label, #categories .leaveCom textarea { font-size: 13px !important; font-family: Arial, Helvetica, sans-serif; color: #575351; text-align: left; }
-#categories .chooseCat .ui-btn { border: none; }
-#categories .chooseCat .ui-btn-text, #categories .takePic span.pictureFromCameraOK { color: #1C9381; font-weight: bold; }
-#categories .chooseCat .ui-btn-inner { padding-left: 0; }
-#categories .chooseCat .ui-ico { background: url("../res/app/list-choose.png") no-repeat center right transparent !important; background-size: 50% auto !important; border-radius: 0; right: 20px; }
-#categories .chooseCat .ui-icon { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; font-size: 11px; border-radius: 0; border: none; width: auto; right: 20px; margin-top: -13px }
-#categories .takePic { padding: 10px 0 10px 35px; }
+.step { padding: 10px 20px 10px 35px !important; }
+.step, .step .ui-btn, .step .ui-focus  { color: #575351; border: none; border-bottom: 0px solid rgba(68,45,19,.1); border-radius: 0; background: #f7f6f6 !important; box-shadow: none; text-align: left; font-weight: normal; margin: 0 !important; }
+.step, .step .ui-btn-text, .step label, .step textarea { font-size: 13px !important; font-family: Arial, Helvetica, sans-serif; color: #575351; text-align: left; }
+.step .ui-btn { border: none !important; }
+.step .ui-btn-text, span.pictureFromCameraOK { color: #1C9381; font-weight: bold; }
+.step .ui-btn-inner { padding-left: 0; }
+.step .ui-icon { display: block; padding: 3px 10px 5px; background: #1c9280; color: #FFF !important; text-shadow: none; font-family: 'nove'; font-weight: normal !important; font-size: 11px; border-radius: 0; border: none; width: auto; right: 0 !important; margin-top: -13px }
 #categories .takePic span { display: block; width: 100%; }
 #categories .takePic span.pictureFromCameraOK { float: left; margin-top: 12px; width: auto; }
-#categories .takePic a.button { border-radius: 0; float: right; width: auto !important; font-size: 11px; margin-right: 20px; margin-top: 10px; }
+.step a.button { border-radius: 0; float: right; width: auto !important; font-size: 11px; margin-top: 10px; }
 #categories .leaveCom { padding-right: 20px; }
 #categories .leaveCom .maxlenght { font-size: 11px; margin: 10px 0 0; text-align: right; color: #928f8d; }
 
 /* Gallery */
-#gallery .ui-content { padding-top: 5px; padding-bottom: 0; }
+#gallery .ui-content { padding-top: 0; }
+#gallery h1#eventTitle { margin-top: 0; }
+/* Filter */
+#gallery #eventCollapsible { margin: 0; }
+#gallery .ui-collapsible-content { padding: 0; }
+.step, .step .ui-btn, .step .ui-focus  { border-bottom: 1px solid rgba(68,45,19,.1); } 
+#gallery .step .ui-btn-inner { height: 20px; }
+#gallery .step .ui-btn-text { display: none; }
+#gallery .step .select a.button { float: right; }
+
 #gallery .imageWrapper { margin-bottom: 5px; }
 #gallery .thumbnail { height: 200px; overflow: hidden; position: relative; background: #f7f6f6; }
 #gallery .imageWrapper img { position: absolute; top: -0%; left: 0; width: 100%; }

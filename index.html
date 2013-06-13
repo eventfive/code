@@ -17,7 +17,10 @@
 <body>
 
 <!-- In den Inputs werden die Einstellungen gespeichert -->
-<input type="hidden" id="eventID" value"" >
+<input type="hidden" id="eventID" value="" >
+<input type="hidden" id="galleryEventID" value="0" >
+<input type="hidden" id="galleryCategoryOrder" value="0" >
+
 
 <!-- Startbildschirm -->
 <div data-role="page" id="start">
@@ -44,7 +47,7 @@
         	<p><strong>Willkommen bei VOIVOI!</strong></p>
         	<p> Diese App bietet Besuchern und Veranstaltern einen neuen und einfachen Weg, Momente einzufangen und zu teilen.</p>
         	<p>Nachdem du eine Veranstaltung ausgewählt hat kannst du zu verschiedenen Kategorien ein Bild aufnehmen und optional mit einem Kommentar versehen. Basierend auf dem Prinzip einer Einwegkamera ist jede Kategorie allerdings nach Aufnahme eines Bildes aufgebraucht.</p>
-        	<p>In der Gallerie findest du alle bereits veröffentlichten Bilder und Kommentare der Veranstaltung. Diese Art der Dokumentation lässt dich so an den Eindrücken der anderen Besucher teilhaben.</p>
+        	<p>In der Galerie findest du alle bereits veröffentlichten Bilder und Kommentare der Veranstaltung. Diese Art der Dokumentation lässt dich so an den Eindrücken der anderen Besucher teilhaben.</p>
         </div>
     </div>
     <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
@@ -53,7 +56,7 @@
                 <li><a href="#welcome" class="ui-btn-active ui-state-persist">Willkommen</a></li>
                 <li><a href="#events">Kalender</a></li>
                 <li><a href="#categories">Kategorien</a></li>
-                <li><a href="#gallery">Gallerie</a></li>
+                <li><a href="#gallery">Galerie</a></li>
                 <li><a href="#about">Kontakt</a></li>
             </ul>
         </div>
@@ -78,7 +81,7 @@
                 <li><a href="#welcome">Willkommen</a></li>
                 <li><a href="#events" class="ui-btn-active ui-state-persist">Kalender</a></li>
                 <li><a href="#categories">Kategorien</a></li>
-                <li><a href="#gallery">Gallerie</a></li>
+                <li><a href="#gallery">Galerie</a></li>
                 <li><a href="#about">Kontakt</a></li>
             </ul>
         </div>
@@ -96,18 +99,18 @@
     </div>
     <div data-role="content" class="eventSelected">
         <h1>Mach dein Bild</h1>
-        <div class="content list chooseCat">
+        <div class="content step chooseCat">
        		<label for="chooseCat">1. Kategorie wählen</label>
             <select id="chooseCat"></select>
         </div>
-        <div class="content list takePic">
+        <div class="content step takePic">
             <span>2. Bild aufnehmen</span>
             <img id="pictureFromCamera" style="display:none" />
             <span class="pictureFromCameraOK" style="display:none">Bild aufgenommen</span>
             <a class="button" onclick="capturePhoto();">Kamera öffnen</a>
             <br class="clear" />
         </div>
-        <div class="content list leaveCom">
+        <div class="content step leaveCom">
             <label for="comment">3. Kommentar hinterlassen</label>
             <div class="maxlenght"><span id="counter"></span> Zeichen verbleiben</div>
             <textarea type="text" id="comment" name="comment" value="" maxlength="140"></textarea>
@@ -121,7 +124,7 @@
                 <li><a href="#welcome">Willkommen</a></li>
                 <li><a href="#events">Kalender</a></li>
                 <li><a href="#categories" class="ui-btn-active ui-state-persist">Kategorien</a></li>
-                <li><a href="#gallery">Gallerie</a></li>
+                <li><a href="#gallery">Galerie</a></li>
                 <li><a href="#about">Kontakt</a></li>
             </ul>
         </div>
@@ -129,16 +132,33 @@
 </div>
 
 
-<!-- Gallerieansicht -->
+<!-- Galerieansicht -->
 <div data-role="page" id="gallery">
     <div data-role="header" data-tap-toggle="false" data-position="fixed">
-        <h1>Gallerie</h1>
+        <h1>Galerie</h1>
     </div>
-	<div data-role="content" class="eventMissing" style="display:none;">
-    	<h1>Gallerie</h1>
-		<span class="error selectEvent">Bitte wähle zuerst eine Veranstaltung aus!</span>
-    </div>
-    <div data-role="content" class="eventSelected">
+    <div data-role="content">
+    	<div class="content list">
+        	<div data-role="collapsible-set" data-inset="false" data-iconpos="right" id="eventCollapsible">
+            	<div data-role="collapsible" class="listanimation">
+                    <h3>Filter</h3>
+                    <div class="step">
+                        <label for="chooseEvent">Wähle eine Veranstaltung</label>
+                        <select id="chooseEvent"></select>
+                    </div>
+                    <div class="step">
+                        <label for="chooseCatGallery">Nach Kategorie filtern (optional)</label>
+                        <select id="chooseCatGallery"></select>
+                    </div>
+                    <div class="select">
+                        <a class="button" id="onlyUserPictures">Nur Eigene Bilder</a>
+                        <a class="button" id="allPictures">Alle Bilder</a>
+                    </div>
+                    <br class="clear" />
+                </div>
+            </div>
+        </div>
+    	<h1 id="eventTitle"></h1>
         <div class="content list images"></div>
     </div>
     <div data-role="footer" data-id="persistent-navigation" data-tap-toggle="false" data-position="fixed">
@@ -147,7 +167,7 @@
                 <li><a href="#welcome">Willkommen</a></li>
                 <li><a href="#events">Kalender</a></li>
                 <li><a href="#categories">Kategorien</a></li>
-                <li><a href="#gallery" class="ui-btn-active ui-state-persist">Gallerie</a></li>
+                <li><a href="#gallery" class="ui-btn-active ui-state-persist">Galerie</a></li>
                 <li><a href="#about">Kontakt</a></li>
             </ul>
         </div>
@@ -163,14 +183,14 @@
     <div data-role="content">
         <h1>Über</h1>
         <div class="content list publisher">
-       		<p>Version: 2.0.2<br>
+       		<p>Version: 2.1<br>
         </div>
         <h1>Kontakt</h1>
         <div class="content list publisher">
             <input type="text" id="contactName" value="Name">
             <input type="email" id="contactEmail" value="E-Mail Adresse">
             <textarea type="text" id="contactMessage">Nachricht</textarea>
-            <input type="hidden" id="contactVersion" value="2.0.2" >
+            <input type="hidden" id="contactVersion" value="2.1" >
         </div>
         <a class="button send" id="sendMessage" rel="external" onClick="sendMail()">Abschicken</a>
     </div>
@@ -180,7 +200,7 @@
                 <li><a href="#welcome">Willkommen</a></li>
                 <li><a href="#events">Kalender</a></li>
                 <li><a href="#categories">Kategorien</a></li>
-                <li><a href="#gallery">Gallerie</a></li>
+                <li><a href="#gallery">Galerie</a></li>
                 <li><a href="#about" class="ui-btn-active ui-state-persist">Kontakt</a></li>
             </ul>
         </div>

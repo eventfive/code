@@ -7,7 +7,7 @@ var jqmReadyDeferred = jQuery.Deferred();
 var appURL = "http://voivoi.eventfive.de/"
 var uuid, platform, osVersion;
 var restartApp = true;
-var username, eventID;
+var username, eventID, getFromGallery, categoryOrder;
 // Dummy Daten für lokales testen
 var uuid = "69", platform = "Desktop", osVersion = "0";
 
@@ -42,18 +42,65 @@ jQuery(document).ready(function () {
 			restartApp = false;
 		}
 	}
-
+	
+	$( '#categories' ).on( "pageshow", function( event ) {
+		reloadCategories();		
+	});
+	
 	// Bei Tap auf Gallery werden alle Bilder des Events geladen
 	$('a[href="#gallery"]').on("click", function(event){
 		event.preventDefault();
 		$.mobile.loading('show');
-		getPictureGallery();
+		eventID = $('input#eventID').val();
+		categoryOrder = 0;
+		onlyUsersPictures = 0;
+		getPictureGallery(eventID,categoryOrder,onlyUsersPictures);
 	});
-			
-	$( '#categories' ).on( "pageshow", function( event ) {
-		reloadCategories();		
+	
+	$("#gallery").on('pageshow', function( event ) {
+		// Manuell den Text auf das Dropdown-Select klatschen
+		$('#eventCollapsible .step .ui-icon').html("Auswählen");	
 	});
-
+	
+	// Dropdown EVENT
+	$("#chooseEvent").on('change',function(){
+		$.mobile.loading('show');
+		var galleryEventID = $(this).find(':selected').val();
+		$('input#galleryEventID').val(galleryEventID);
+		getFromGallery = true;
+		getEventCategories(galleryEventID,getFromGallery)
+	});
+	// Dopdown KATEGORIE
+	$("#chooseCatGallery").on('change',function(){
+		var galleryCategoryOrder = $(this).find(':selected').val();
+		$('input#galleryCategoryOrder').val(galleryCategoryOrder);
+	});
+	
+	// SEND BUTTONS
+	$('a#allPictures').on("click", function(event){
+		event.preventDefault();
+		$.mobile.loading('show');
+		eventID = $('input#galleryEventID').val();
+		categoryOrder = $('input#galleryCategoryOrder').val();
+		onlyUsersPictures = 0;
+		getPictureGallery(eventID,categoryOrder,onlyUsersPictures);
+	});
+	$('a#onlyUserPictures').on("click", function(event){
+		event.preventDefault();
+		$.mobile.loading('show');
+		eventID = $('input#galleryEventID').val();
+		categoryOrder = $('input#galleryCategoryOrder').val();
+		onlyUsersPictures = 1;
+		getPictureGallery(eventID,categoryOrder,onlyUsersPictures);
+	});
+	
+	
+	eventID = $('input#eventID').val();
+		categoryOrder = 0;
+		onlyUsersPictures = 0;
+		getPictureGallery(eventID,categoryOrder,onlyUsersPictures);
+	
+	
 });
 
 
@@ -118,6 +165,8 @@ function getEventsData() {
 								'<br class="clear" />' +
 							'</div>'
 							).trigger('create');
+							// Kategerien ausgeben
+							$('select#chooseEvent').append('<option id="' + item.eventID + '" value="' + item.eventID + '">' + item.eventTitle + '</option>');
 						  })
 					}
 					// Accordion animation
@@ -180,7 +229,7 @@ function getUserData() {
 										// Ausgewähltes Event speichern
 										$('input#eventID').val(item.selectedEventID);
 										// Kategorien laden
-										getEventCategories(item.selectedEventID);
+										getEventCategories(item.selectedEventID,false);
 									}
 									// Username einsetzen
 									$('span.username').html(item.username);
@@ -195,10 +244,7 @@ function getUserData() {
 	});
 };
 
-function getEventCategories() {
-	// Aktuelle EventID lesen
-	eventID = $('input#eventID').val();
-	
+function getEventCategories(eventID,getFromGallery) {
 	$('select#chooseCat option').remove();
 	$.ajax({
 		type: "GET",
@@ -209,15 +255,27 @@ function getEventCategories() {
 		data: { userID: uuid, eventID: eventID, unique: timestamp },
 		cache: false,
 		success: function(data) {
-					$.each(data, function(i,item) {
-						// Kategerien ausgeben
-						$('select#chooseCat').append('<option id="' + item.categoryOrder + '" value="' + item.categoryOrder + '">' + item.categoryTitle + '</option>');
-						// ABSCHICKEN Button konfigurieren
-						var onClickEventID = "sendPicture(" + item.eventID + ")";
-						$("a#sendPicture").attr("onClick", onClickEventID);
-					})
-					// VERBRAUCHTE Kategorien laden
-					getSentPictures();
+					if ( getFromGallery == false ) {
+						$.each(data, function(i,item) {
+							// Kategerien ausgeben
+							$('select#chooseCat').append('<option id="' + item.categoryOrder + '" value="' + item.categoryOrder + '">' + item.categoryTitle + '</option>');
+							// ABSCHICKEN Button konfigurieren
+							var onClickEventID = "sendPicture(" + item.eventID + ")";
+							$("a#sendPicture").attr("onClick", onClickEventID);
+						})
+						// VERBRAUCHTE Kategorien laden
+						getSentPictures();
+					}
+					else {
+						$.each(data, function(i,item) {
+							// Kategerien ausgeben
+							$('select#chooseCatGallery').append('<option id="' + item.categoryOrder + '" value="' + item.categoryOrder + '">' + item.categoryTitle + '</option>');
+							// ABSCHICKEN Button konfigurieren
+							//var onClickEventID = "sendPicture(" + item.eventID + ")";
+							//$("a#sendPicture").attr("onClick", onClickEventID);
+						})
+						$.mobile.loading('hide');
+					}
 				}
 	});
 }
@@ -243,9 +301,7 @@ function getSentPictures() {
 	});
 }
 
-function getPictureGallery() {
-	// Aktuelle EventID lesen
-	eventID = $('input#eventID').val();
+function getPictureGallery(eventID,categoryOrder,onlyUsersPictures) {
 	// Alte Fotos löschen
 	$('.content.list.images').empty()
 	// Neue Fotos holen
@@ -255,13 +311,16 @@ function getPictureGallery() {
 		dataType: "JSONP",
 		jsonp: 'jsoncallback',
 		url: appURL + "app.php?option=getPictureGallery" ,
-		data: { userID: uuid, eventID: eventID, unique: timestamp },
+		data: { userID: uuid, eventID: eventID, categoryOrder: categoryOrder, onlyUsersPictures: onlyUsersPictures, unique: timestamp },
 		cache: false,
 		success: function(data) {
 					// Alte Bilder löschen
 					$('#categories .chooseCat .ui-btn-text').empty();
 					// Neue Laden
 					$.each(data, function(i,item) {
+						// Gallerie Titel ändern
+						$('h1#eventTitle').html(item.eventTitle);
+						// Bilder laden
 						$('.content.list.images').append(
 							'<div class="imageWrapper">' +
 								'<a href="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '.jpg" rel="external" category="' + item.categoryTitle + '">' +
@@ -441,7 +500,7 @@ function reloadCategories() {
 // get from Camera
 function capturePhoto() {
   navigator.camera.getPicture(onPhotoURISuccess, null, {
-	quality: 80,
+	quality: 60,
 	targetWidth: 1024,
 	targetHeight: 768,
 	correctOrientation: true,
