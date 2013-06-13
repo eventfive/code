@@ -9,8 +9,8 @@
 	<widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.hfkbremen.VOIVOI"
-        version   = "2.0.1"
-		versionCode = "701" >
+        version   = "2.1"
+		versionCode = "710" >
     <name>VOIVOI</name>
 
     <description>VOIVOI  - dokumentiere deine Sicht einer Veranstaltung!
