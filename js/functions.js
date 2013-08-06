@@ -138,7 +138,7 @@ function getEventsData(forGallery) {
 					else { 
 						if ( forGallery == 1 ) {
 							// Alte Events löschen
-							$('select#chooseEvent').empty()
+							$('select#chooseEvent').empty().append('<option>Bitte wählen:</option>')
 							$.each(data, function(i,item){
 								// Kategerien ausgeben
 								$('select#chooseEvent').append('<option id="' + item.eventID + '" value="' + item.eventID + '">' + item.eventTitle + '</option>');
@@ -255,7 +255,7 @@ function getEventCategories(eventID,forGallery) {
 		success: function(data) {
 					if ( forGallery == 1 ) {
 						// Alte Kategorien löschen
-						$('select#chooseCatGallery').empty()
+						$('select#chooseCatGallery').empty().append('<option>Bitte wählen:</option>')
 						$.each(data, function(i,item) {
 							// Kategerien ausgeben
 							$('select#chooseCatGallery').append('<option id="' + item.categoryOrder + '" value="' + item.categoryOrder + '">' + item.categoryTitle + '</option>');
@@ -319,9 +319,9 @@ function getPictureGallery(eventID,categoryOrder,onlyUsersPictures) {
 						// Bilder laden
 						$('.content.list.images').append(
 							'<div class="imageWrapper">' +
-								'<a href="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '.jpg" rel="external" category="' + item.categoryTitle + '">' +
+								'<a href="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '_' + item.dayID + '.jpg" rel="external" category="' + item.categoryTitle + '">' +
 									'<div class="thumbnail">' +
-										'<img src="res/app/background.gif" data-original="' + appURL + 'events/' + item.eventID + '/uploads/' + item.categoryOrder + '_' + item.userID + '.jpg" />' +
+										'<img src="res/app/background.gif" data-original="' + appURL + 'events/' + item.eventID + '/uploads/thumbs/' + item.categoryOrder + '_' + item.userID + '_' + item.dayID + '.jpg" />' +
 										'<div class="details">' +
 											'<h2>' + item.categoryTitle + '</h2>' +
 											'<span>Von: ' + item.username + '</span>' +
@@ -346,6 +346,8 @@ function getPictureGallery(eventID,categoryOrder,onlyUsersPictures) {
 					});
 					// Zur Ansicht wechseln
 					$.mobile.navigate( "#gallery" );
+					// Filter einklappen
+					$('.ui-collapsible').trigger('collapse');
 					// Spinner ausblenden
 					$.mobile.loading('hide');
 				}
@@ -496,7 +498,7 @@ function reloadCategories() {
 // get from Camera
 function capturePhoto() {
   navigator.camera.getPicture(onPhotoURISuccess, null, {
-	quality: 60,
+	quality: 80,
 	targetWidth: 1024,
 	targetHeight: 768,
 	correctOrientation: true,

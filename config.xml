@@ -9,8 +9,8 @@
 	<widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.hfkbremen.VOIVOI"
-        version   = "2.1"
-		versionCode = "710" >
+        version   = "2.2"
+		versionCode = "720" >
     <name>VOIVOI</name>
 
     <description>VOIVOI  - dokumentiere deine Sicht einer Veranstaltung!
@@ -40,7 +40,7 @@ Voraussetzung für die Nutzung von VOIVOI ist eine bestehende Internetverbindung
 	<!--<access origin="*" />-->
 	<access origin="http://voivoi.eventfive.de" /> <!-- denies access to external resources.  -->
 
-    <preference name="phonegap-version" value="2.7.0" />
+    <preference name="phonegap-version" value="2.9.0" />
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
