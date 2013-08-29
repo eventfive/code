@@ -499,8 +499,8 @@ function reloadCategories() {
 function capturePhoto() {
   navigator.camera.getPicture(onPhotoURISuccess, null, {
 	quality: 80,
-	targetWidth: 1024,
-	targetHeight: 768,
+	targetWidth: 2048,
+	targetHeight: 1024,
 	correctOrientation: true,
 	saveToPhotoAlbum: false,
 	destinationType: Camera.DestinationType.FILE_URI });
