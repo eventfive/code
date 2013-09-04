@@ -9,8 +9,8 @@
 	<widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.eventfive.VOIVOI"
-        version   = "2.2"
-		versionCode = "720" >
+        version   = "2.2.1"
+		versionCode = "721" >
     <name>VOIVOI</name>
 
     <description>VOIVOI  - dokumentiere deine Sicht einer Veranstaltung!
